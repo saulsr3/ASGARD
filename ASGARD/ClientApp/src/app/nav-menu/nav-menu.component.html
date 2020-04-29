@@ -1,33 +1,135 @@
-<div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>
-            <a class='navbar-brand' [routerLink]='["/"]'>ASGARD</a>
-        </div>
-        <div class='clearfix'></div>
-        <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-                    <a [routerLink]='["/"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-home'></span> Home
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/counter"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-education'></span> Counter
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+ <!--sidebar start-->
+<aside>
+  <div id="sidebar" class="nav-collapse ">
+  
+    <!-- sidebar menu start-->
+    <ul class="sidebar-menu" id="nav-accordion">
+      <!--Dis de nav menu-->
+      <li [routerLinkActive]='["link-active"]'>
+        <a class="active" href="javascript:;" [routerLink]='["/"]' (click)='collapse()'>
+          <i class="icon-bar-chart"></i>
+          <span>Estadisticas</span>
+        </a>
+      </li>
+
+      <li class="sub-menu" [routerLinkActive]='["link-active"]'>
+        <a href="javascript:;" (click)='collapse()'>
+          <i class="glyphicon glyphicon-list-alt"></i>
+          <span>Catalogos</span>
+        </a>
+        <ul class="sub">
+          <li><a href="grids.html">Sucursales</a></li>
+          <li><a href="calendar.html">Areas de Negocio</a></li>
+
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/form-empleado"]' (click)='collapse()'>Empleados</a></li>
+          <li><a href="todo_list.html">Proveedores</a></li>
+          <li><a href="grids.html">Clasificaciones</a></li>
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/form-tipo"]' (click)='collapse()'>Tipos de Activo</a></li>
+          <li><a href="gallery.html">Marcas</a></li>
+          <li><a href="gallery.html">Donantes</a></li>
+        </ul>
+      </li>
+
+      <li class="sub-menu" [routerLinkActive]='["link-active"]'>
+        <a href="javascript:;" (click)='collapse()'>
+          <i class="glyphicon glyphicon-object-align-bottom"></i>
+          <span>Control de Activo FIjo</span>
+        </a>
+        <ul class="sub">
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/tabla-activos"]' (click)='collapse()'>Ingreso de Bien</a></li>
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/tabla-activos"]' (click)='collapse()'>Registro de Bienes</a></li>
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/tabla-activos"]' (click)='collapse()'>Tarjeta de Depresiacion</a></li>
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/tabla-activos"]' (click)='collapse()'>Cuadro de Control</a></li>
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/tabla-activos"]' (click)='collapse()'>Kardex</a></li>
+        </ul>
+      </li>
+      <li class="sub-menu" [routerLinkActive]='["link-active"]'>
+        <a href="javascript:;" (click)='collapse()'>
+          <i class="icon-cogs"></i>
+          <span>Mantenimientos</span>
+        </a>
+        <ul class="sub">
+          <li><a href="grids.html">Cuadro de Solicitudes</a></li>
+          <li><a href="grids.html">Gestión del Mantenimiento</a></li>
+        </ul>
+      </li>
+      <li class="sub-menu" [routerLinkActive]='["link-active"]'>
+        <a href="javascript:;" (click)='collapse()'>
+          <i class="icon-exchange"></i>
+          <span>Traspasos</span>
+        </a>
+        <ul class="sub">
+          <li><a href="grids.html">Cuadro de Solicitudes</a></li>
+          <li><a href="grids.html">Gestón del Traspaso</a></li>
+        </ul>
+      </li>
+      <li class="sub-menu" [routerLinkActive]='["link-active"]'>
+        <a href="javascript:;" (click)='collapse()'>
+          <i class="icon-arrow-down"></i>
+          <span>Baja de Bienes</span>
+        </a>
+        <ul class="sub">
+          <li><a href="grids.html">Cuadro de Solicitudes</a></li>
+          <li><a href="grids.html">Gestón de Descargo de Bien</a></li>
+        </ul>
+      </li>
+      <li class="sub-menu" [routerLinkActive]='["link-active"]'>
+        <a href="javascript:;" (click)='collapse()'>
+          <i class="glyphicon glyphicon-level-up"></i>
+          <span>Solicitudes</span>
+        </a>
+        <ul class="sub">
+          <li><a href="grids.html">Solicitud de Mantenimiento</a></li>
+          <li><a href="calendar.html">Solicitud de Traspaso</a></li>
+          <li><a href="gallery.html">Solicitud de Baja</a></li>
+        </ul>
+      </li>
+      <li class="sub-menu" [routerLinkActive]='["link-active"]'>
+        <a href="javascript:;" [routerLink]='["/fetch-data"]' (click)='collapse()'>
+          <i class="glyphicon glyphicon-open-file"></i>
+          <span>Reportes</span>
+        </a>
+        <ul class="sub">
+          <li><a href="grids.html">Grids</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="todo_list.html">Todo List</a></li>
+        </ul>
+      </li>
+
+      <li class="sub-menu" [routerLinkActive]='["link-active"]'>
+        <a href="javascript:;" [routerLink]='["/fetch-data"]' (click)='collapse()'>
+          <i class="glyphicon glyphicon-lock"></i>
+          <span>Seguridad</span>
+        </a>
+        <ul class="sub">
+          <li><a href="grids.html">Cargos</a></li>
+          <li><a href="calendar.html">Usuarios</a></li>
+          <li><a href="gallery.html">Bitacora</a></li>
+
+        </ul>
+      </li>
+
+
+      <li class="sub-menu" [routerLinkActive]='["link-active"]'>
+        <a href="javascript:;" [routerLink]='["/fetch-data"]' (click)='collapse()'>
+          <i class="glyphicon glyphicon-cd"></i>
+          <span>Backup</span>
+        </a>
+        <ul class="sub">
+          <li><a href="grids.html">Grids</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="todo_list.html">Todo List</a></li>
+          <li><a href="grids.html">Grids</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="todo_list.html">Todo List</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+  <!-- sidebar menu end-->
+</aside>
+<!--sidebar end-->

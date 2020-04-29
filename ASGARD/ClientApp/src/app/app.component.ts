@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-
+import { CargarScriptsService } from './services/cargar-scripts.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+    constructor(private _CargaScript: CargarScriptsService) {
+        _CargaScript.cargar(['/jquery.nicescroll', '/jquery.scrollTo.min']);
+    }
 }

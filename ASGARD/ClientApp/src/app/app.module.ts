@@ -3,20 +3,33 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+
+//Registrar o declarar el componente creado
+import { SharedComponent } from './components/shared/shared.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { TablaActivosComponent } from './components-control/tabla-activos/tabla-activos.component';
+import { FormTipoActivoComponent } from './components-catalogos/form-tipo-activo/form-tipo-activo.component';
+import { FormEmpleadoComponent } from './components-catalogos/form-empleado/form-empleado.component';
+//servicios hay que procurar llevar el orden
+import {CargarScriptsService} from './services/cargar-scripts.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent
+    SharedComponent,
+    FooterComponent,
+    HeaderComponent,
+    TablaActivosComponent,
+    FormTipoActivoComponent,
+    FormEmpleadoComponent
+    //Aqui vamos a agregar los compoenentes del proyecto
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -24,11 +37,13 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+        { path: 'shared', component: SharedComponent },
+        { path: 'tabla-activos', component: TablaActivosComponent },
+        { path: 'form-tipo', component: FormTipoActivoComponent },
+        { path: 'form-empleado', component: FormEmpleadoComponent }
     ])
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [CargarScriptsService],
+    bootstrap: [AppComponent, NavMenuComponent, HeaderComponent]
 })
 export class AppModule { }
