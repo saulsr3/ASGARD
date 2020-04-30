@@ -22,4 +22,11 @@ export class CatalogosService {
     //Servicios Empleados
 
     //Servicios Cargos
+
+
+  //Servicios Proveedores
+  public getProveedores() {
+    return this.http.get(this.urlBase + "api/Proveedor/listarProveedores").map(res => res.json());
+  }
+
 }
