@@ -1,0 +1,30 @@
+
+<br /><br /><br />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="row">ID</th>
+      <th scope="row">Nombre</th>
+      <th>Direccion</th>
+      <th>Telefono</th>
+      <th>Rubro</th>
+      <th>Encargado</th>
+      <th>Telefono Encargado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let proveedor of proveedores">
+      <td class="red-text">{{proveedor.idMarca}}</td>
+      <td>{{proveedor.Nombre}}</td>
+      <td>{{proveedor.Descripcion}}</td>
+      <td>{{proveedor.Telefono}}</td>
+      <td>{{proveedor.Rubro}}</td>
+      <td>{{proveedor.Encargado}}</td>
+      <td>{{proveedor.TelefonoEncargado}}</td>
+      <td class="center hidden-phone">
+        <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+        <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+      </td>
+    </tr>
+</table>

@@ -23,6 +23,10 @@ import { FormSucursalComponent } from './components-catalogos/form-sucursal/form
 import { CargarScriptsService } from './services/cargar-scripts.service';
 import { CatalogosService } from './services/catalogos.service';
 import { TablaMarcasComponent } from './components-catalogos/tabla-marcas/tabla-marcas.component';
+import { FormDonantesComponent } from './components-catalogos/form-donantes/form-donantes.component';
+
+//Import para trabajar con formularios
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -39,7 +43,9 @@ import { TablaMarcasComponent } from './components-catalogos/tabla-marcas/tabla-
     FormEmpleadoComponent,
     FormMarcaComponent,
     FormSucursalComponent,
-    TablaMarcasComponent
+    TablaMarcasComponent,
+    FormDonantesComponent
+   
     //Aqui vamos a agregar los compoenentes del proyecto
   ],
     imports: [
@@ -47,6 +53,8 @@ import { TablaMarcasComponent } from './components-catalogos/tabla-marcas/tabla-
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+   
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'shared', component: SharedComponent },
@@ -55,7 +63,9 @@ import { TablaMarcasComponent } from './components-catalogos/tabla-marcas/tabla-
         { path: 'form-empleado', component: FormEmpleadoComponent },
         { path: 'form-marca', component: FormMarcaComponent },
         { path: 'tabla-marca', component: TablaMarcasComponent },
-        { path: 'form-sucursal', component: FormSucursalComponent }
+        { path: 'form-sucursal', component: FormSucursalComponent },
+      { path: 'form-donantes', component: FormDonantesComponent }
+
     ])
     ],
     providers: [CargarScriptsService, CatalogosService],

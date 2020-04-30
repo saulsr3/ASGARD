@@ -1,0 +1,45 @@
+<br />
+<br />
+<br />
+<h1>Donantes</h1>
+<div class="row">
+
+    <div class="col-md-12">
+
+
+
+        <form [formGroup]="donantes" (ngSubmit)="guardarDatos()">
+
+            <div class="form-group">
+                <label>Id Donante</label>
+                <input type="text" class="form-control" readonly formControlName="IidDonante"/>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre"/>
+            </div>
+
+            <div class="form-group">
+                <label>Teléfono</label>
+                <input type="number" class="form-control" formControlName="telefono"/>
+            </div>
+
+            <div class="form-group">
+                <label>Dirección</label>
+                <input type="text" class="form-control" formControlName="direccion"/>
+            </div>
+
+            <div>
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
