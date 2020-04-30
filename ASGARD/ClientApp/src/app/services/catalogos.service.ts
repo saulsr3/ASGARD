@@ -19,14 +19,15 @@ export class CatalogosService {
     public getSucursales() {
         return this.http.get(this.urlBase + "api/Sucursal/listarSucursales").map(res => res.json());
     }
+
     //Servicios Empleados
 
     //Servicios Cargos
 
-
-  //Servicios Proveedores
-  public getProveedores() {
-    return this.http.get(this.urlBase + "api/Proveedor/listarProveedores").map(res => res.json());
+  //Service Donantes
+  public agregarDonante(donante) {
+    return this.http.post(this.urlBase + "api/Donantes/guardarDonante", donante).map(res => res.json());
   }
+  
 
 }
