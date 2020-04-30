@@ -14,8 +14,12 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { TablaActivosComponent } from './components-control/tabla-activos/tabla-activos.component';
 import { FormTipoActivoComponent } from './components-catalogos/form-tipo-activo/form-tipo-activo.component';
 import { FormEmpleadoComponent } from './components-catalogos/form-empleado/form-empleado.component';
+import { FormMarcaComponent } from './components-catalogos/form-marca/form-marca.component';
+import { FormSucursalComponent } from './components-catalogos/form-sucursal/form-sucursal.component';
 //servicios hay que procurar llevar el orden
-import {CargarScriptsService} from './services/cargar-scripts.service';
+import { CargarScriptsService } from './services/cargar-scripts.service';
+import { CatalogosService } from './services/catalogos.service';
+
 
 
 @NgModule({
@@ -28,7 +32,9 @@ import {CargarScriptsService} from './services/cargar-scripts.service';
     HeaderComponent,
     TablaActivosComponent,
     FormTipoActivoComponent,
-    FormEmpleadoComponent
+    FormEmpleadoComponent,
+    FormMarcaComponent,
+    FormSucursalComponent
     //Aqui vamos a agregar los compoenentes del proyecto
   ],
   imports: [
@@ -40,10 +46,12 @@ import {CargarScriptsService} from './services/cargar-scripts.service';
         { path: 'shared', component: SharedComponent },
         { path: 'tabla-activos', component: TablaActivosComponent },
         { path: 'form-tipo', component: FormTipoActivoComponent },
-        { path: 'form-empleado', component: FormEmpleadoComponent }
+        { path: 'form-empleado', component: FormEmpleadoComponent },
+        { path: 'form-marca', component: FormMarcaComponent },
+        { path: 'form-sucursal', component: FormSucursalComponent }
     ])
-  ],
-  providers: [CargarScriptsService],
+    ],
+    providers: [CargarScriptsService, CatalogosService],
     bootstrap: [AppComponent, NavMenuComponent, HeaderComponent]
 })
 export class AppModule { }

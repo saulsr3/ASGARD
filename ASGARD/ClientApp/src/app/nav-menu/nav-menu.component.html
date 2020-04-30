@@ -18,14 +18,14 @@
           <span>Catalogos</span>
         </a>
         <ul class="sub">
-          <li><a href="grids.html">Sucursales</a></li>
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/form-sucursal"]' (click)='collapse()'>Sucursales</a></li>
           <li><a href="calendar.html">Areas de Negocio</a></li>
 
           <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/form-empleado"]' (click)='collapse()'>Empleados</a></li>
           <li><a href="todo_list.html">Proveedores</a></li>
           <li><a href="grids.html">Clasificaciones</a></li>
           <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/form-tipo"]' (click)='collapse()'>Tipos de Activo</a></li>
-          <li><a href="gallery.html">Marcas</a></li>
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]='["/form-marca"]' (click)='collapse()'>Marcas</a></li>
           <li><a href="gallery.html">Donantes</a></li>
         </ul>
       </li>
