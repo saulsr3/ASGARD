@@ -8,6 +8,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 
 //Registrar o declarar el componente creado
+import { HttpModule } from '@angular/http';
 import { SharedComponent } from './components/shared/shared.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
@@ -19,6 +20,7 @@ import { FormSucursalComponent } from './components-catalogos/form-sucursal/form
 //servicios hay que procurar llevar el orden
 import { CargarScriptsService } from './services/cargar-scripts.service';
 import { CatalogosService } from './services/catalogos.service';
+import { TablaMarcasComponent } from './components-catalogos/tabla-marcas/tabla-marcas.component';
 
 
 
@@ -34,10 +36,12 @@ import { CatalogosService } from './services/catalogos.service';
     FormTipoActivoComponent,
     FormEmpleadoComponent,
     FormMarcaComponent,
-    FormSucursalComponent
+    FormSucursalComponent,
+    TablaMarcasComponent
     //Aqui vamos a agregar los compoenentes del proyecto
   ],
-  imports: [
+    imports: [
+    HttpModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
@@ -48,6 +52,7 @@ import { CatalogosService } from './services/catalogos.service';
         { path: 'form-tipo', component: FormTipoActivoComponent },
         { path: 'form-empleado', component: FormEmpleadoComponent },
         { path: 'form-marca', component: FormMarcaComponent },
+        { path: 'tabla-marca', component: TablaMarcasComponent },
         { path: 'form-sucursal', component: FormSucursalComponent }
     ])
     ],

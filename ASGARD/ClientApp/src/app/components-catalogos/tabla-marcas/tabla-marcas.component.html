@@ -1,0 +1,22 @@
+<br /><br /><br />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Marca</th>
+      <th>Descripcion</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let marca of marcas">
+      <td>{{marca.idMarca}}</td>
+      <td>{{marca.marca}}</td>
+      <td>{{marca.descripcion}}</td>
+      <td class="center hidden-phone">
+        <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+        <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+      </td>
+    </tr>
+</table>
