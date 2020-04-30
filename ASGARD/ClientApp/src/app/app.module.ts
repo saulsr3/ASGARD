@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 
+
+
 //Registrar o declarar el componente creado
 import { HttpModule } from '@angular/http';
 import { SharedComponent } from './components/shared/shared.component';
@@ -42,8 +44,8 @@ import { TablaMarcasComponent } from './components-catalogos/tabla-marcas/tabla-
   ],
     imports: [
     HttpModule,
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
+        BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+        HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

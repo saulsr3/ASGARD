@@ -1,0 +1,40 @@
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+thead {
+  background-color: #c4e8c0;
+  color: black;
+}
+.modal {
+  position: fixed;
+  z-index: 1;
+  overflow: auto;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.452);
+}
+
+.modal-content {
+  animation-name: modal;
+  animation-duration: 1s;
+}
+
+@keyframes modal {
+  from {
+    top: -330px;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}

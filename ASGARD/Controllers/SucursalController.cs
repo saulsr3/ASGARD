@@ -24,6 +24,7 @@ namespace ASGARD.Controllers
                                                            {
                                                                IdSucursal=suscursal.IdSucursal,
                                                                Nombre=suscursal.Nombre,
+                                                               Ubicacion=suscursal.Ubicacion,
                                                                Correlativo=suscursal.Correlativo
                                                            }).ToList();
                 return listaSucursales;

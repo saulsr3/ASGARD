@@ -6,6 +6,6 @@ import { CargarScriptsService } from './services/cargar-scripts.service';
 })
 export class AppComponent {
     constructor(private _CargaScript: CargarScriptsService) {
-        _CargaScript.cargar(['/jquery.nicescroll', '/jquery.scrollTo.min']);
+        _CargaScript.cargar(['/respond.min', '/sortingTable','/jquery.nicescroll', '/jquery.scrollTo.min']);
     }
 }
