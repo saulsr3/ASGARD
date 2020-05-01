@@ -12,7 +12,7 @@ export class CatalogosService {
     //Servicios para marcas
 
     public getMarcas() {
-        return this.http.get(this.urlBase + "api/Marcas/listarMarcas").map(res => res.json());
+        return this.http.get(this.urlBasety + "api/Marcas/listarMarcas").map(res => res.json());
     }
 
     //Servicios Sucursales
