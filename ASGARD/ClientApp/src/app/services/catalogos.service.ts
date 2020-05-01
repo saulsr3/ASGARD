@@ -38,4 +38,9 @@ export class CatalogosService {
     return this.http.post(this.urlBase + "api/Proveedor/guardarProveedor", proveedor).map(res => res.json());
   }
 
+  //servicio que enlista la clasificacion de los activos
+  public getClasificacion() {
+    return this.http.get(this.urlBase + "api/Clasificacion/listarClasificacion").map(res => res.json());
+  }
+
 }
