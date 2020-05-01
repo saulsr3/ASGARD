@@ -27,6 +27,7 @@ import { FormDonantesComponent } from './components-catalogos/form-donantes/form
 
 //Import para trabajar con formularios
 import { ReactiveFormsModule } from "@angular/forms";
+import { FormClasificacionComponent } from './components-catalogos/form-clasificacion/form-clasificacion.component';
 
 
 
@@ -44,7 +45,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     FormMarcaComponent,
     FormSucursalComponent,
     TablaMarcasComponent,
-    FormDonantesComponent
+    FormDonantesComponent,
+    FormClasificacionComponent
    
     //Aqui vamos a agregar los compoenentes del proyecto
   ],
