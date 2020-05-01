@@ -7,8 +7,8 @@ import { CatalogosService } from './../../services/catalogos.service';
     styleUrls: ['./tabla-marcas.component.css']
 })
 export class TablaMarcasComponent implements OnInit {
-    marcas: any;
-    p: number = 1;
+    //marcas: any;
+    //p: number = 1;
     constructor(private catalogoService: CatalogosService) {
        
     }

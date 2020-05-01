@@ -8,7 +8,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./form-clasificacion.component.css']
 })
 export class FormClasificacionComponent implements OnInit {
-
+  //marcas: any;
+  //p: number = 1;
   clasificacion: FormGroup;
   constructor(private catalogosServices: CatalogosService) {
     this.clasificacion = new FormGroup({
