@@ -16,6 +16,7 @@ import { FormTipoActivoComponent } from './components-catalogos/form-tipo-activo
 import { FormEmpleadoComponent } from './components-catalogos/form-empleado/form-empleado.component';
 //servicios hay que procurar llevar el orden
 import {CargarScriptsService} from './services/cargar-scripts.service';
+import { FormClasificacionComponent } from './components-catalogos/form-clasificacion/form-clasificacion.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {CargarScriptsService} from './services/cargar-scripts.service';
     HeaderComponent,
     TablaActivosComponent,
     FormTipoActivoComponent,
-    FormEmpleadoComponent
+    FormEmpleadoComponent,
+    FormClasificacionComponent
     //Aqui vamos a agregar los compoenentes del proyecto
   ],
   imports: [
@@ -40,7 +42,8 @@ import {CargarScriptsService} from './services/cargar-scripts.service';
         { path: 'shared', component: SharedComponent },
         { path: 'tabla-activos', component: TablaActivosComponent },
         { path: 'form-tipo', component: FormTipoActivoComponent },
-        { path: 'form-empleado', component: FormEmpleadoComponent }
+        { path: 'form-empleado', component: FormEmpleadoComponent },
+        { path: 'form-clasificacion', component: FormClasificacionComponent }
     ])
   ],
   providers: [CargarScriptsService],
