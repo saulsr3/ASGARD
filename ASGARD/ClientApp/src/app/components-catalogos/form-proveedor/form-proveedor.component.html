@@ -1,0 +1,57 @@
+<br />
+<br />
+<br />
+<h2>Proveedor</h2>
+<div class="row">
+
+  <div class="col-md-8">
+
+    <form [formGroup]="proveedores" (ngSubmit)="guardarDatos()">
+
+      <div class="form-group">
+        <label>Id Proveedor</label>
+        <input type="text" class="form-control" readonly formControlName="IidProveedor" />
+      </div>
+
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre" />
+      </div>
+
+      <div class="form-group">
+        <label>Dirección</label>
+        <input type="text" class="form-control" formControlName="direccion" />
+      </div>
+
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="text" class="form-control" formControlName="telefono" />
+      </div>
+
+      <div class="form-group">
+        <label>Rubro</label>
+        <input type="text" class="form-control" formControlName="rubro" />
+      </div>
+
+      <div class="form-group">
+        <label>Encargado</label>
+        <input type="text" class="form-control" formControlName="encargado" />
+      </div>
+
+      <div class="form-group">
+        <label>Teléfono Encargado</label>
+        <input type="text" class="form-control" formControlName="telencargado" />
+      </div>
+
+      <div>
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+      </div>
+
+    </form>
+
+
+  </div>
+
+
+</div>
+
