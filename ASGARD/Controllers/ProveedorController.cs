@@ -50,34 +50,50 @@ namespace ASGARD.Controllers
             {
                 using (BDAcaassAFContext bd = new BDAcaassAFContext())
                 {
-                    Proveedor oProveedor = new Proveedor();
-                    oProveedor.IdProveedor = oProveedoresAF.idProveedor;
-                    oProveedor.Nombre = oProveedoresAF.nombre;
-                    oProveedor.Direccion = oProveedoresAF.direccion;
-                    oProveedor.Telefono = oProveedoresAF.telefono;
-                    oProveedor.Rubro = oProveedoresAF.rubro;
-                    oProveedor.Encargado = oProveedoresAF.encargado;
-                    oProveedor.TelefonoEncargado = oProveedoresAF.telefonoencargado;
-                    oProveedor.Dhabilitado = 1;
+                    if (oProveedoresAF.idProveedor == 0)
+                    {
+                        Proveedor oProveedor = new Proveedor();
+                       oProveedor.IdProveedor = oProveedoresAF.idProveedor;
+                       oProveedor.Nombre = oProveedoresAF.nombre;
+                       oProveedor.Direccion = oProveedoresAF.direccion;
+                       oProveedor.Telefono = oProveedoresAF.telefono;
+                       oProveedor.Rubro = oProveedoresAF.rubro;
+                       oProveedor.Encargado = oProveedoresAF.encargado;
+                       oProveedor.TelefonoEncargado = oProveedoresAF.telefonoencargado;
+                       oProveedor.Dhabilitado = 1;
 
                     bd.Proveedor.Add(oProveedor);
                     bd.SaveChanges();
                     rpta = 1;
                 }
 
-                //Editar Proveedor
+                    //Editar Proveedor
+                    else
+                    {
+                        //para editar tenemos que sacar la informacion
+                        Proveedor oProveedor = bd.Proveedor.Where(p => p.IdProveedor == oProveedoresAF.idProveedor).First();
+                        oProveedor.Nombre = oProveedoresAF.nombre;
+                        oProveedor.Direccion = oProveedoresAF.direccion;
+                        oProveedor.Telefono = oProveedoresAF.telefono;
+                        oProveedor.Rubro = oProveedoresAF.rubro;
+                        oProveedor.Encargado = oProveedoresAF.encargado;
+                        oProveedor.TelefonoEncargado = oProveedoresAF.telefonoencargado;
+                        //para guardar cambios
+                        bd.SaveChanges();
+                        //si todo esta bien
+                        rpta = 1;
+                    }
+                    return rpta;
+                }
 
             }
+            
             catch (Exception ex)
             {
-                rpta = 0;
+                return 0;
             }
-            return rpta;
+            
         }
-
-
-
-
 
     }
 }
