@@ -15,6 +15,7 @@ namespace ASGARD.Controllers
             return View();
         }
 
+        //listar Proveedores
         [HttpGet]
         [Route("api/Proveedor/listarProveedores")]
         public IEnumerable<ProveedoresAF> listarProveedores()
@@ -22,17 +23,17 @@ namespace ASGARD.Controllers
             using (BDAcaassAFContext bd = new BDAcaassAFContext())
             {
                 IEnumerable<ProveedoresAF> listarProveedores = (from proveedor in bd.Proveedor
-                                                     where proveedor.Dhabilitado == 1
-                                                     select new ProveedoresAF
-                                                     {
-                                                        idProveedor = proveedor.IdProveedor,
-                                                        Nombre = proveedor.Nombre,
-                                                        Direccion = proveedor.Direccion,
-                                                        Telefono = proveedor.Telefono,
-                                                        Rubro = proveedor.Rubro,
-                                                        Encargado = proveedor.Encargado,
-                                                        TelefonoEncargado = proveedor.TelefonoEncargado
-                                                     }).ToList();
+                                                                where proveedor.Dhabilitado == 1
+                                                                select new ProveedoresAF
+                                                                {
+                                                                    idProveedor = proveedor.IdProveedor,
+                                                                    nombre = proveedor.Nombre,
+                                                                    direccion = proveedor.Direccion,
+                                                                    telefono = proveedor.Telefono,
+                                                                    rubro = proveedor.Rubro,
+                                                                    encargado = proveedor.Encargado,
+                                                                    telefonoencargado = proveedor.TelefonoEncargado
+                                                                }).ToList();
                 return listarProveedores;
             }
         }
@@ -51,18 +52,20 @@ namespace ASGARD.Controllers
                 {
                     Proveedor oProveedor = new Proveedor();
                     oProveedor.IdProveedor = oProveedoresAF.idProveedor;
-                    oProveedor.Nombre = oProveedoresAF.Nombre;
-                    oProveedor.Direccion = oProveedoresAF.Direccion;
-                    oProveedor.Telefono = oProveedoresAF.Telefono;
-                    oProveedor.Rubro = oProveedoresAF.Rubro;
-                    oProveedor.Encargado = oProveedoresAF.Encargado;
-                    oProveedor.TelefonoEncargado= oProveedoresAF.TelefonoEncargado;
+                    oProveedor.Nombre = oProveedoresAF.nombre;
+                    oProveedor.Direccion = oProveedoresAF.direccion;
+                    oProveedor.Telefono = oProveedoresAF.telefono;
+                    oProveedor.Rubro = oProveedoresAF.rubro;
+                    oProveedor.Encargado = oProveedoresAF.encargado;
+                    oProveedor.TelefonoEncargado = oProveedoresAF.telefonoencargado;
                     oProveedor.Dhabilitado = 1;
 
                     bd.Proveedor.Add(oProveedor);
                     bd.SaveChanges();
                     rpta = 1;
                 }
+
+                //Editar Proveedor
 
             }
             catch (Exception ex)
@@ -71,6 +74,9 @@ namespace ASGARD.Controllers
             }
             return rpta;
         }
+
+
+
 
 
     }

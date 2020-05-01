@@ -1,57 +1,122 @@
 <br />
 <br />
 <br />
-<h2>Proveedor</h2>
-<div class="row">
+<section class="panel">
+  <h1>Proveedores</h1>
 
-  <div class="col-md-8">
+  <div class="row">
+    <div class="col-lg-6">
 
-    <form [formGroup]="proveedores" (ngSubmit)="guardarDatos()">
+      <header class="panel-heading form-in-line">
+        <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nuevo Proveedor</button>
+      </header>
+    </div>
+    <div class="col-lg-3">
 
-      <div class="form-group">
-        <label>Id Proveedor</label>
-        <input type="text" class="form-control" readonly formControlName="IidProveedor" />
-      </div>
-
-      <div class="form-group">
-        <label>Nombre</label>
-        <input type="text" class="form-control" formControlName="nombre" />
-      </div>
-
-      <div class="form-group">
-        <label>Dirección</label>
-        <input type="text" class="form-control" formControlName="direccion" />
-      </div>
-
-      <div class="form-group">
-        <label>Teléfono</label>
-        <input type="text" class="form-control" formControlName="telefono" />
-      </div>
-
-      <div class="form-group">
-        <label>Rubro</label>
-        <input type="text" class="form-control" formControlName="rubro" />
-      </div>
-
-      <div class="form-group">
-        <label>Encargado</label>
-        <input type="text" class="form-control" formControlName="encargado" />
-      </div>
-
-      <div class="form-group">
-        <label>Teléfono Encargado</label>
-        <input type="text" class="form-control" formControlName="telencargado" />
-      </div>
-
-      <div>
-        <input type="submit" value="Guardar" class="btn btn-primary" />
-      </div>
-
-    </form>
-
-
+    </div>
+    <div class="col-lg-3">
+      <input type="text" class="form-control" placeholder="Buscar">
+    </div>
   </div>
 
+  <div class="row">
+    <div class="col-lg-12">
+      <section class="panel panel-default">
 
-</div>
+        <header class="panel-heading">
+          <h5>Registro de Proveedores</h5>
+        </header>
+        <div class="panel-body">
+          <div class="adv-table">
+            <table class="display table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Dirección</th>
+                  <th>Teléfono</th>
+                  <th>Rubro</th>
+                  <th>Encargado</th>
+                  <th>Teléfono Encargado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let proveedor of proveedores | paginate: { itemsPerPage: 10, currentPage: p }">
+                  <td class="red-text">{{proveedor.idProveedor}}</td>
+                  <td>{{proveedor.nombre}}</td>
+                  <td>{{proveedor.descripcion}}</td>
+                  <td>{{proveedor.telefono}}</td>
+                  <td>{{proveedor.rubro}}</td>
+                  <td>{{proveedor.encargado}}</td>
+                  <td>{{proveedor.telefonoencargado}}</td>
+                  <td class="center hidden-phone">
+                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<!--modal para ingresar y editar-->
+<form role="form" [formGroup]="proveedores" (ngSubmit)="guardarDatos()">
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngClass]="{'show':showModal}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
+          <h4 class="modal-title">Registrar Proveedor</h4>
+        </div>
+        
+        <div class="modal-body">
 
+          <!--<div class="form-group">
+            <label for="exampleInputEmail1">Id Proveedor</label>
+            <input type="text" class="form-control" formControlName="idProveedor" id="idProveedor" placeholder="Proveedor">
+          </div>-->
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Nombre">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Dirección</label>
+            <input type="text" class="form-control" formControlName="direccion" id="direccion" placeholder="Dirección">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Teléfono</label>
+            <input type="text" class="form-control" formControlName="telefono" id="telefono" placeholder="Teléfono">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Rubro</label>
+            <input type="text" class="form-control" formControlName="rubro" id="rubro" placeholder="Rubro">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Encargado</label>
+            <input type="text" class="form-control" formControlName="encargado" id="encargado" placeholder="Encargado">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Teléfono Encargado</label>
+            <input type="text" class="form-control" formControlName="telefonoencargado" id="telefonoencargado" placeholder="Teléfono Encargado">
+          </div>
+
+          <div style="text-align: center;">
+          <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
+          <button type="button" (click)="showModal=false" class="btn btn-default">Cerrar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
