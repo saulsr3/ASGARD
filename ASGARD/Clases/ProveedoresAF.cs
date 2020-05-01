@@ -8,13 +8,13 @@ namespace ASGARD.Clases
     public class ProveedoresAF
     {
         public int idProveedor { get; set; }
-        public string Nombre { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
-        public string Rubro { get; set; }
-        public string Encargado { get; set; }
-        public string TelefonoEncargado { get; set; }
-        public int Dhabilitado { get; set; }
+        public string nombre { get; set; }
+        public string direccion { get; set; }
+        public string telefono { get; set; }
+        public string rubro { get; set; }
+        public string encargado { get; set; }
+        public string telefonoencargado { get; set; }
+        public int dhabilitado { get; set; }
 
     }
 }

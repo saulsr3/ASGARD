@@ -15,14 +15,14 @@ export class FormProveedorComponent implements OnInit {
 
     this.proveedores = new FormGroup({
 
-      'IidProveedor': new FormControl("0"),
+      //'idProveedor': new FormControl("0"),
       'nombre': new FormControl("", [Validators.required]),
       'direccion': new FormControl("", [Validators.required]),
       'telefono': new FormControl("", [Validators.required]),
-      'rubro': new FormControl("", [Validators.required]),
-      'encargado': new FormControl("", [Validators.required]),
-      'telencargado': new FormControl("", [Validators.required])
-      
+      'rubro': new FormControl(""),
+      'encargado': new FormControl(""),
+      'telefonoencargado': new FormControl("")
+
 
     });
   }
@@ -39,5 +39,8 @@ export class FormProveedorComponent implements OnInit {
     }
 
   }
+
+
+
 
 }
