@@ -40,6 +40,7 @@
                   <th>Teléfono Encargado</th>
                 </tr>
               </thead>
+
               <tbody>
                 <tr *ngFor="let proveedor of proveedores | paginate: { itemsPerPage: 10, currentPage: p }">
                   <td class="red-text">{{proveedor.idProveedor}}</td>
