@@ -1,42 +1,93 @@
-<!-- page start-->
 <br />
 <br />
 <br />
-<h1>Sucursales</h1>
-<div class="row">
-  <div class="col-lg-12">
-    <section class="panel panel-default">
-      <header class="panel-heading">
-        Sucursales registras
+<section class="panel">
+  <h1>Sucursales</h1>
+
+  <div class="row">
+    <div class="col-lg-6">
+
+      <header class="panel-heading form-in-line">
+        <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva Marca</button>
       </header>
-      <div class="panel-body">
-        <div class="adv-table">
-          <table class="display table table-bordered table-striped" id="example">
-            <thead>
-              <tr>
-                <th>Codigo</th>
-                <th>Marca</th>
-                <th>Ubicacion</th>
-                <th>Correlativo</th>
-                <th class="hidden-phone">Opciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let sucursal of sucursales">
-                <td>{{sucursal.idSucursal}}</td>
-                <td>{{sucursal.nombre}}</td>
-                <td>{{sucursal.ubicacion}}</td>
-                <td>{{sucursal.correlativo}}</td>
-                <td class="center hidden-phone">
-                  <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                  <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                  <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+    <div class="col-lg-3">
+      <input type="text" class="form-control" placeholder="Buscar">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <section class="panel panel-default">
+
+        <header class="panel-heading">
+          <h5>Registro de Sucursales</h5>
+        </header>
+        <div class="panel-body">
+          <div class="adv-table">
+            <div class="adv-table">
+              <table class="display table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Marca</th>
+                    <th>Ubicacion</th>
+                    <th>Correlativo</th>
+                    <th class="hidden-phone">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sucursal of sucursales | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <td>{{sucursal.idSucursal}}</td>
+                    <td>{{sucursal.nombre}}</td>
+                    <td>{{sucursal.ubicacion}}</td>
+                    <td>{{sucursal.correlativo}}</td>
+                    <td class="center hidden-phone">
+                      <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                      <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                      <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
         </div>
+      </section>
+    </div>
+  </div>
+</section>
+<!--modal para ingresar y editar-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngClass]="{'show':showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
+        <h4 class="modal-title">Formulario Marcas</h4>
       </div>
-    </section>
+      <div class="modal-body">
+
+        <form role="form">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Sucursal:</label>
+            <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Nombre de Sucursal">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Ubicación:</label>
+            <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Ubicación de sucursal">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Correlativo:</label>
+            <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Correlativo">
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="button" (click)="showModal=false" class="btn btn-default">Cancelar</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
