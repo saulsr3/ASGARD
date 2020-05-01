@@ -8,6 +8,7 @@ import { CatalogosService } from './../../services/catalogos.service';
 })
 export class TablaMarcasComponent implements OnInit {
     marcas: any;
+    p: number = 1;
     constructor(private catalogoService: CatalogosService) {
        
     }

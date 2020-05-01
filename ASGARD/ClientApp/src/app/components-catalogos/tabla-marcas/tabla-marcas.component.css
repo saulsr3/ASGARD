@@ -8,7 +8,8 @@ table {
   width: 100%;
 }
 thead {
-  background-color: #c4e8c0;
+  background-color: #f2faf1;
+  /*background-color: #c4e8c0;*/
   color: black;
 }
 .modal {
@@ -37,4 +38,32 @@ thead {
     top: 0;
     opacity: 1;
   }
+}
+search {
+  margin-top: 6px;
+  width: 20px;
+  border: 1px solid #fff;
+  box-shadow: none;
+  padding: 0 5px 0 35px;
+  color: #fff;
+}
+h1,h5,label {
+  color: #797979;
+  font-family: 'Open Sans', sans-serif;
+}
+th, td {
+  color: #797979;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+}
+
+.btn-primary {
+  background-color: #41cac0;
+  border-color: #41cac0;
+  color: #FFFFFF;
+}
+.btn-danger {
+  background-color: #ff6c60;
+  border-color: #ff6c60;
+  color: #FFFFFF;
 }

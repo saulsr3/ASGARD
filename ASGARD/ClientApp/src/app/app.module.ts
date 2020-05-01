@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-
+import { NgxPaginationModule } from 'ngx-pagination'
 
 
 //Registrar o declarar el componente creado
@@ -55,7 +55,8 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+        ReactiveFormsModule,
+        NgxPaginationModule,
    
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
