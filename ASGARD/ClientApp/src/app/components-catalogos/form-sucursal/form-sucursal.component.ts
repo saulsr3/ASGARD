@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogosService } from './../../services/catalogos.service';
-import { CargarScriptsService } from './../../services/cargar-scripts.service';
+
 @Component({
   selector: 'app-form-sucursal',
   templateUrl: './form-sucursal.component.html',
@@ -8,8 +8,9 @@ import { CargarScriptsService } from './../../services/cargar-scripts.service';
 })
 export class FormSucursalComponent implements OnInit {
     sucursales: any;
-    constructor(private catalogoService: CatalogosService, private _CargaScripts: CargarScriptsService) {
-        _CargaScripts.cargar(['/respond.min', '/sortingTable']);
+    p: number = 1;
+    constructor(private catalogoService: CatalogosService) {
+       
     }
 
     ngOnInit() {
