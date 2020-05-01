@@ -38,4 +38,8 @@ export class CatalogosService {
     return this.http.post(this.urlBase + "api/Clasificacion/guardarClasificacion", clasificacion).map(res => res.json());
 }
 
+  public agregarProveedor(proveedor) {
+    return this.http.post(this.urlBase + "api/Proveedor/guardarProveedor", proveedor).map(res => res.json());
+  }
+
 }
