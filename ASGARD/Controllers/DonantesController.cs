@@ -49,5 +49,25 @@ namespace ASGARD.Controllers
             return rpta;
         }
 
+        //Método listar
+        [HttpGet]
+        [Route("api/Donantes/listarDonantes")]
+        public IEnumerable<DonantesAF> listarDonantes()
+        {
+            using (BDAcaassAFContext bd = new BDAcaassAFContext())
+            {
+                IEnumerable<DonantesAF> listaDonantes = (from donante in bd.Donantes
+                                                     where donante.Dhabilitado == 1
+                                                     select new DonantesAF
+                                                     {
+                                                         IidDonante=donante.IdDonante,
+                                                         nombre=donante.Nombre,
+                                                         telefono=donante.Telefono,
+                                                         direccion=donante.Direccion                                              
+                                                     }).ToList();
+                return listaDonantes;
+            }
+        }
+
     }
 }

@@ -3,43 +3,92 @@
 <br />
 <h1>Donantes</h1>
 <div class="row">
+    <div class="col-lg-6">
 
-    <div class="col-md-12">
-
-
-
-        <form [formGroup]="donantes" (ngSubmit)="guardarDatos()">
-
-            <div class="form-group">
-                <label>Id Donante</label>
-                <input type="text" class="form-control" readonly formControlName="IidDonante"/>
-            </div>
-
-            <div class="form-group">
-                <label>Nombre</label>
-                <input type="text" class="form-control" formControlName="nombre"/>
-            </div>
-
-            <div class="form-group">
-                <label>Teléfono</label>
-                <input type="number" class="form-control" formControlName="telefono"/>
-            </div>
-
-            <div class="form-group">
-                <label>Dirección</label>
-                <input type="text" class="form-control" formControlName="direccion"/>
-            </div>
-
-            <div>
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-
-        </form>
+        <header class="panel-heading form-in-line">
+            <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva clasificación</button>
+        </header>
 
 
     </div>
-
-
 </div>
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel panel-default">
+            <header class="panel-heading">
+                Registro de Clasificación de Activos
+                <div class="form-group">
+                    <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Buscar">
+                </div>
+            </header>
+            <div class="panel-body">
+                <div class="adv-table">
+                    <table class="display table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID Clasificación</th>
+                                <th>Correlativo</th>
+                                <th>Clasificación</th>
+                                <th>Descripcion</th>
+                                <th class="hidden-phone">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let marca of marcas">
+                                <td>{{marca.idMarca}}</td>
+                                <td>{{marca.marca}}</td>
+                                <td>{{marca.descripcion}}</td>
+                                <td class="center hidden-phone">
+                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!--modal -->
+<form role="form" [formGroup]="donantes" (ngSubmit)="guardarDatos()">
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngClass]="{'show':showModal}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
+                    <h4 class="modal-title">Registrar Donante</h4>
+                </div>
+
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="number" class="form-control" formControlName="telefono" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <input type="text" class="form-control" formControlName="direccion" />
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                        <button type="button" (click)="showModal=false" class="btn btn-default">Cerrar</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 
