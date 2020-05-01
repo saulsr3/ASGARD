@@ -3,8 +3,8 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="row">ID</th>
-      <th scope="row">Nombre</th>
+      <th >ID</th>
+      <th >Nombre</th>
       <th>Direccion</th>
       <th>Telefono</th>
       <th>Rubro</th>
@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let proveedor of proveedores">
-      <td class="red-text">{{proveedor.idMarca}}</td>
+      <td class="red-text">{{proveedor.idProveedor}}</td>
       <td>{{proveedor.Nombre}}</td>
       <td>{{proveedor.Descripcion}}</td>
       <td>{{proveedor.Telefono}}</td>
