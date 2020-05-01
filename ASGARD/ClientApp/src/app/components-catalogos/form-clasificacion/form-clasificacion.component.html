@@ -8,8 +8,6 @@
     <header class="panel-heading form-in-line">
       <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva clasificación</button>
     </header>
-
-
   </div>
 </div>
 <div class="row">
@@ -51,7 +49,7 @@
     </section>
   </div>
 </div>
-<!--modal para ingresar y editar-->
+modal para ingresar y editar
 <form role="form" [formGroup]="clasificacion" (ngSubmit)="guardarDatos()">
   <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngClass]="{'show':showModal}">
     <div class="modal-dialog">
