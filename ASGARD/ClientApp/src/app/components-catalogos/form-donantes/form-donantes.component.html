@@ -6,7 +6,7 @@
     <div class="col-lg-6">
 
         <header class="panel-heading form-in-line">
-            <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva clasificación</button>
+            <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar nuevo donante</button>
         </header>
 
 
@@ -16,7 +16,7 @@
     <div class="col-lg-12">
         <section class="panel panel-default">
             <header class="panel-heading">
-                Registro de Clasificación de Activos
+                Registro de Donantes
                 <div class="form-group">
                     <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Buscar">
                 </div>
@@ -26,18 +26,19 @@
                     <table class="display table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID Clasificación</th>
-                                <th>Correlativo</th>
-                                <th>Clasificación</th>
-                                <th>Descripcion</th>
+                                <th>ID Donantes</th>
+                                <th>Nombre</th>
+                                <th>Teléfono</th>
+                                <th>Dirección</th>
                                 <th class="hidden-phone">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let marca of marcas">
-                                <td>{{marca.idMarca}}</td>
-                                <td>{{marca.marca}}</td>
-                                <td>{{marca.descripcion}}</td>
+                            <tr *ngFor="let donte of dontes">
+                                <td>{{donte.IidDonante}}</td>
+                                <td>{{donte.nombre}}</td>
+                                <td>{{donte.telefono}}</td>
+                                <td>{{donte.direccion}}</td>
                                 <td class="center hidden-phone">
                                     <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
                                     <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>

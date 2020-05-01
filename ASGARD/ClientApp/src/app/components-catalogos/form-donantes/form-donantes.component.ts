@@ -12,6 +12,8 @@ export class FormDonantesComponent implements OnInit {
   //Variables
 
   donantes: FormGroup;
+  dontes: any;
+  p: number = 1;
 
   constructor(private catalogoService: CatalogosService) {
 
@@ -26,9 +28,11 @@ export class FormDonantesComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
   }
 
-  //Métodos
+  //Métodos›
 
   guardarDatos() {
 

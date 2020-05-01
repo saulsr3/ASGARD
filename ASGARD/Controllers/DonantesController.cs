@@ -49,7 +49,7 @@ namespace ASGARD.Controllers
             return rpta;
         }
 
-        //Método listar
+        //Método listar donantes
         [HttpGet]
         [Route("api/Donantes/listarDonantes")]
         public IEnumerable<DonantesAF> listarDonantes()
