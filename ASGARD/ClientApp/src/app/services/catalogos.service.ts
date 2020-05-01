@@ -27,7 +27,10 @@ export class CatalogosService {
   //Service Donantes
   public agregarDonante(donante) {
     return this.http.post(this.urlBase + "api/Donantes/guardarDonante", donante).map(res => res.json());
-  }
-  
+    }
+    //Servicios Proveeodres
+    public getProveedores() {
+        return this.http.get(this.urlBase + "api/Proveedor/listarProveedores").map(res => res.json());
+    }
 
 }
