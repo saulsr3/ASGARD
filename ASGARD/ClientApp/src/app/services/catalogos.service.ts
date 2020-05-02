@@ -12,6 +12,13 @@ export class CatalogosService {
     public getMarcas() {
         return this.http.get(this.urlBase + "api/Marcas/listarMarcas").map(res => res.json());
     }
+    public setMarca(marca) {
+        return this.http.post(this.urlBase + "api/Marcas/guardarMarca", marca).map(res => res.json());
+    }
+    public eliminarMarca(idMarca) {
+        return this.http.get(this.urlBase + "api/Marcas/eliminarMarca/" + idMarca).map(res => res.json());
+    }
+    
     //Servicios Sucursales
     public getSucursales() {
         return this.http.get(this.urlBase + "api/Sucursal/listarSucursales").map(res => res.json());

@@ -15,6 +15,31 @@ namespace ASGARD.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [Route("api/Marcas/guardarMarca")]
+        public int guardarMarca([FromBody]MarcasAF oMarcaAF)
+        {
+            int res = 0;
+            try
+            {
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    Marcas oMarca = new Marcas();
+                    oMarca.IdMarca = oMarcaAF.IdMarca;
+                    oMarca.Marca = oMarcaAF.Marca;
+                    oMarca.Descripcion = oMarcaAF.Descripcion;
+                    oMarca.Dhabilitado = 1;
+                    bd.Marcas.Add(oMarca);
+                    bd.SaveChanges();
+                    res= 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                res = 0;
+            }
+            return res;
+        }
         [HttpGet]
         [Route("api/Marcas/listarMarcas")]
         public IEnumerable<MarcasAF> listarMarcas()
@@ -31,6 +56,27 @@ namespace ASGARD.Controllers
                                                       }).ToList();
                 return listaMarcas;
             }
+        }
+        [HttpGet]
+        [Route("api/Marcas/eliminarMarca/{idMarca}")]
+        public int eliminarMarca(int idMarca)
+        {
+            int res = 0;
+            try
+            {
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    Marcas oMarca = bd.Marcas.Where(p => p.IdMarca == idMarca).First();
+                    oMarca.Dhabilitado = 0;
+                    bd.SaveChanges();
+                    res = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                res = 0;
+            }
+            return res;
         }
     }
 }
