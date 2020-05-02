@@ -8,7 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./form-clasificacion.component.css']
 })
 export class FormClasificacionComponent implements OnInit {
-  marcas: any;
+  clasificaciones: any;
   p: number = 1;
   clasificacion: FormGroup;
   constructor(private catalogosServices: CatalogosService) {
@@ -25,14 +25,30 @@ export class FormClasificacionComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.catalogosServices.getClasificacion().subscribe(data => { this.clasificaciones= data })
+    
   }
 
-guardarDatos() {
-
-  if (this.clasificacion.valid == true)
+  guardarDatos()
   {
-    this.catalogosServices.guardarClasificacion(this.clasificacion.value).subscribe(data => { })
+
+    if (this.clasificacion.valid == true)
+    {
+      this.catalogosServices.guardarClasificacion(this.clasificacion.value).subscribe(data => { })
+    }
   }
 
-}
+
+  eliminar(idclasificacion) {
+    if (confirm("desea eliminar el registro?") == true) {
+      this.catalogosServices.eliminarCasificacion(idclasificacion).subscribe(data => {
+        this.catalogosServices.getClasificacion().subscribe(
+          data => { this.clasificacion = data }
+        );
+
+      });
+    }
+  }
+
+
 }

@@ -121,10 +121,9 @@
             <label for="exampleFormControlTextarea2">Descripción</label>
             <textarea class="form-control rounded-0" formControlName="descripcion" id="descripcion" rows="3"></textarea>
           </div>
-          <button type="submit" value="Guardar" class="btn btn-default">Guardar</button>
-          <button type="button" (click)="showModal=false" class="btn btn-default">Cerrar</button>
 
-
+          <button [routerLink]="['/form-clasificacion']" type="submit" class="btn btn-primary">Guardar</button>
+          <button type="button" (click)="showModal=false" class="btn btn-default">Cancelar</button>
         </div>
       </div>
     </div>

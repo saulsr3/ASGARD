@@ -27,6 +27,7 @@ namespace ASGARD.Controllers
                 {
                     Clasificacion oClasificacion = new Clasificacion();
 
+                    oClasificacion.IdClasificacion = oClasificacionAF.idclasificacion;
                     oClasificacion.Correlativo = oClasificacionAF.correlativo;
                     oClasificacion.Clasificacion1 = oClasificacionAF.clasificacion;
                     oClasificacion.Descripcion = oClasificacionAF.descripcion;
@@ -48,6 +49,54 @@ namespace ASGARD.Controllers
 
 
 
+            return respuesta;
+        }
+
+        // metodo para listar las clasificaciones de los activos
+        [HttpGet]
+        [Route("api/Clasificacion/listarClasificacion")]
+        public IEnumerable<ClasificacionAF> listarClasificacion()
+        {
+            using (BDAcaassAFContext bd = new BDAcaassAFContext())
+            {
+                IEnumerable<ClasificacionAF> listaClasificacion = (from clasificacion in bd.Clasificacion
+                                                         where clasificacion.Dhabilitado == 1
+                                                         select new ClasificacionAF
+                                                         {
+                                                             idclasificacion= clasificacion.IdClasificacion,
+                                                             correlativo=clasificacion.Correlativo,
+                                                             clasificacion= clasificacion.Clasificacion1,
+                                                             descripcion=clasificacion.Descripcion
+                                                             
+                                                         }).ToList();
+                return listaClasificacion;
+            }
+        }
+
+
+        [HttpGet]
+        [Route("api/Clasificacion/eliminarCasificacion/{idclasificacion}")]
+        public int eliminarCasificacion(int idclasificacion)
+        {
+            int respuesta = 0;
+
+            try
+            {
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    Clasificacion oClasificacion = bd.Clasificacion.Where(p => p.IdClasificacion == idclasificacion).First();
+                    oClasificacion.Dhabilitado = 0;
+                    bd.SaveChanges();
+                    respuesta = 1;
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+
+                respuesta = 0;
+            }
             return respuesta;
         }
     }
