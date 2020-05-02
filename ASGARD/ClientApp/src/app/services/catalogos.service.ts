@@ -18,6 +18,9 @@ export class CatalogosService {
     public eliminarMarca(idMarca) {
         return this.http.get(this.urlBase + "api/Marcas/eliminarMarca/" + idMarca).map(res => res.json());
     }
+    public buscarMarca(buscador) {
+        return this.http.get(this.urlBase + "api/Persona/buscarMarca/" + buscador).map(res => res.json());
+    }
     
     //Servicios Sucursales
     public getSucursales() {

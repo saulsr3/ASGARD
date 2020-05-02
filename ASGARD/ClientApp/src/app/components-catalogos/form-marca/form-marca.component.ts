@@ -23,15 +23,11 @@ export class FormMarcaComponent implements OnInit {
     }
 
     ngOnInit() {
-       
         this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
        
     }
-    dato() {
-        Swal.fire('Any fool can use a computer')
-}
+//metodo para guardar los datos
     guardarDatos() {
-       
         if (this.marca.valid == true) {
             this.catalogoService.setMarca(this.marca.value).subscribe(data => { });
             Swal.fire({
@@ -42,8 +38,10 @@ export class FormMarcaComponent implements OnInit {
                 timer: 1500
             })
             this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
-      
-           
+            //Esto sirve para limpiar el modal
+            this.marca.controls["idMarca"].setValue("0");
+            this.marca.controls["marca"].setValue("");
+            this.marca.controls["descripcion"].setValue("");
             //this.router.navigate(["/form-marca"])
         }
 
@@ -72,7 +70,10 @@ export class FormMarcaComponent implements OnInit {
                
             }
         })
-        }
+    }
+    buscar(buscador) {
+        this.catalogoService.buscarMarca(buscador.value).subscribe(res => this.marcas = res);
+    }
 
     }
 

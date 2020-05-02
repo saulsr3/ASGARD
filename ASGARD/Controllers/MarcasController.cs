@@ -78,5 +78,40 @@ namespace ASGARD.Controllers
             }
             return res;
         }
+        [HttpGet]
+        [Route("api/Persona/buscarMarca/{buscador?}")]
+        public IEnumerable<MarcasAF> buscarMarca(string buscador = "")
+        {
+            List<MarcasAF> listaMarca;
+            using (BDAcaassAFContext bd = new BDAcaassAFContext())
+            {
+                if (buscador == "")
+                {
+                    listaMarca = (from marca in bd.Marcas
+                                    where marca.Dhabilitado == 1
+                                    select new MarcasAF
+                                    {
+                                        IdMarca = marca.IdMarca,
+                                        Marca = marca.Marca,
+                                        Descripcion = marca.Descripcion
+                                    }).ToList();
+                    return listaMarca;
+                }
+                else
+                {
+                    listaMarca = (from marca in bd.Marcas
+                                    where marca.Dhabilitado == 1
+                                   
+                                    && ((marca.IdMarca).ToString().Contains(buscador)||(marca.Marca).ToLower().Contains(buscador.ToLower())|| (marca.Descripcion).ToLower().Contains(buscador.ToLower()))
+                                    select new MarcasAF
+                                    {
+                                        IdMarca = marca.IdMarca,
+                                        Marca = marca.Marca,
+                                        Descripcion = marca.Descripcion
+                                    }).ToList();
+                    return listaMarca;
+                }
+            }
+        }
     }
 }
