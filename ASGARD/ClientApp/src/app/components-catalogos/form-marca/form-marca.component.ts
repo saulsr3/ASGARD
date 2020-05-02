@@ -37,12 +37,11 @@ export class FormMarcaComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 1500
             })
-            this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
-            //Esto sirve para limpiar el modal
             this.marca.controls["idMarca"].setValue("0");
             this.marca.controls["marca"].setValue("");
             this.marca.controls["descripcion"].setValue("");
             //this.router.navigate(["/form-marca"])
+            this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
         }
 
     }
