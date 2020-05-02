@@ -9,6 +9,7 @@
 
       <header class="panel-heading form-in-line">
         <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva clasificación</button>
+        <!--<button type="button" class="btn btn-success" (click)="showModal1=true" data-toggle="modal" data-target="#myModal1"><i class="icon-save"></i>eliminar </button>-->
       </header>
     </div>
     <div class="col-lg-3">
@@ -48,7 +49,27 @@
                   <td class="center hidden-phone">
                     <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
                     <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                    <button class="btn btn-danger btn-xs"><i (click)="showModal1=true" class="icon-trash "></i></button>
+
+                    <!--(click)="eliminar(clasificacion.idclasificacion)"-->
+                    <!--<i class="glyphicon glyphicon-trash btn btn-danger" (click)="eliminar(persona.iidpersona)"></i>-->
+
+                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal1" class="modal" [ngClass]="{'show':showModal1}">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
+                            <h4 class="modal-title">Realmente desea eliminar el registro?</h4>
+                          </div>
+                          <button type="submit" (click)="eliminar(clasificacion.idclasificacion)" class="btn btn-primary">Eliminar</button>
+                          <button type="button" (click)="showModal1=false" class="btn btn-default">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
                   </td>
                 </tr>
               </tbody>
@@ -60,6 +81,14 @@
     </div>
   </div>
 </section>
+
+<!--modal para confirmar la eliminacion de un registro-->
+
+
+
+
+
+
 <!--modal para ingresar y editar-->
 
 <form role="form" [formGroup]="clasificacion" (ngSubmit)="guardarDatos()">
@@ -91,7 +120,7 @@
             <textarea class="form-control rounded-0" formControlName="descripcion" id="descripcion" rows="3"></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button [routerLink]="['/form-clasificacion']" type="submit" class="btn btn-primary">Guardar</button>
           <button type="button" (click)="showModal=false" class="btn btn-default">Cancelar</button>
         </div>
       </div>
