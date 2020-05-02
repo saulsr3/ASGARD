@@ -1,7 +1,97 @@
 <br />
 <br />
 <br />
-<h1>Clasificación de activos</h1>
+<section class="panel">
+  <h1>Clasificación de activos</h1>
+
+  <div class="row">
+    <div class="col-lg-6">
+
+      <header class="panel-heading form-in-line">
+        <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva clasificación</button>
+        <!--<button type="button" class="btn btn-success" (click)="showModal1=true" data-toggle="modal" data-target="#myModal1"><i class="icon-save"></i>eliminar </button>-->
+      </header>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+    <div class="col-lg-3">
+      <input type="text" class="form-control" placeholder="Buscar">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <section class="panel panel-default">
+
+        <header class="panel-heading">
+          <h5>Registro de Clasificación de activos</h5>
+        </header>
+        <div class="panel-body">
+          <div class="adv-table">
+            <table class="display table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Id Clasificación</th>
+                  <th>Correlativo</th>
+                  <th>Clasificación</th>
+                  <th>Descripcion</th>
+
+                  <th class="hidden-phone">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let clasificacion of clasificaciones | paginate: { itemsPerPage: 5, currentPage: p }">
+                  <td>{{clasificacion.idclasificacion}}</td>
+                  <td>{{clasificacion.correlativo}}</td>
+                  <td>{{clasificacion.clasificacion}}</td>
+                  <td>{{clasificacion.descripcion}}</td>
+
+
+                  <td class="center hidden-phone">
+                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
+                    <button class="btn btn-danger btn-xs"><i (click)="showModal1=true" class="icon-trash "></i></button>
+
+                    <!--(click)="eliminar(clasificacion.idclasificacion)"-->
+                    <!--<i class="glyphicon glyphicon-trash btn btn-danger" (click)="eliminar(persona.iidpersona)"></i>-->
+
+                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal1" class="modal" [ngClass]="{'show':showModal1}">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
+                            <h4 class="modal-title">Realmente desea eliminar el registro?</h4>
+                          </div>
+                          <button type="submit" (click)="eliminar(clasificacion.idclasificacion)" class="btn btn-primary">Eliminar</button>
+                          <button type="button" (click)="showModal1=false" class="btn btn-default">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!--modal para confirmar la eliminacion de un registro-->
+
+
+
+
+
+
+<!--modal para ingresar y editar-->
 
 <form role="form" [formGroup]="clasificacion" (ngSubmit)="guardarDatos()">
   <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngClass]="{'show':showModal}">
@@ -9,13 +99,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
-          <h4 class="modal-title">Registrar Clasificación de Activos</h4>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Id Clasificación</label>
-          <input type="text" class="form-control" formControlName="idclasificacion" id="idclasificacion" placeholder="Clasificación">
+          <h4 class="modal-title">Formulario Clasificación de activos</h4>
         </div>
         <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Id Clasificación</label>
+            <input type="text" class="form-control" formControlName="idclasificacion" id="idclasificacion" readonly placeholder="Clasificación">
+          </div>
 
 
           <div class="form-group">
@@ -33,10 +123,10 @@
           </div>
           <button type="submit" value="Guardar" class="btn btn-default">Guardar</button>
           <button type="button" (click)="showModal=false" class="btn btn-default">Cerrar</button>
+
+
         </div>
       </div>
     </div>
   </div>
-  </form>
-
-
+</form>
