@@ -22,19 +22,31 @@ export class FormClasificacionComponent implements OnInit {
 
 
 
-}
+  }
 
   ngOnInit() {
-    this.catalogosServices.getClasificacion().subscribe(data => { this.clasificaciones= data })
-    
+    this.catalogosServices.getClasificacion().subscribe(data => { this.clasificaciones = data })
+
   }
 
-guardarDatos() {
+  guardarDatos() {
 
-  if (this.clasificacion.valid == true)
-  {
-    this.catalogosServices.guardarClasificacion(this.clasificacion.value).subscribe(data => { })
+    if (this.clasificacion.valid == true) {
+      this.catalogosServices.guardarClasificacion(this.clasificacion.value).subscribe(data => { })
+    }
   }
 
-}
+
+  eliminar(idclasificacion) {
+    if (confirm("desea eliminar el registro?") == true) {
+      this.catalogosServices.eliminarCasificacion(idclasificacion).subscribe(data => {
+        this.catalogosServices.getClasificacion().subscribe(
+          data => { this.clasificacion = data }
+        );
+
+      });
+    }
+  }
+
+
 }
