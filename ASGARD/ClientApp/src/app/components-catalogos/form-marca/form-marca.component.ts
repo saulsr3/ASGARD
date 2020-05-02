@@ -42,7 +42,7 @@ export class FormMarcaComponent implements OnInit {
                 timer: 1500
             })
             this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
-             
+      
            
             //this.router.navigate(["/form-marca"])
         }

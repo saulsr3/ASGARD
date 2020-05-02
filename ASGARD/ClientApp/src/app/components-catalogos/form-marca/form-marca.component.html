@@ -44,7 +44,6 @@
                   <td>{{marca.marca}}</td>
                   <td>{{marca.descripcion}}</td>
                   <td class="center hidden-phone">
-                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
                     <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
                     <button class="btn btn-danger btn-xs" (click)="eliminar(marca.idMarca)"><i class="icon-trash "></i></button>
                   </td>
@@ -69,14 +68,14 @@
       <div class="modal-body">
 
         <form role="form" [formGroup]="marca" (ngSubmit)="guardarDatos()">
-          <input type="hidden" class="form-control" formControlName="idMarca" id="exampleInputEmail3" placeholder="Agregue la Marca">
+          <input type="hidden" class="form-control" formControlName="idMarca" id="exampleInputEmail3" autocomplete="off">
           <div class="form-group">
             <label for="exampleInputEmail1">Marca:</label>
-            <input type="text" class="form-control" formControlName="marca" id="exampleInputEmail3" placeholder="Agregue la Marca">
+            <input type="text" class="form-control" formControlName="marca" id="exampleInputEmail3" placeholder="Agregue la Marca" autocomplete="off">
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea2">Descripción:</label>
-            <textarea class="form-control rounded-0" formControlName="descripcion" id="exampleFormControlTextarea2" rows="3" placeholder="Descripcion"></textarea>
+            <textarea class="form-control rounded-0" formControlName="descripcion" id="exampleFormControlTextarea2" rows="3" placeholder="Descripcion" autocomplete="off"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Guardar</button>
           <button type="button" (click)="showModal=false" class="btn btn-default">Cancelar</button>
