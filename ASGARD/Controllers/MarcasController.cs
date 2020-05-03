@@ -79,7 +79,7 @@ namespace ASGARD.Controllers
             return res;
         }
         [HttpGet]
-        [Route("api/Persona/buscarMarca/{buscador?}")]
+        [Route("api/Marca/buscarMarca/{buscador?}")]
         public IEnumerable<MarcasAF> buscarMarca(string buscador = "")
         {
             List<MarcasAF> listaMarca;
