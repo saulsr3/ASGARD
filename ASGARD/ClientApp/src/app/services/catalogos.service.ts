@@ -21,6 +21,9 @@ export class CatalogosService {
     public buscarMarca(buscador) {
         return this.http.get(this.urlBase + "api/Marca/buscarMarca/" + buscador).map(res => res.json());
     }
+    public recuperarMarcas(id) {
+        return this.http.get(this.urlBase + "api/Marcas/RecuperarMarca/" + id).map(res => res.json());
+    }
     
     //Servicios Sucursales
     public getSucursales() {

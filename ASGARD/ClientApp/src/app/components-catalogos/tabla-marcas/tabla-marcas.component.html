@@ -8,7 +8,7 @@
     <div class="col-lg-6">
 
       <header class="panel-heading form-in-line">
-        <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva Marca</button>
+        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva Marca</button>
       </header>
     </div>
     <div class="col-lg-3">
@@ -43,7 +43,7 @@
                   <td>{{marca.marca}}</td>
                   <td>{{marca.descripcion}}</td>
                   <td class="center hidden-phone">
-                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
+                    <button class="btn btn-success btn-xs" (click)="modif(marca.idMarca)"><i class="icon-ok"></i></button>
                     <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
                     <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
                   </td>
@@ -58,26 +58,27 @@
   </div>
 </section>
   <!--modal para ingresar y editar-->
-  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngClass]="{'show':showModal}">
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngStyle]="{'display':display}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
+          <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="close()">×</button>
           <h4 class="modal-title">Formulario Marcas</h4>
         </div>
         <div class="modal-body">
 
-          <form role="form">
+          <form role="form" [formGroup]="marca" (ngSubmit)="guardarDatos()">
+            <input type="hidden" class="form-control" formControlName="idMarca" id="exampleInputEmail3" autocomplete="off">
             <div class="form-group">
               <label for="exampleInputEmail1">Marca:</label>
-              <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Marca">
+              <input type="text" class="form-control" formControlName="marc">
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea2">Descripción:</label>
-              <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Descripcion"></textarea>
+              <textarea class="form-control rounded-0" formControlName="desc"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" (click)="showModal=false" class="btn btn-default">Cancelar</button>
+            <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>
           </form>
         </div>
       </div>

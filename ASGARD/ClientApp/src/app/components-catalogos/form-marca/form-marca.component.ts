@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class FormMarcaComponent implements OnInit {
     @Input() marcas: any;
    marca: FormGroup;
- 
+    display = 'none';
     constructor(private catalogoService: CatalogosService, private router: Router, private activateRoute: ActivatedRoute) {
         this.marca = new FormGroup({
             'idMarca': new FormControl("0"),
@@ -26,8 +26,19 @@ export class FormMarcaComponent implements OnInit {
         this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
        
     }
+    open() {
+        //limpia cache
+        this.marca.controls["idMarca"].setValue("0");
+        this.marca.controls["marca"].setValue("");
+        this.marca.controls["descripcion"].setValue("");
+        this.display = 'block';
+    }
+    close() {
+        this.display = 'none';
+    }
 //metodo para guardar los datos
     guardarDatos() {
+       
         if (this.marca.valid == true) {
             this.catalogoService.setMarca(this.marca.value).subscribe(data => { });
             Swal.fire({
@@ -41,9 +52,25 @@ export class FormMarcaComponent implements OnInit {
             this.marca.controls["marca"].setValue("");
             this.marca.controls["descripcion"].setValue("");
             //this.router.navigate(["/form-marca"])
+            this.display = 'none';
             this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
         }
 
+    }
+    modif(id) {
+
+        this.display = 'block';
+        this.catalogoService.recuperarMarcas(id).subscribe(data => {
+         
+            this.marca.controls["idMarca"].setValue(data.idMarca);
+            this.marca.controls["marca"].setValue(data.marca);
+            this.marca.controls["descripcion"].setValue(data.descripcion);
+
+            //this.marca.controls["idMarca"].setValue(data.idMarca);
+            //this.marca.controls["marc"].setValue("123");
+            //this.marca.controls["descripcion"].setValue(data.descripcion);
+
+        });
     }
     eliminar(idMarca) {
         Swal.fire({
@@ -73,6 +100,5 @@ export class FormMarcaComponent implements OnInit {
     buscar(buscador) {
         this.catalogoService.buscarMarca(buscador.value).subscribe(res => this.marcas = res);
     }
-
     }
 

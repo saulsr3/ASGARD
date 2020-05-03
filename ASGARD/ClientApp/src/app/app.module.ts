@@ -6,7 +6,10 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { NgxPaginationModule } from 'ngx-pagination'
+import { NgxPaginationModule } from 'ngx-pagination';
+
+
+
 
 
 //Registrar o declarar el componente creado
@@ -60,7 +63,6 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
     FormsModule,
         ReactiveFormsModule,
         NgxPaginationModule,
-   
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'shared', component: SharedComponent },
@@ -77,6 +79,7 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
     ])
     ],
     providers: [CargarScriptsService, CatalogosService],
+
     bootstrap: [AppComponent, NavMenuComponent, HeaderComponent]
 })
 export class AppModule { }

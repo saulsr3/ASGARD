@@ -79,6 +79,20 @@ namespace ASGARD.Controllers
             return res;
         }
         [HttpGet]
+        [Route("api/Marcas/RecuperarMarca/{id}")]
+        public MarcasAF RecuperarMarca(int id)
+        {
+            using (BDAcaassAFContext bd = new BDAcaassAFContext())
+            {
+                MarcasAF oMarcaAF = new MarcasAF();
+                Marcas oMarca = bd.Marcas.Where(p => p.IdMarca == id).First();
+                oMarcaAF.IdMarca = oMarca.IdMarca;
+                oMarcaAF.Marca = oMarca.Marca;
+                oMarcaAF.Descripcion = oMarca.Descripcion;
+                return oMarcaAF;
+            }
+        }
+        [HttpGet]
         [Route("api/Marca/buscarMarca/{buscador?}")]
         public IEnumerable<MarcasAF> buscarMarca(string buscador = "")
         {
