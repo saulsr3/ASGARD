@@ -35,7 +35,7 @@ export class FormMarcaComponent implements OnInit {
                 icon: 'success',
                 title: 'Dato Guardado con exito',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000
             })
             this.marca.controls["idMarca"].setValue("0");
             this.marca.controls["marca"].setValue("");
