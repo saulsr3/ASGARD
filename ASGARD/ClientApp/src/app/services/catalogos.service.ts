@@ -44,8 +44,8 @@ export class CatalogosService {
   }
 
   //para eliminar los registros de clasificacion de acitvo
-  public eliminarCasificacion(idclasificacin) {
-    return this.http.get(this.urlBase + "api/Clasificacion/eliminarCasificacion/" + idclasificacin).map(res => res.json());
+  public eliminarCasificacion(idclasificacion) {
+    return this.http.get(this.urlBase + "api/Clasificacion/eliminarCasificacion/" + idclasificacion).map(res => res.json());
   }
 
 }
