@@ -91,6 +91,33 @@ export class FormDonantesComponent implements OnInit {
   }
 
 
+  eliminar(iddonante) {
+    Swal.fire({
+      title: '¿Estas seguro de eliminar este registro?',
+      text: "No podras revertir esta acción!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.value) {
+        this.catalogoService.eliminarDonante(iddonante).subscribe(data => {
+          Swal.fire(
+            'Registro eliminado!',
+            'Tu archivo ha sido eliminado con exito.',
+            'success'
+          )
+          this.catalogoService.getDonantes().subscribe(
+            data => { this.donantes = data }
+          );
+        });
+
+      }
+    })
+  }
+  
+
   modif(id) {
 
     this.display = 'block';
@@ -104,5 +131,7 @@ export class FormDonantesComponent implements OnInit {
     });
 
   }
+
+ 
 
 }

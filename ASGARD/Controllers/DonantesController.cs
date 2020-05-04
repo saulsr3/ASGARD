@@ -117,5 +117,29 @@ namespace ASGARD.Controllers
             return rpta;
         }
 
+
+        //Método eliminar donante
+        [HttpGet]
+        [Route("api/Donantes/eliminarDonante/{idDonante}")]
+        public int eliminarDonante(int idDonante)
+        {
+            int rpta = 0;
+            try
+            {
+                using(BDAcaassAFContext bd=new BDAcaassAFContext())
+                {
+                    Donantes oDonantes = bd.Donantes.Where(p => p.IdDonante == idDonante).First();
+                    oDonantes.Dhabilitado = 0;
+                    bd.SaveChanges();
+                    rpta = 1;
+                }
+
+            }catch(Exception ex)
+            {
+                rpta = 0;
+            }
+            return rpta;
+        }
+
     }
 }
