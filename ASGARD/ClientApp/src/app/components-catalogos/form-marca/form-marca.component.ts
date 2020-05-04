@@ -39,6 +39,7 @@ export class FormMarcaComponent implements OnInit {
         this.display = 'none';
     }
 //metodo para guardar los datos
+  //quitar bifurcacion
     guardarDatos() {
         //Si la vandera es cero que es el que trae por defecto en el metodo open() entra en la primera a insertar
         if ((this.marca.controls["bandera"].value) == "0") {
