@@ -29,6 +29,7 @@ export class CatalogosService {
     }
  
     //Servicios Sucursales
+
     public getSucursales() {
         return this.http.get(this.urlBase + "api/Sucursal/listarSucursales").map(res => res.json());
     }
@@ -40,6 +41,7 @@ export class CatalogosService {
     }
     
   //Service Donantes
+
   public agregarDonante(donante) {
     return this.http.post(this.urlBase + "api/Donantes/guardarDonante", donante).map(res => res.json());
   }
@@ -53,6 +55,14 @@ export class CatalogosService {
 
   public updateDonante(donante) {
     return this.http.post(this.urlBase + "api/Donantes/modificarDonante", donante).map(res => res.json());
+  }
+
+  public eliminarDonante(idDonante) {
+    return this.http.get(this.urlBase + "api/Donantes/eliminarDonante/" + idDonante).map(res => res.json());
+  }
+
+  public buscarDonante(buscador) {
+    return this.http.get(this.urlBase + "api/Donantes/buscarDonantes/" + buscador).map(res => res.json());
   }
 
 
@@ -71,6 +81,7 @@ export class CatalogosService {
 
 
   //para eliminar los registros de clasificacion de acitvo
+
   public eliminarCasificacion(idclasificacion) {
     return this.http.get(this.urlBase + "api/Clasificacion/eliminarCasificacion/" + idclasificacion).map(res => res.json());
   }

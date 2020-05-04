@@ -2,7 +2,7 @@
 <br />
 <br />
 <section class="panel">
-    <h1>  donantes</h1>
+    <h1>  Donantes</h1>
 
     <div class="row">
         <div class="col-lg-6">
@@ -23,7 +23,7 @@
             <section class="panel panel-default">
 
                 <header class="panel-heading">
-                    <h5>Registro de Clasificación de activos</h5>
+                    <h5>Registro de Donantes</h5>
                 </header>
                 <div class="panel-body">
                     <div class="adv-table">
@@ -46,7 +46,7 @@
                                     <td>{{donte.direccion}}</td>
                                     <td class="center hidden-phone">
                                         <button class="btn btn-primary btn-xs" (click)="modif(donte.iidDonante)"><i class="icon-pencil"></i></button>
-                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                        <button class="btn btn-danger btn-xs" (click)="eliminar(donte.iidDonante)"><i class="icon-trash "></i></button>
                                     </td>
                                 </tr>
                             </tbody>
