@@ -41,6 +41,7 @@ export class CatalogosService {
     }
     
   //Service Donantes
+
   public agregarDonante(donante) {
     return this.http.post(this.urlBase + "api/Donantes/guardarDonante", donante).map(res => res.json());
   }
@@ -58,6 +59,10 @@ export class CatalogosService {
 
   public eliminarDonante(idDonante) {
     return this.http.get(this.urlBase + "api/Donantes/eliminarDonante/" + idDonante).map(res => res.json());
+  }
+
+  public buscarDonante(buscador) {
+    return this.http.get(this.urlBase + "api/Donantes/buscarDonantes/" + buscador).map(res => res.json());
   }
 
 

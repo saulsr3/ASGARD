@@ -141,5 +141,46 @@ namespace ASGARD.Controllers
             return rpta;
         }
 
+        //Método buscar donante
+        [HttpGet]
+        [Route("api/Donantes/buscarDonantes/{buscador?}")]
+        public IEnumerable<DonantesAF> buscarDonantes(string buscador="")
+        {
+            List<DonantesAF> listaDonante;
+            using(BDAcaassAFContext bd=new BDAcaassAFContext())
+            {
+                if(buscador=="")
+                {
+                    listaDonante = (from donante in bd.Donantes
+                                    where donante.Dhabilitado == 1
+                                    select new DonantesAF
+                                    {
+                                        IidDonante = donante.IdDonante,
+                                        nombre = donante.Nombre,
+                                        telefono = donante.Telefono,
+                                        direccion = donante.Direccion
+                                    }).ToList();
+                    return listaDonante;
+                } else
+                {
+                    listaDonante = (from donante in bd.Donantes
+                                    where donante.Dhabilitado == 1
+                                    && ((donante.IdDonante).ToString().Contains(buscador) ||
+                                    (donante.Nombre).ToLower().Contains(buscador.ToLower()) ||
+                                    (donante.Telefono).ToLower().Contains(buscador.ToLower()) ||
+                                    (donante.Direccion).ToLower().Contains(buscador.ToLower()))
+                                    select new DonantesAF
+                                    {
+                                        IidDonante = donante.IdDonante,
+                                        nombre = donante.Nombre,
+                                        telefono = donante.Telefono,
+                                        direccion = donante.Telefono
+                                    }).ToList();
+                    return listaDonante;
+                                 
+                }
+            }
+        }
+
     }
 }

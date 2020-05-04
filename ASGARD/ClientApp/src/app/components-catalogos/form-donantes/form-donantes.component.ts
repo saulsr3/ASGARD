@@ -131,6 +131,10 @@ export class FormDonantesComponent implements OnInit {
     });
 
   }
+  
+  buscar(buscador) {
+    this.catalogoService.buscarDonante(buscador.value).subscribe(res => this.donantes = res);
+  }
 
  
 
