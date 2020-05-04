@@ -47,8 +47,6 @@ namespace ASGARD.Controllers
                 respuesta = 0;
             }
 
-
-
             return respuesta;
         }
 
