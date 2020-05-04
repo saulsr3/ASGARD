@@ -63,7 +63,7 @@ export class FormClasificacionComponent implements OnInit {
             'success'
           )
           this.catalogosServices.getClasificacion().subscribe(
-            data => { this.clasificacion = data }
+            data => { this.clasificaciones = data }
           );
         });
 

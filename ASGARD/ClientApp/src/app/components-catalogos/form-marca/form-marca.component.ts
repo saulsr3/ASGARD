@@ -37,26 +37,26 @@ export class FormMarcaComponent implements OnInit {
         this.display = 'none';
     }
 //metodo para guardar los datos
-    guardarDatos() {
+    //guardarDatos() {
        
-        if (this.marca.valid == true) {
-            this.catalogoService.setMarca(this.marca.value).subscribe(data => { });
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Dato Guardado con exito',
-                showConfirmButton: false,
-                timer: 3000
-            })
-            this.marca.controls["idMarca"].setValue("0");
-            this.marca.controls["marca"].setValue("");
-            this.marca.controls["descripcion"].setValue("");
-            //this.router.navigate(["/form-marca"])
-            this.display = 'none';
-            this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
-        }
+    //    if (this.marca.valid == true) {
+    //        this.catalogoService.setMarca(this.marca.value).subscribe(data => { });
+    //        Swal.fire({
+    //            position: 'top-end',
+    //            icon: 'success',
+    //            title: 'Dato Guardado con exito',
+    //            showConfirmButton: false,
+    //            timer: 3000
+    //        })
+    //        this.marca.controls["idMarca"].setValue("0");
+    //        this.marca.controls["marca"].setValue("");
+    //        this.marca.controls["descripcion"].setValue("");
+    //        //this.router.navigate(["/form-marca"])
+    //        this.display = 'none';
+    //        this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
+    //    }
 
-    }
+    //}
     modif(id) {
 
         this.display = 'block';
