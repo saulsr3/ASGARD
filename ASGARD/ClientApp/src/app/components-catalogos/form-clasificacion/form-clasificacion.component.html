@@ -74,23 +74,20 @@
       <div class="modal-body">
 
         <form role="form" [formGroup]="clasificacion" (ngSubmit)="guardarDatos()">
-          <!--<input type="hidden" class="form-control" formControlName="idclasificacion" id="exampleInputEmail3" autocomplete="off">-->
+          <input type="hidden" class="form-control" formControlName="idclasificacion" id="exampleInputEmail3" autocomplete="off">
+         
           <div class="form-group">
-            <label for="exampleInputEmail1">Id Clasificación</label>
-            <input type="text" class="form-control" formControlName="idclasificacion" id="idclasificacion" readonly placeholder="Clasificación"  autocomplete="off">
+            <label for="exampleInputEmail1">Correlativo:</label>
+            <input type="text" class="form-control" formControlName="correlativo" id="exampleInputEmail3" placeholder="Agregue el Correlativo"  autocomplete="off">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Correlativo</label>
-            <input type="text" class="form-control" formControlName="correlativo" id="correlativo" placeholder="Correlativo"  autocomplete="off">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Clasificación</label>
-            <input type="text" class="form-control" formControlName="clasificacion" id="clasificacion" placeholder="Clasificación"  autocomplete="off">
+            <label for="exampleFormControlTextarea2">Clasificación:</label>
+            <input type="text" class="form-control" formControlName="clasificacion" id="exampleFormControlTextarea2" placeholder="Clasificación"  autocomplete="off">
           </div>
 
           <div class="form-group">
-            <label for="exampleFormControlTextarea2">Descripción</label>
-            <textarea class="form-control rounded-0" formControlName="descripcion" id="descripcion" rows="3"  placeholder="Descripcion" autocomplete="off"></textarea>
+            <label for="exampleFormControlTextarea2">Descripción:</label>
+            <textarea class="form-control rounded-0" formControlName="descripcion" id="exampleFormControlTextarea2" rows="3"  placeholder="Descripcion" autocomplete="off"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Guardar</button>
           <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>

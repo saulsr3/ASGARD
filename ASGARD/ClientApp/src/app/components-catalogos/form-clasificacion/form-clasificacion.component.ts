@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { CatalogosService } from './../../services/catalogos.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -89,7 +89,7 @@ export class FormClasificacionComponent implements OnInit {
       //this.router.navigate(["/form-marca"])
 
       this.display = 'none';
-      this.catalogosServices.getClasificacion().subscribe(res => this.clasificacion = res);
+      this.catalogosServices.getClasificacion().subscribe(res => this.clasificaciones = res);
 
     }
   }
@@ -113,6 +113,6 @@ export class FormClasificacionComponent implements OnInit {
   }
 
   buscar(buscador) {
-    this.catalogosServices.buscarClasificacion(buscador.value).subscribe(res => this.clasificacion = res);
+    this.catalogosServices.buscarClasificacion(buscador.value).subscribe(res => this.clasificaciones = res);
   }
 }
