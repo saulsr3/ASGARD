@@ -40,12 +40,12 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let donte of dontes | paginate: { itemsPerPage: 5, currentPage: p }">
-                                    <td>{{donte.IidDonante}}</td>
+                                    <td>{{donte.iidDonante}}</td>
                                     <td>{{donte.nombre}}</td>
                                     <td>{{donte.telefono}}</td>
                                     <td>{{donte.direccion}}</td>
                                     <td class="center hidden-phone">
-                                        <button class="btn btn-primary btn-xs" (click)="modif(donte.IidDonante)"><i class="icon-pencil"></i></button>
+                                        <button class="btn btn-primary btn-xs" (click)="modif(donte.iidDonante)"><i class="icon-pencil"></i></button>
                                         <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
                                     </td>
                                 </tr>

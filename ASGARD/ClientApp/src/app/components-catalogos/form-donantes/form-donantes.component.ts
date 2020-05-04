@@ -43,7 +43,7 @@ export class FormDonantesComponent implements OnInit {
     this.donantes.controls["nombre"].setValue("");
     this.donantes.controls["telefono"].setValue("");
     this.donantes.controls["direccion"].setValue("");
-
+      this.display = 'block';
   }
 
   close() {
