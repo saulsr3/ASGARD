@@ -65,7 +65,7 @@ export class FormDonantesComponent implements OnInit {
           timer: 3000
         })
       }
-    } else {
+    } else { 
 
       //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar
 
@@ -99,7 +99,7 @@ export class FormDonantesComponent implements OnInit {
       this.donantes.controls['bandera'].setValue("1");
       this.donantes.controls['nombre'].setValue(data.nombre);
       this.donantes.controls['telefono'].setValue(data.telefono);
-      this.donantes.controls['direccion'].setValue(data.telefono);
+      this.donantes.controls['direccion'].setValue(data.direccion);
 
     });
 
