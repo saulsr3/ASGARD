@@ -39,7 +39,15 @@ export class CatalogosService {
   public getDonantes() {
     return this.http.get(this.urlBase + "api/Donantes/listarDonantes").map(res => res.json());
   }
-  
+
+  public RecuperarDonante(idDonante) {
+    return this.http.get(this.urlBase + "api/Donantes/RecuperarDonante/" + idDonante).map(res => res.json());
+  }
+
+  public updateDonante(donante) {
+    return this.http.post(this.urlBase + "api/Donantes/modificarDonante", donante).map(res => res.json());
+  }
+
 
   //Servicio de Clasificacion de activos
 

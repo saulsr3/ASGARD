@@ -1,95 +1,99 @@
 <br />
 <br />
 <br />
-<h1>Donantes</h1>
-<div class="row">
-    <div class="col-lg-6">
+<section class="panel">
+    <h1>  donantes</h1>
 
-        <header class="panel-heading form-in-line">
-            <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar nuevo donante</button>
-        </header>
+    <div class="row">
+        <div class="col-lg-6">
 
-
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        <section class="panel panel-default">
-            <header class="panel-heading">
-                Registro de Donantes
-                <div class="form-group">
-                    <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Buscar">
-                </div>
+            <header class="panel-heading form-in-line">
+                <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar nuevo Donante</button>
             </header>
-            <div class="panel-body">
-                <div class="adv-table">
-                    <table class="display table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID Donantes</th>
-                                <th>Nombre</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th class="hidden-phone">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let donte of dontes">
-                                <td>{{donte.IidDonante}}</td>
-                                <td>{{donte.nombre}}</td>
-                                <td>{{donte.telefono}}</td>
-                                <td>{{donte.direccion}}</td>
-                                <td class="center hidden-phone">
-                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+        </div>
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-3">
+            <input type="text" class="form-control" #nombre (keyup)="buscar(nombre)" placeholder="Buscar">
+        </div>
     </div>
-</div>
-<!--modal -->
-<form role="form" [formGroup]="donantes" (ngSubmit)="guardarDatos()">
-    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngClass]="{'show':showModal}">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
-                    <h4 class="modal-title">Registrar Donante</h4>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel panel-default">
+
+                <header class="panel-heading">
+                    <h5>Registro de Clasificación de activos</h5>
+                </header>
+                <div class="panel-body">
+                    <div class="adv-table">
+                        <table class="display table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID Donantes</th>
+                                    <th>Nombre</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección</th>
+                                    <th class="hidden-phone">Opciones</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let donte of dontes | paginate: { itemsPerPage: 5, currentPage: p }">
+                                    <td>{{donte.IidDonante}}</td>
+                                    <td>{{donte.nombre}}</td>
+                                    <td>{{donte.telefono}}</td>
+                                    <td>{{donte.direccion}}</td>
+                                    <td class="center hidden-phone">
+                                        <button class="btn btn-primary btn-xs" (click)="modif(donte.IidDonante)"><i class="icon-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
                 </div>
+            </section>
+        </div>
+    </div>
+</section>
 
-                <div class="modal-body">
+<!--modal para confirmar la eliminacion de un registro-->
+<!--modal para ingresar y editar-->
 
+
+
+<div #basicModal aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngStyle]="{'display':display}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="close()">×</button>
+                <h4 class="modal-title">Formulario Donantes</h4>
+            </div>
+            <div class="modal-body">
+
+                <form role="form" [formGroup]="donantes" (ngSubmit)="guardarDatos()">
+                    <input type="hidden" class="form-control" formControlName="IidDonante" id="exampleInputEmail3" autocomplete="off">
 
                     <div class="form-group">
-                        <label>Nombre</label>
-                        <input type="text" class="form-control" formControlName="nombre" />
+                        <label for="exampleInputEmail1">Nombre:</label>
+                        <input type="text" class="form-control" formControlName="nombre" id="exampleInputEmail3" placeholder="Agregue un nombre" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea2">Teléfono:</label>
+                        <input type="text" class="form-control" formControlName="telefono" id="exampleFormControlTextarea2"  autocomplete="off">
                     </div>
 
                     <div class="form-group">
-                        <label>Teléfono</label>
-                        <input type="number" class="form-control" formControlName="telefono" />
+                        <label for="exampleFormControlTextarea2">Dirección:</label>
+                        <textarea class="form-control rounded-0" formControlName="direccion" id="exampleFormControlTextarea2" rows="3" placeholder="Descripcion" autocomplete="off"></textarea>
                     </div>
-
-                    <div class="form-group">
-                        <label>Dirección</label>
-                        <input type="text" class="form-control" formControlName="direccion" />
-                    </div>
-
-                    <div>
-                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                        <button type="button" (click)="showModal=false" class="btn btn-default">Cerrar</button>
-                    </div>
-
-
-                </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>
+                </form>
             </div>
         </div>
     </div>
-</form>
-
+</div>
 

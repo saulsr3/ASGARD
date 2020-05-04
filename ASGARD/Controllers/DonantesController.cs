@@ -69,5 +69,53 @@ namespace ASGARD.Controllers
             }
         }
 
+        //Método recuperar donante
+        [HttpGet]
+        [Route("api/Donantes/RecuperarDonante/{idDonante}")]
+        public DonantesAF RecuperarDonante(int idDonante)
+        {
+            using (BDAcaassAFContext bd=new BDAcaassAFContext())
+            {
+                DonantesAF oDonantesAF = new DonantesAF();
+
+                Donantes oDonantes = bd.Donantes.Where(p => p.IdDonante == idDonante).First();
+
+                oDonantes.IdDonante = oDonantes.IdDonante;
+                oDonantesAF.nombre = oDonantes.Nombre;
+                oDonantesAF.telefono = oDonantes.Telefono;
+                oDonantesAF.direccion = oDonantes.Direccion;
+
+                return oDonantesAF;
+            }
+        }
+        
+    
+
+        //Método modificar donante
+        [HttpPost]
+        [Route("api/Donantes/modificarDonante")]
+        public int modificarDonante([FromBody]DonantesAF oDonanteAF)
+        {
+            int rpta = 0;
+            try
+            {
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    Donantes oDonante = bd.Donantes.Where(p => p.IdDonante == oDonanteAF.IidDonante).First();
+                    oDonante.IdDonante = oDonanteAF.IidDonante;
+                    oDonante.Nombre = oDonanteAF.nombre;
+                    oDonante.Telefono = oDonanteAF.telefono;
+                    oDonante.Direccion = oDonanteAF.direccion;
+                    bd.SaveChanges();
+                    rpta = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                rpta = 0;
+            }
+            return rpta;
+        }
+
     }
 }
