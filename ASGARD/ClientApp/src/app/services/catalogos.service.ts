@@ -32,6 +32,13 @@ export class CatalogosService {
     public getSucursales() {
         return this.http.get(this.urlBase + "api/Sucursal/listarSucursales").map(res => res.json());
     }
+    public setSucursal(sucursal) {
+        return this.http.post(this.urlBase + "api/Sucursal/guardarSucursal", sucursal).map(res => res.json());
+    }
+    public deleteSucursal(idSucursal) {
+        return this.http.get(this.urlBase + "api/Marcas/eliminarSucursal/" + idSucursal).map(res => res.json());
+    }
+    
   //Service Donantes
   public agregarDonante(donante) {
     return this.http.post(this.urlBase + "api/Donantes/guardarDonante", donante).map(res => res.json());
@@ -39,10 +46,15 @@ export class CatalogosService {
   public getDonantes() {
     return this.http.get(this.urlBase + "api/Donantes/listarDonantes").map(res => res.json());
   }
-    //Servicios Proveeodres
-    public getProveedores() {
-        return this.http.get(this.urlBase + "api/Proveedor/listarProveedores").map(res => res.json());
+
+  public RecuperarDonante(idDonante) {
+    return this.http.get(this.urlBase + "api/Donantes/RecuperarDonante/" + idDonante).map(res => res.json());
   }
+
+  public updateDonante(donante) {
+    return this.http.post(this.urlBase + "api/Donantes/modificarDonante", donante).map(res => res.json());
+  }
+
 
   //Servicio de Clasificacion de activos
 
@@ -74,8 +86,29 @@ export class CatalogosService {
     return this.http.post(this.urlBase + "api/Clasificacion/modificarclasificacion", clasificacion).map(res => res.json());
   }
 
+
+
+  //SERVICIOS PARA PROVEEDOR
+
   public agregarProveedor(proveedor) {
     return this.http.post(this.urlBase + "api/Proveedor/guardarProveedor", proveedor).map(res => res.json());
   }
+  public getProveedores() {
+    return this.http.get(this.urlBase + "api/Proveedor/listarProveedores").map(res => res.json());
+  }
+  public recuperarProveedores(id) {
+    return this.http.get(this.urlBase + "api/Proveedor/RecuperarProveedor/" + id).map(res => res.json());
+  }
+  public eliminarProveedor(idProveedor) {
+    return this.http.get(this.urlBase + "api/Proveedor/eliminarProveedor/" + idProveedor).map(res => res.json());
+  }
+  public buscarProveedor(buscador) {
+    return this.http.get(this.urlBase + "api/Proveedor/buscarProveedor/" + buscador).map(res => res.json());
+  }
+  public ActualizarProveedor(proveedor) {
+    return this.http.post(this.urlBase + "api/Proveedor/modificarProveedor", proveedor).map(res => res.json());
+  }
+
+
 
 }

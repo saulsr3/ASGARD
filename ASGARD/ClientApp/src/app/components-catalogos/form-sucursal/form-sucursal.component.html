@@ -8,7 +8,7 @@
     <div class="col-lg-6">
 
       <header class="panel-heading form-in-line">
-        <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva Marca</button>
+        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva Marca</button>
       </header>
     </div>
     <div class="col-lg-3">
@@ -46,9 +46,8 @@
                     <td>{{sucursal.ubicacion}}</td>
                     <td>{{sucursal.correlativo}}</td>
                     <td class="center hidden-phone">
-                      <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                      <button class="btn btn-primary btn-xs" ><i class="icon-pencil"></i></button>
+                      <button class="btn btn-danger btn-xs" (click)="eliminar(sucursal.idSucursal)"><i class="icon-trash "></i></button>
                     </td>
                   </tr>
                 </tbody>
@@ -62,30 +61,48 @@
   </div>
 </section>
 <!--modal para ingresar y editar-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngClass]="{'show':showModal}">
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngStyle]="{'display':display}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
-        <h4 class="modal-title">Formulario Sucursales</h4>
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="close()">×</button>
+        <h4 class="modal-title">{{titulo}}</h4>
       </div>
       <div class="modal-body">
 
-        <form role="form">
+        <form role="form" [formGroup]="sucursal" (ngSubmit)="guardarDatos()">
+          <input type="hidden" class="form-control" formControlName="idSucursal" id="exampleInputEmail3" autocomplete="off">
+          <input type="hidden" class="form-control" formControlName="bandera" id="exampleInputEmail3" autocomplete="off">
+
           <div class="form-group">
+
             <label for="exampleInputEmail1">Sucursal:</label>
-            <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Nombre de Sucursal">
+            <input type="text" class="form-control" formControlName="nombre" id="exampleInputEmail3" placeholder="Nombre de Sucursal">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Ubicación:</label>
-            <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Ubicación de sucursal">
+            <input type="text" class="form-control" formControlName="ubicacion" id="exampleInputEmail3" placeholder="Ubicación de sucursal">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Correlativo:</label>
-            <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Correlativo">
+            <input type="text" class="form-control" formControlName="correlativo" id="exampleInputEmail3" placeholder="Correlativo">
           </div>
-          <button type="submit" class="btn btn-primary">Guardar</button>
-          <button type="button" (click)="showModal=false" class="btn btn-default">Cancelar</button>
+          <!--  WARNING-->
+          <div class="alert alert-warning fade in" *ngIf="!sucursal.valid">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Cuidado!</strong> Todos los campos son obligatorios
+          </div>
+          <!--  END-WARNING-->
+          <div class="alert alert-success fade in" *ngIf="sucursal.valid">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Exelente!</strong> Datos ingresados correctamente
+          </div>
+          <button [disabled]="!sucursal.valid" type="submit" class="btn btn-primary">Guardar</button>
+          <button type="button" (click)="close()" class="btn btn-default">Cancelar</button>
         </form>
       </div>
     </div>

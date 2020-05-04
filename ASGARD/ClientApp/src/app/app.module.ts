@@ -20,6 +20,7 @@ import { FormEmpleadoComponent } from './components-catalogos/form-empleado/form
 import { FormMarcaComponent } from './components-catalogos/form-marca/form-marca.component';
 import { FormSucursalComponent } from './components-catalogos/form-sucursal/form-sucursal.component';
 //servicios hay que procurar llevar el orden
+
 import { CargarScriptsService } from './services/cargar-scripts.service';
 import { CatalogosService } from './services/catalogos.service';
 import { TablaMarcasComponent } from './components-catalogos/tabla-marcas/tabla-marcas.component';
@@ -52,6 +53,7 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
     FormProveedorComponent
    
     //Aqui vamos a agregar los compoenentes del proyecto
+
   ],
     imports: [
     HttpModule,
