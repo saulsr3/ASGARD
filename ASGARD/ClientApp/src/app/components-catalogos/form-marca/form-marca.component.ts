@@ -13,6 +13,7 @@ export class FormMarcaComponent implements OnInit {
    @Input() marcas: any;
    marca: FormGroup;
     display = 'none';
+    titulo: string;
     constructor(private catalogoService: CatalogosService, private router: Router, private activateRoute: ActivatedRoute) {
         this.marca = new FormGroup({
             'idMarca': new FormControl("0"),
@@ -20,7 +21,6 @@ export class FormMarcaComponent implements OnInit {
             'marca': new FormControl("", [Validators.required]),
             'descripcion': new FormControl("")
         });
-     
     }
 
     ngOnInit() {
@@ -29,6 +29,7 @@ export class FormMarcaComponent implements OnInit {
     }
     open() {
         //limpia cache
+        this.titulo = "Formulario Marca";
         this.marca.controls["idMarca"].setValue("0");
         this.marca.controls["bandera"].setValue("0");
         this.marca.controls["marca"].setValue("");
@@ -77,6 +78,7 @@ export class FormMarcaComponent implements OnInit {
         this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
     }
     modif(id) {
+        this.titulo = "Modificar Marca";
         this.display = 'block';
         this.catalogoService.recuperarMarcas(id).subscribe(data => {
             this.marca.controls["idMarca"].setValue(data.idMarca);
