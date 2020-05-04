@@ -47,9 +47,7 @@ export class CatalogosService {
     return this.http.post(this.urlBase + "api/Clasificacion/guardarClasificacion", clasificacion).map(res => res.json());
 }
 
-  public agregarProveedor(proveedor) {
-    return this.http.post(this.urlBase + "api/Proveedor/guardarProveedor", proveedor).map(res => res.json());
-  }
+
 
   //servicio que enlista la clasificacion de los activos
   public getClasificacion() {
@@ -59,6 +57,18 @@ export class CatalogosService {
   //para eliminar los registros de clasificacion de acitvo
   public eliminarCasificacion(idclasificacion) {
     return this.http.get(this.urlBase + "api/Clasificacion/eliminarCasificacion/" + idclasificacion).map(res => res.json());
+  }
+
+  buscarClasificacion(buscador) {
+    return this.http.get(this.urlBase + "api/Clasificacion/buscarClasificacion/" + buscador).map(res => res.json());
+  }
+
+  public RecuperarClasificacion(id) {
+    return this.http.get(this.urlBase + "api/Clasificacion/RecuperarClasificacion/" + id).map(res => res.json());
+  }
+
+  public agregarProveedor(proveedor) {
+    return this.http.post(this.urlBase + "api/Proveedor/guardarProveedor", proveedor).map(res => res.json());
   }
 
 }

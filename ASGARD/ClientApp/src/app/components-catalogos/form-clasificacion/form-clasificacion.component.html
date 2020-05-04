@@ -8,15 +8,13 @@
     <div class="col-lg-6">
 
       <header class="panel-heading form-in-line">
-        <button type="button" class="btn btn-success" (click)="showModal=true" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva clasificación</button>
-        <!--<button type="button" class="btn btn-success" (click)="showModal1=true" data-toggle="modal" data-target="#myModal1"><i class="icon-save"></i>eliminar </button>-->
+        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva clasificación</button>
       </header>
     </div>
     <div class="col-lg-3">
-
     </div>
     <div class="col-lg-3">
-      <input type="text" class="form-control" placeholder="Buscar">
+      <input type="text" class="form-control" #nombre (keyup)="buscar(nombre)" placeholder="Buscar">
     </div>
   </div>
 
@@ -46,32 +44,9 @@
                   <td>{{clasificacion.correlativo}}</td>
                   <td>{{clasificacion.clasificacion}}</td>
                   <td>{{clasificacion.descripcion}}</td>
-
-
                   <td class="center hidden-phone">
-                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                    <button class="btn btn-danger btn-xs"><i (click)="showModal1=true" class="icon-trash "></i></button>
-
-                    <!--(click)="eliminar(clasificacion.idclasificacion)"-->
-                    <!--<i class="glyphicon glyphicon-trash btn btn-danger" (click)="eliminar(persona.iidpersona)"></i>-->
-
-                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal1" class="modal" [ngClass]="{'show':showModal1}">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
-                            <h4 class="modal-title">Realmente desea eliminar el registro?</h4>
-                          </div>
-                          <button type="submit" (click)="eliminar(clasificacion.idclasificacion)" class="btn btn-primary">Eliminar</button>
-                          <button type="button" (click)="showModal1=false" class="btn btn-default">Cancelar</button>
-                        </div>
-                      </div>
-                    </div>
-
-
-
-
+                    <button class="btn btn-primary btn-xs" (click)="modif(clasificacion.idclasificacion)"><i class="icon-pencil"></i></button>
+                    <button class="btn btn-danger btn-xs" (click)="eliminar(clasificacion.idclasificacion)"><i class="icon-trash "></i></button>
                   </td>
                 </tr>
               </tbody>
@@ -87,39 +62,41 @@
 <!--modal para confirmar la eliminacion de un registro-->
 <!--modal para ingresar y editar-->
 
-<form role="form" [formGroup]="clasificacion" (ngSubmit)="guardarDatos()">
-  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngClass]="{'show':showModal}">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="showModal=false">×</button>
-          <h4 class="modal-title">Formulario Clasificación de activos</h4>
-        </div>
-        <div class="modal-body">
+
+
+<div #basicModal aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngStyle]="{'display':display}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="close()">×</button>
+        <h4 class="modal-title">Formulario Clasificación de activos</h4>
+      </div>
+      <div class="modal-body">
+
+        <form role="form" [formGroup]="clasificacion" (ngSubmit)="guardarDatos()">
+          <!--<input type="hidden" class="form-control" formControlName="idclasificacion" id="exampleInputEmail3" autocomplete="off">-->
           <div class="form-group">
             <label for="exampleInputEmail1">Id Clasificación</label>
-            <input type="text" class="form-control" formControlName="idclasificacion" id="idclasificacion" readonly placeholder="Clasificación">
+            <input type="text" class="form-control" formControlName="idclasificacion" id="idclasificacion" readonly placeholder="Clasificación"  autocomplete="off">
           </div>
-
-
           <div class="form-group">
             <label for="exampleInputEmail1">Correlativo</label>
-            <input type="text" class="form-control" formControlName="correlativo" id="correlativo" placeholder="Correlativo">
+            <input type="text" class="form-control" formControlName="correlativo" id="correlativo" placeholder="Correlativo"  autocomplete="off">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Clasificación</label>
-            <input type="text" class="form-control" formControlName="clasificacion" id="clasificacion" placeholder="Clasificación">
+            <input type="text" class="form-control" formControlName="clasificacion" id="clasificacion" placeholder="Clasificación"  autocomplete="off">
           </div>
 
           <div class="form-group">
             <label for="exampleFormControlTextarea2">Descripción</label>
-            <textarea class="form-control rounded-0" formControlName="descripcion" id="descripcion" rows="3"></textarea>
+            <textarea class="form-control rounded-0" formControlName="descripcion" id="descripcion" rows="3"  placeholder="Descripcion" autocomplete="off"></textarea>
           </div>
-
-          <button [routerLink]="['/form-clasificacion']" type="submit" class="btn btn-primary">Guardar</button>
-          <button type="button" (click)="showModal=false" class="btn btn-default">Cancelar</button>
-        </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>
+        </form>
       </div>
     </div>
   </div>
-</form>
+</div>
+
