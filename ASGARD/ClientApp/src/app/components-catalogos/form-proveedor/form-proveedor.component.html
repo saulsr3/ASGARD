@@ -1,10 +1,10 @@
 <br />
 <br />
 <br />
-<!--<h1>{ {titulo}}</h1>-->
+
 <section class="panel">
   <h1>Proveedores</h1>
-
+  
   <div class="row">
     <div class="col-lg-6">
 
@@ -45,7 +45,7 @@
 
               <tbody>
                 <tr *ngFor="let proveedores of proveedor | paginate: { itemsPerPage: 5, currentPage: p }">
-                  <td class="red-text">{{proveedores.idProveedor}}</td>
+                  <td>{{proveedores.idProveedor}}</td>
                   <td>{{proveedores.nombre}}</td>
                   <td>{{proveedores.direccion}}</td>
                   <td>{{proveedores.telefono}}</td>
@@ -53,7 +53,7 @@
                   <td>{{proveedores.encargado}}</td>
                   <td>{{proveedores.telefonoencargado}}</td>
                   <td class="center hidden-phone">
-                    <button class="btn btn-primary btn-xs" (click)="modificar(proveedores.idProveedor)"><i class="icon-pencil"></i></button>
+                    <button class="btn btn-primary btn-xs" [routerLink]="['/form-proveedor','editar']" (click)="modificar(proveedores.idProveedor)"><i class="icon-pencil"></i></button>
                     <button class="btn btn-danger btn-xs" (click)="eliminar(proveedores.idProveedor)"><i class="icon-trash "></i></button>
                   </td>
                 </tr>
@@ -68,17 +68,19 @@
 </section>
 
 <!--modal para ingresar y editar-->
+
   <div #basicModal aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngStyle]="{'display':display}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="close()">×</button>
-          <h4 class="modal-title">Formulario Proveedor</h4>
+          
+          <h4 class="modal-title">{{titulo}}</h4>
         </div>
         <div class="modal-body">
 
           <form role="form" [formGroup]="proveedores" (ngSubmit)="guardarDatos()">
-            <input type="hidden" class="form-control" formControlName="idMarca" id="exampleInputEmail3" autocomplete="off">
+            <input type="hidden" class="form-control" formControlName="idProveedor" id="exampleInputEmail3" autocomplete="off">
             <input type="hidden" class="form-control" formControlName="bandera" id="exampleInputEmail3" autocomplete="off">
 
             <!--<div class="form-group">
@@ -90,37 +92,71 @@
               <label for="exampleInputEmail1">Nombre</label>
               <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Nombre">
             </div>
-           
-
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['nombre'].errors?.required">
+              <button data-dismiss="alert" class="close close-sm" type="button">
+                <i class="icon-remove"></i>
+              </button>
+              <strong>Advertenvia!</strong> Llene el campo nombre
+            </div>
 
             <div class="form-group">
               <label for="exampleInputEmail1">Dirección</label>
               <input type="text" class="form-control" formControlName="direccion" id="direccion" placeholder="Dirección">
+            </div>
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['direccion'].errors?.required">
+              <button data-dismiss="alert" class="close close-sm" type="button">
+                <i class="icon-remove"></i>
+              </button>
+              <strong>Advertenvia!</strong> Llene el campo dirección
             </div>
 
             <div class="form-group">
               <label for="exampleInputEmail1">Teléfono</label>
               <input type="number" class="form-control" formControlName="telefono" id="telefono" placeholder="Teléfono">
             </div>
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['telefono'].errors?.required">
+              <button data-dismiss="alert" class="close close-sm" type="button">
+                <i class="icon-remove"></i>
+              </button>
+              <strong>Advertenvia!</strong> Llene el campo teléfono
+            </div>
 
             <div class="form-group">
               <label for="exampleInputEmail1">Rubro</label>
               <input type="text" class="form-control" formControlName="rubro" id="rubro" placeholder="Rubro">
+            </div>
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['rubro'].errors?.required">
+              <button data-dismiss="alert" class="close close-sm" type="button">
+                <i class="icon-remove"></i>
+              </button>
+              <strong>Advertenvia!</strong> Llene el campo rubro
             </div>
 
             <div class="form-group">
               <label for="exampleInputEmail1">Encargado</label>
               <input type="text" class="form-control" formControlName="encargado" id="encargado" placeholder="Encargado">
             </div>
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['encargado'].errors?.required">
+              <button data-dismiss="alert" class="close close-sm" type="button">
+                <i class="icon-remove"></i>
+              </button>
+              <strong>Advertenvia!</strong> Llene el campo encargado
+            </div>
 
             <div class="form-group">
               <label for="exampleInputEmail1">Teléfono Encargado</label>
               <input type="number" class="form-control" formControlName="telefonoencargado" id="telefonoencargado" placeholder="Teléfono Encargado">
             </div>
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['telefonoencargado'].errors?.required">
+              <button data-dismiss="alert" class="close close-sm" type="button">
+                <i class="icon-remove"></i>
+              </button>
+              <strong>Advertenvia!</strong> Llene el campo teléfono encargado
+            </div>
 
             <div style="text-align: center;">
-              <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
-              <button type="button" (click)="showModal=false" class="btn btn-default">Cerrar</button>
+              <button [disabled]="!proveedores.valid" type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
+              <button type="button" (click)="close()"  class="btn btn-default">Cerrar</button>
             </div>
           </form>
 

@@ -14,8 +14,8 @@ export class FormProveedorComponent implements OnInit {
   proveedores: FormGroup;
   @Input() proveedor: any;
   display = 'none';
-  //titulo: string;
-  //parametro: string;
+  titulo: string;
+  parametro: string;
   constructor(private catalogoService: CatalogosService, private router: Router,
     private activateRoute: ActivatedRoute) {
 
@@ -31,15 +31,19 @@ export class FormProveedorComponent implements OnInit {
       'telefonoencargado': new FormControl("", [Validators.required])
     });
 
-    //this.activateRoute.params.subscribe(parametro => {
-    //  this.parametro = parametro["id"];
-    //  if (this.parametro == "nuevo") {
-    //    this.titulo = "";
-    //  } else
-    //  {
-    //    this.titulo = "";
-    //  }
-    //});
+    this.activateRoute.params.subscribe(parametro => {
+      this.parametro = parametro["id"];
+      if (this.parametro == "nuevo") {
+        this.titulo = "Agregando un Proveedor";
+      } 
+    });
+
+    this.activateRoute.params.subscribe(parametro => {
+      this.parametro = parametro["id"];
+      if (this.parametro == "editar") {
+        this.titulo = "Editando un Proveedor";
+      }
+    });
 
   }
 

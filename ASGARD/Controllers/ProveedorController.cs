@@ -146,7 +146,7 @@ namespace ASGARD.Controllers
                 oProveedoresAF.nombre = oProveedor.Nombre;
                 oProveedoresAF.direccion = oProveedor.Direccion;
                 oProveedoresAF.telefono = oProveedor.Telefono;
-                oProveedor.Rubro = oProveedoresAF.rubro;
+                oProveedoresAF.rubro = oProveedor.Rubro;
                 oProveedoresAF.encargado = oProveedor.Encargado;
                 oProveedoresAF.telefonoencargado = oProveedor.TelefonoEncargado;
                 return oProveedoresAF;
