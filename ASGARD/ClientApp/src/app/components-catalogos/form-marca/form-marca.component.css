@@ -73,3 +73,17 @@ th, td {
   border-color: #ff6c60;
   color: #FFFFFF;
 }
+.alert-success, .alert-danger, .alert-info, .alert-warning {
+  border: none;
+}
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-warning {
+  color: #c09853;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}

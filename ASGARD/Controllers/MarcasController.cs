@@ -92,6 +92,29 @@ namespace ASGARD.Controllers
                 return oMarcaAF;
             }
         }
+        [HttpPost]
+        [Route("api/Marca/modificarMarca")]
+        public int modificarMarca([FromBody]MarcasAF oMarcaAF)
+        {
+            int rpta = 0;
+            try
+            {
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    Marcas oMarca = bd.Marcas.Where(p => p.IdMarca == oMarcaAF.IdMarca).First();
+                    oMarca.IdMarca = oMarcaAF.IdMarca;
+                    oMarca.Marca = oMarcaAF.Marca;
+                    oMarca.Descripcion = oMarcaAF.Descripcion;
+                    bd.SaveChanges();
+                    rpta = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                rpta = 0;
+            }
+            return rpta;
+        }
         [HttpGet]
         [Route("api/Marca/buscarMarca/{buscador?}")]
         public IEnumerable<MarcasAF> buscarMarca(string buscador = "")

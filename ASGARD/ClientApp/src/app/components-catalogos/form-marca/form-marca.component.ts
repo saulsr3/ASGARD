@@ -10,14 +10,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form-marca.component.css']
 })
 export class FormMarcaComponent implements OnInit {
-    @Input() marcas: any;
+   @Input() marcas: any;
    marca: FormGroup;
     display = 'none';
     constructor(private catalogoService: CatalogosService, private router: Router, private activateRoute: ActivatedRoute) {
         this.marca = new FormGroup({
             'idMarca': new FormControl("0"),
+            'bandera': new FormControl("0"),
             'marca': new FormControl("", [Validators.required]),
-            'descripcion': new FormControl("", [Validators.required])
+            'descripcion': new FormControl("")
         });
      
     }
@@ -29,6 +30,7 @@ export class FormMarcaComponent implements OnInit {
     open() {
         //limpia cache
         this.marca.controls["idMarca"].setValue("0");
+        this.marca.controls["bandera"].setValue("0");
         this.marca.controls["marca"].setValue("");
         this.marca.controls["descripcion"].setValue("");
         this.display = 'block';
@@ -38,38 +40,48 @@ export class FormMarcaComponent implements OnInit {
     }
 //metodo para guardar los datos
     guardarDatos() {
-       
-        if (this.marca.valid == true) {
-            this.catalogoService.setMarca(this.marca.value).subscribe(data => { });
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Dato Guardado con exito',
-                showConfirmButton: false,
-                timer: 3000
-            })
-            this.marca.controls["idMarca"].setValue("0");
-            this.marca.controls["marca"].setValue("");
-            this.marca.controls["descripcion"].setValue("");
-            //this.router.navigate(["/form-marca"])
-            this.display = 'none';
-            this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
-        }
+        //Si la vandera es cero que es el que trae por defecto en el metodo open() entra en la primera a insertar
+        if ((this.marca.controls["bandera"].value) == "0") {
+            if (this.marca.valid == true) {
+                this.catalogoService.setMarca(this.marca.value).subscribe(data => { });
+                this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Dato Guardado con exito',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }
+        } else {
+            //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar
 
+            this.marca.controls["bandera"].setValue("0");
+            if (this.marca.valid == true) {
+                this.catalogoService.updateMarca(this.marca.value).subscribe(data => { });
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Dato Modificado con exito',
+                    showConfirmButton: false,
+                    timer: 3000
+                })        
+            }
+        }
+        this.marca.controls["idMarca"].setValue("0");
+        this.marca.controls["bandera"].setValue("0");
+        this.marca.controls["marca"].setValue("");
+        this.marca.controls["descripcion"].setValue("");
+        this.display = 'none';
+        this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
     }
     modif(id) {
-
         this.display = 'block';
         this.catalogoService.recuperarMarcas(id).subscribe(data => {
-         
             this.marca.controls["idMarca"].setValue(data.idMarca);
             this.marca.controls["marca"].setValue(data.marca);
             this.marca.controls["descripcion"].setValue(data.descripcion);
-
-            //this.marca.controls["idMarca"].setValue(data.idMarca);
-            //this.marca.controls["marc"].setValue("123");
-            //this.marca.controls["descripcion"].setValue(data.descripcion);
-
+            this.marca.controls["bandera"].setValue("1");
         });
     }
     eliminar(idMarca) {
