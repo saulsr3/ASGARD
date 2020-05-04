@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { CatalogosService } from './../../services/catalogos.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { CatalogosService } from './../../services/catalogos.service';
 
 @Component({
   selector: 'form-clasificacion',
@@ -17,6 +17,7 @@ export class FormClasificacionComponent implements OnInit {
   constructor(private catalogosServices: CatalogosService,  private router: Router, private activateRoute: ActivatedRoute) {
     this.clasificacion = new FormGroup({
       'idclasificacion': new FormControl("0"),
+      'bandera': new FormControl("0"),
       'clasificacion': new FormControl("", [Validators.required]),
       'correlativo': new FormControl("", [Validators.required]),
       'descripcion': new FormControl("", [Validators.required])
@@ -35,6 +36,7 @@ export class FormClasificacionComponent implements OnInit {
   open() {
     //limpia cache
     this.clasificacion.controls["idclasificacion"].setValue("0");
+    this.clasificacion.controls["bandera"].setValue("0");
     this.clasificacion.controls["clasificacion"].setValue("");
     this.clasificacion.controls["correlativo"].setValue("");
     this.clasificacion.controls["descripcion"].setValue("");
@@ -72,17 +74,36 @@ export class FormClasificacionComponent implements OnInit {
   }
 
   guardarDatos() {
-
-    if (this.clasificacion.valid == true) {
-      this.catalogosServices.guardarClasificacion(this.clasificacion.value).subscribe(data => { });
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Dato Guardado con exito',
-        showConfirmButton: false,
-        timer: 3000
-      })
+    if ((this.clasificacion.controls["bandera"].value) == "0")
+    {
+      if (this.clasificacion.valid == true) {
+        this.catalogosServices.guardarClasificacion(this.clasificacion.value).subscribe(data => { });
+        this.catalogosServices.getClasificacion().subscribe(res => this.clasificaciones = res);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Dato Guardado con exito',
+          showConfirmButton: false,
+          timer: 3000
+        })
+      }
+    }else{
+          //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar
+      this.clasificacion.controls["bandera"].setValue("0");
+      if (this.clasificacion.valid == true)
+      {
+        this.catalogosServices.modificarclasificacion(this.clasificacion.value).subscribe(data => { });
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Dato modificado con exito',
+          showConfirmButton: false,
+          timer: 3000
+        })
+      }
+      }
       this.clasificacion.controls["idclasificacion"].setValue("0");
+      this.clasificacion.controls["bandera"].setValue("0");
       this.clasificacion.controls["clasificacion"].setValue("");
       this.clasificacion.controls["correlativo"].setValue("");
       this.clasificacion.controls["descripcion"].setValue("");
@@ -92,7 +113,7 @@ export class FormClasificacionComponent implements OnInit {
       this.catalogosServices.getClasificacion().subscribe(res => this.clasificaciones = res);
 
     }
-  }
+  
 
   modif(id) {
 
@@ -103,6 +124,7 @@ export class FormClasificacionComponent implements OnInit {
       this.clasificacion.controls["clasificacion"].setValue(data.clasificacion);
       this.clasificacion.controls["correlativo"].setValue(data.correlativo);
       this.clasificacion.controls["descripcion"].setValue(data.descripcion);
+      this.clasificacion.controls["bandera"].setValue("1");
      
 
       //this.marca.controls["idMarca"].setValue(data.idMarca);

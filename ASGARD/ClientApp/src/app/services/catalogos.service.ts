@@ -57,6 +57,7 @@ export class CatalogosService {
     return this.http.get(this.urlBase + "api/Clasificacion/listarClasificacion").map(res => res.json());
   }
 
+
   //para eliminar los registros de clasificacion de acitvo
   public eliminarCasificacion(idclasificacion) {
     return this.http.get(this.urlBase + "api/Clasificacion/eliminarCasificacion/" + idclasificacion).map(res => res.json());
@@ -68,6 +69,9 @@ export class CatalogosService {
 
   public RecuperarClasificacion(id) {
     return this.http.get(this.urlBase + "api/Clasificacion/RecuperarClasificacion/" + id).map(res => res.json());
+  }
+  public modificarclasificacion(clasificacion) {
+    return this.http.post(this.urlBase + "api/Clasificacion/modificarclasificacion", clasificacion).map(res => res.json());
   }
 
   public agregarProveedor(proveedor) {

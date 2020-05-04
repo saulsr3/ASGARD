@@ -52,6 +52,30 @@ namespace ASGARD.Controllers
             return respuesta;
         }
 
+        [HttpPost]
+        [Route("api/Clasificacion/modificarclasificacion")]
+        public int modificarclasificacion([FromBody]ClasificacionAF oClasificacionAF)
+        {
+            int respuesta = 0;
+            try
+            {
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    Clasificacion oClasificacion = bd.Clasificacion.Where(p => p.IdClasificacion == oClasificacionAF.idclasificacion).First();
+                    oClasificacion.IdClasificacion = oClasificacionAF.idclasificacion;
+                    oClasificacion.Clasificacion1 = oClasificacionAF.clasificacion;
+                    oClasificacion.Correlativo = oClasificacionAF.correlativo;
+                    oClasificacion.Descripcion = oClasificacionAF.descripcion;
+                    bd.SaveChanges();
+                    respuesta = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = 0;
+            }
+            return respuesta;
+        }
         // metodo para listar las clasificaciones de los activos
         [HttpGet]
         [Route("api/Clasificacion/listarClasificacion")]
