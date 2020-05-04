@@ -99,5 +99,63 @@ namespace ASGARD.Controllers
             }
             return respuesta;
         }
+
+        [HttpGet]
+        [Route("api/Clasificacion/RecuperarClasificacion/{id}")]
+        public ClasificacionAF RecuperarClasificacion(int id)
+        {
+            using (BDAcaassAFContext bd = new BDAcaassAFContext())
+            {
+                ClasificacionAF oClasificacionAF = new ClasificacionAF();
+                Clasificacion oClasificacion = bd.Clasificacion.Where(p => p.IdClasificacion == id).First();
+                oClasificacion.IdClasificacion = oClasificacion.IdClasificacion;
+                oClasificacionAF.correlativo = oClasificacion.Correlativo;
+                oClasificacionAF.clasificacion = oClasificacion.Clasificacion1;
+                oClasificacionAF.descripcion = oClasificacion.Descripcion;
+                
+                return oClasificacionAF;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Clasificacion/buscarClasificacion/{buscador?}")]
+        public IEnumerable<ClasificacionAF> buscarClasificacion(string buscador = "")
+        {
+            List<ClasificacionAF> listaClasificacion;
+            using (BDAcaassAFContext bd = new BDAcaassAFContext())
+            {
+                if (buscador == "")
+                {
+                    listaClasificacion = (from clasificacion in bd.Clasificacion
+                                          where clasificacion.Dhabilitado == 1
+                                          select new ClasificacionAF
+                                          {
+                                              idclasificacion = clasificacion.IdClasificacion,
+                                              correlativo = clasificacion.Correlativo,
+                                              clasificacion = clasificacion.Clasificacion1,
+                                              descripcion = clasificacion.Descripcion
+                                          }).ToList();
+                    return listaClasificacion;
+                }
+                else
+                {
+                    listaClasificacion = (from clasificacion in bd.Clasificacion
+                                          where clasificacion.Dhabilitado == 1
+
+                                          && ((clasificacion.IdClasificacion).ToString().Contains(buscador) ||
+                                          (clasificacion.Correlativo).ToLower().Contains(buscador.ToLower()) ||
+                                          (clasificacion.Descripcion).ToLower().Contains(buscador.ToLower()) ||
+                                          (clasificacion.Clasificacion1).ToLower().Contains(buscador.ToLower()))
+                                          select new ClasificacionAF
+                                          {
+                                              idclasificacion = clasificacion.IdClasificacion,
+                                              correlativo = clasificacion.Correlativo,
+                                              clasificacion = clasificacion.Clasificacion1,
+                                              descripcion = clasificacion.Descripcion
+                                          }).ToList();
+                    return listaClasificacion;
+                }
+            }
+        }
     }
 }
