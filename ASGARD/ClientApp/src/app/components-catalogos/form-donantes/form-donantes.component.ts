@@ -13,7 +13,7 @@ export class FormDonantesComponent implements OnInit {
 
   //Variables 
   donantes: FormGroup;
-  @Input() dontes: any;
+  dontes: any;
   display = 'none';
   p: number = 1;
 
@@ -57,7 +57,7 @@ export class FormDonantesComponent implements OnInit {
     if ((this.donantes.controls["bandera"].value) == "0") {
       if (this.donantes.valid == true) {
         this.catalogoService.agregarDonante(this.donantes.value).subscribe(data => { });
-        this.catalogoService.getDonantes().subscribe(res => this.dontes = res);
+        this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -66,7 +66,7 @@ export class FormDonantesComponent implements OnInit {
           timer: 3000
         })
       }
-      this.catalogoService.getDonantes().subscribe(res => this.donantes = res);
+      
     } else { 
 
       //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar
@@ -82,7 +82,7 @@ export class FormDonantesComponent implements OnInit {
           timer: 3000
         })
       }
-      this.catalogoService.getDonantes().subscribe(res => this.donantes = res);
+      this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
     }
     this.donantes.controls["iidDonante"].setValue("0");
     this.donantes.controls["bandera"].setValue("0");
@@ -90,7 +90,7 @@ export class FormDonantesComponent implements OnInit {
     this.donantes.controls["telefono"].setValue("");
     this.donantes.controls["direccion"].setValue("");
     this.display = 'none';
-    this.catalogoService.getDonantes().subscribe(res => this.donantes = res);
+    this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
   }
 
 
@@ -111,9 +111,7 @@ export class FormDonantesComponent implements OnInit {
             'Tu archivo ha sido eliminado con exito.',
             'success'
           )
-          this.catalogoService.getDonantes().subscribe(
-            data => { this.donantes = data }
-          );
+          this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
         });
 
       }
