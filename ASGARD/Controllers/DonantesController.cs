@@ -80,7 +80,7 @@ namespace ASGARD.Controllers
 
                 Donantes oDonantes = bd.Donantes.Where(p => p.IdDonante == idDonante).First();
 
-                oDonantes.IdDonante = oDonantes.IdDonante;
+                oDonantesAF.IidDonante = oDonantes.IdDonante;
                 oDonantesAF.nombre = oDonantes.Nombre;
                 oDonantesAF.telefono = oDonantes.Telefono;
                 oDonantesAF.direccion = oDonantes.Direccion;

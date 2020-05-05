@@ -130,7 +130,7 @@ namespace ASGARD.Controllers
             {
                 ClasificacionAF oClasificacionAF = new ClasificacionAF();
                 Clasificacion oClasificacion = bd.Clasificacion.Where(p => p.IdClasificacion == id).First();
-                oClasificacion.IdClasificacion = oClasificacion.IdClasificacion;
+                oClasificacionAF.idclasificacion = oClasificacion.IdClasificacion;
                 oClasificacionAF.correlativo = oClasificacion.Correlativo;
                 oClasificacionAF.clasificacion = oClasificacion.Clasificacion1;
                 oClasificacionAF.descripcion = oClasificacion.Descripcion;
