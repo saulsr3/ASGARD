@@ -13,7 +13,7 @@ export class FormDonantesComponent implements OnInit {
 
   //Variables 
   donantes: FormGroup;
-  @Input() dontes: any;
+  dontes: any;
   display = 'none';
   p: number = 1;
 
@@ -111,9 +111,7 @@ export class FormDonantesComponent implements OnInit {
             'Tu archivo ha sido eliminado con exito.',
             'success'
           )
-          this.catalogoService.getDonantes().subscribe(
-            data => { this.donantes = data }
-          );
+          this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
         });
 
       }
