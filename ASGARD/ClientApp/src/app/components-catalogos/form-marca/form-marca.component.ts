@@ -14,6 +14,7 @@ export class FormMarcaComponent implements OnInit {
    marca: FormGroup;
     display = 'none';
     titulo: string;
+    p:number=1;
     constructor(private catalogoService: CatalogosService, private router: Router, private activateRoute: ActivatedRoute) {
         this.marca = new FormGroup({
             'idMarca': new FormControl("0"),
@@ -113,6 +114,7 @@ export class FormMarcaComponent implements OnInit {
         })
     }
     buscar(buscador) {
+        this.p=1;
         this.catalogoService.buscarMarca(buscador.value).subscribe(res => this.marcas = res);
     }
     }
