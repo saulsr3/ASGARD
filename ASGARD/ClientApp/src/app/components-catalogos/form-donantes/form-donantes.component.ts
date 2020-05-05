@@ -15,6 +15,7 @@ export class FormDonantesComponent implements OnInit {
   donantes: FormGroup;
   @Input() dontes: any;
   display = 'none';
+  p: number = 1;
 
   constructor(private catalogoService: CatalogosService, private router: Router, private activatedRoute: ActivatedRoute) {
 
@@ -34,7 +35,7 @@ export class FormDonantesComponent implements OnInit {
     this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
   }
 
-  //Métodos
+  //Métodos 
 
   open() {
     //Limpiar
@@ -133,6 +134,7 @@ export class FormDonantesComponent implements OnInit {
   }
   
   buscar(buscador) {
+    this.p = 1;
     this.catalogoService.buscarDonante(buscador.value).subscribe(res => this.dontes = res);
   }
 

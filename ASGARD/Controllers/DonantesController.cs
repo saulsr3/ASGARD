@@ -174,7 +174,7 @@ namespace ASGARD.Controllers
                                         IidDonante = donante.IdDonante,
                                         nombre = donante.Nombre,
                                         telefono = donante.Telefono,
-                                        direccion = donante.Telefono
+                                        direccion = donante.Direccion
                                     }).ToList();
                     return listaDonante;
                                  
