@@ -20,9 +20,9 @@ export class FormClasificacionComponent implements OnInit {
     this.clasificacion = new FormGroup({
       'idclasificacion': new FormControl("0"),
       'bandera': new FormControl("0"),
-      'clasificacion': new FormControl("", [Validators.required]),
-      'correlativo': new FormControl("", [Validators.required], this.noRepetirCorrelativo.bind(this)),
-      'descripcion': new FormControl("")
+      'clasificacion': new FormControl("", [Validators.required, Validators.maxLength(50)], this.noRepetirClasificacion.bind(this)),
+      'correlativo': new FormControl("", [Validators.required,  Validators.maxLength(10)], this.noRepetirCorrelativo.bind(this)),
+      'descripcion': new FormControl("",[ Validators.maxLength(100)])
 
     });
 
@@ -143,6 +143,29 @@ export class FormClasificacionComponent implements OnInit {
           .subscribe(data => {
             if (data == 1) {
               resolve({ yaExisteCorrelativo: true });
+            } else {
+              resolve(null);
+            }
+
+          })
+
+      }
+
+
+    });
+
+    return promesa;
+  }
+  noRepetirClasificacion(control: FormControl) {
+
+    var promesa = new Promise((resolve, reject) => {
+
+      if (control.value != "" && control.value != null) {
+
+        this.catalogosServices.validarClasificacion(this.clasificacion.controls["idclasificacion"].value, control.value)
+          .subscribe(data => {
+            if (data == 1) {
+              resolve({ yaExisteClasificacion: true });
             } else {
               resolve(null);
             }

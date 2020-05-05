@@ -101,6 +101,9 @@ export class CatalogosService {
     return this.http.get(this.urlBase + "api/Clasificacion/validarCorrelativo/" + idclasificacion+ "/"+ correlativo).map(res => res.json());
   }
 
+  public validarClasificacion (idclasificacion, clasificacion){
+    return this.http.get(this.urlBase + "api/Clasificacion/validarClasificacion/" + idclasificacion+ "/"+ clasificacion).map(res => res.json());
+  }
 
   //SERVICIOS PARA PROVEEDOR
 
