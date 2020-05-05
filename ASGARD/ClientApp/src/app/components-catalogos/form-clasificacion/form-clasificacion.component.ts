@@ -12,9 +12,10 @@ import Swal from 'sweetalert2';
 })
 export class FormClasificacionComponent implements OnInit {
   @Input() clasificaciones: any;
-  //p: number = 1;
+  p: number = 1;
   clasificacion: FormGroup;
   display = 'none';
+  titulo: string;
   constructor(private catalogosServices: CatalogosService,  private router: Router, private activateRoute: ActivatedRoute) {
     this.clasificacion = new FormGroup({
       'idclasificacion': new FormControl("0"),
@@ -36,6 +37,7 @@ export class FormClasificacionComponent implements OnInit {
 
   open() {
     //limpia cache
+    this.titulo = "Formulario registro de clasificación de activos";
     this.clasificacion.controls["idclasificacion"].setValue("0");
     this.clasificacion.controls["bandera"].setValue("0");
     this.clasificacion.controls["clasificacion"].setValue("");
@@ -86,6 +88,7 @@ export class FormClasificacionComponent implements OnInit {
   }
 
   modif(id) {
+    this.titulo = "Modificar Clasificación de activos";
     this.display = 'block';
     this.catalogosServices.RecuperarClasificacion(id).subscribe(data => {
       this.clasificacion.controls["idclasificacion"].setValue(data.idclasificacion);
@@ -123,10 +126,6 @@ export class FormClasificacionComponent implements OnInit {
     })
   }
 
-  
-  
-
- 
 
   buscar(buscador) {
     this.catalogosServices.buscarClasificacion(buscador.value).subscribe(res => this.clasificaciones = res);

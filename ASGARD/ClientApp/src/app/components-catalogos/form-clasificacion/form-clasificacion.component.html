@@ -60,7 +60,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="close()">×</button>
-        <h4 class="modal-title">Formulario Clasificación de activos</h4>
+        <h4 class="modal-title">{{titulo}}</h4>
       </div>
       <div class="modal-body">
         <form role="form" [formGroup]="clasificacion" (ngSubmit)="guardarDatos()">
@@ -91,7 +91,7 @@
             <label for="exampleFormControlTextarea2">Descripción:</label>
             <textarea class="form-control rounded-0" formControlName="descripcion" id="exampleFormControlTextarea2" rows="3" placeholder="Descripcion" autocomplete="off"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button [disabled]="!clasificacion.valid" type="submit" class="btn btn-primary">Guardar</button>
           <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>
         </form>
       </div>
