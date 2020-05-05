@@ -21,7 +21,7 @@ export class FormDonantesComponent implements OnInit {
 
     this.donantes = new FormGroup({
 
-      'IidDonante': new FormControl("0"),
+      'iidDonante': new FormControl("0"),
       'nombre': new FormControl(""),
       'bandera': new FormControl("0"),
       'telefono': new FormControl(""),
@@ -39,7 +39,7 @@ export class FormDonantesComponent implements OnInit {
 
   open() {
     //Limpiar
-    this.donantes.controls["IidDonante"].setValue("0");
+    this.donantes.controls["iidDonante"].setValue("0");
     this.donantes.controls["bandera"].setValue("0");
     this.donantes.controls["nombre"].setValue("");
     this.donantes.controls["telefono"].setValue("");
@@ -66,6 +66,7 @@ export class FormDonantesComponent implements OnInit {
           timer: 3000
         })
       }
+      this.catalogoService.getDonantes().subscribe(res => this.donantes = res);
     } else { 
 
       //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar
@@ -81,8 +82,9 @@ export class FormDonantesComponent implements OnInit {
           timer: 3000
         })
       }
+      this.catalogoService.getDonantes().subscribe(res => this.donantes = res);
     }
-    this.donantes.controls["IidDonante"].setValue("0");
+    this.donantes.controls["iidDonante"].setValue("0");
     this.donantes.controls["bandera"].setValue("0");
     this.donantes.controls["nombre"].setValue("");
     this.donantes.controls["telefono"].setValue("");
@@ -123,7 +125,7 @@ export class FormDonantesComponent implements OnInit {
 
     this.display = 'block';
     this.catalogoService.RecuperarDonante(id).subscribe(data => {
-      this.donantes.controls['IidDonante'].setValue(data.IidDonante);
+      this.donantes.controls['iidDonante'].setValue(data.iidDonante);
       this.donantes.controls['bandera'].setValue("1");
       this.donantes.controls['nombre'].setValue(data.nombre);
       this.donantes.controls['telefono'].setValue(data.telefono);
