@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form-clasificacion.component.css']
 })
 export class FormClasificacionComponent implements OnInit {
-  @Input() clasificaciones: any;
+  clasificaciones: any;
   p: number = 1;
   clasificacion: FormGroup;
   display = 'none';
@@ -21,7 +21,7 @@ export class FormClasificacionComponent implements OnInit {
       'idclasificacion': new FormControl("0"),
       'bandera': new FormControl("0"),
       'clasificacion': new FormControl("", [Validators.required]),
-      'correlativo': new FormControl("", [Validators.required]),
+      'correlativo': new FormControl("", [Validators.required], this.noRepetirCorrelativo.bind(this)),
       'descripcion': new FormControl("")
 
     });
@@ -31,7 +31,7 @@ export class FormClasificacionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.catalogosServices.getClasificacion().subscribe(data =>  this.clasificaciones = data )
+    this.catalogosServices.getClasificacion().subscribe(data => { this.clasificaciones = data} )
 
   }
 
@@ -52,7 +52,7 @@ export class FormClasificacionComponent implements OnInit {
     if ((this.clasificacion.controls["bandera"].value) == "0") {
       if (this.clasificacion.valid == true) {
         this.catalogosServices.guardarClasificacion(this.clasificacion.value).subscribe(data => { });
-        this.catalogosServices.getClasificacion().subscribe(res => this.clasificaciones = res);
+        this.catalogosServices.getClasificacion().subscribe(res => {this.clasificaciones = res});
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -83,7 +83,7 @@ export class FormClasificacionComponent implements OnInit {
     //this.router.navigate(["/form-marca"])
 
     this.display = 'none';
-    this.catalogosServices.getClasificacion().subscribe(res => this.clasificaciones = res);
+    this.catalogosServices.getClasificacion().subscribe(res => {this.clasificaciones = res});
 
   }
 
@@ -129,6 +129,31 @@ export class FormClasificacionComponent implements OnInit {
 
   buscar(buscador) {
     this.p=1;
-    this.catalogosServices.buscarClasificacion(buscador.value).subscribe(res => this.clasificaciones = res);
+    this.catalogosServices.buscarClasificacion(buscador.value).subscribe(res => {this.clasificaciones = res});
+  }
+
+
+  noRepetirCorrelativo(control: FormControl) {
+
+    var promesa = new Promise((resolve, reject) => {
+
+      if (control.value != "" && control.value != null) {
+
+        this.catalogosServices.validarCorrelativo(this.clasificacion.controls["idclasificacion"].value, control.value)
+          .subscribe(data => {
+            if (data == 1) {
+              resolve({ yaExisteCorrelativo: true });
+            } else {
+              resolve(null);
+            }
+
+          })
+
+      }
+
+
+    });
+
+    return promesa;
   }
 }

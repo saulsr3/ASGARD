@@ -140,6 +140,40 @@ namespace ASGARD.Controllers
         }
 
         [HttpGet]
+        [Route("api/Clasificacion/validarCorrelativo/{idclasificacion}/{correlativo}")]
+        public int validarCorrelativo(int idclasificacion, string correlativo)
+        {
+            int respuesta = 0;
+            try
+            {
+
+
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    if (idclasificacion == 0)
+                    {
+                        respuesta = bd.Clasificacion.Where(p => p.Correlativo.ToLower() == correlativo.ToLower()).Count();
+                    }
+                    else
+                    {
+                        respuesta = bd.Clasificacion.Where(p => p.Correlativo.ToLower() == correlativo.ToLower() && p.IdClasificacion != idclasificacion).Count();
+                    }
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                respuesta = 0;
+
+            }
+            return respuesta;
+
+        }
+
+
+        [HttpGet]
         [Route("api/Clasificacion/buscarClasificacion/{buscador?}")]
         public IEnumerable<ClasificacionAF> buscarClasificacion(string buscador = "")
         {

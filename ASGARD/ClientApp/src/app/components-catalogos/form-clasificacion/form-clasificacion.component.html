@@ -77,6 +77,12 @@
             </button>
             <strong>Advertenvia!</strong> Llene el campo correlativo
           </div>
+          <div class="alert alert-warning fade in" *ngIf="clasificacion.controls['correlativo'].errors?.yaExisteCorrelativo">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Error!</strong> ya existe el correlativo ingresado, por favor intente con uno nuevo.
+          </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea2">Clasificación:</label>
             <input type="text" class="form-control" formControlName="clasificacion" id="exampleFormControlTextarea2" placeholder="Clasificación" autocomplete="off">
