@@ -174,6 +174,40 @@ namespace ASGARD.Controllers
 
 
         [HttpGet]
+        [Route("api/Clasificacion/validarClasificacion/{idclasificacion}/{clasificacion}")]
+        public int validarClasificacion(int idclasificacion, string clasificacion)
+        {
+            int respuesta = 0;
+            try
+            {
+
+
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    if (idclasificacion ==  0)
+                    {
+                        respuesta = bd.Clasificacion.Where(p => p.Clasificacion1.ToLower() == clasificacion.ToLower()).Count();
+                    }
+                    else
+                    {
+                        respuesta = bd.Clasificacion.Where(p => p.Clasificacion1.ToLower() == clasificacion.ToLower() && p.IdClasificacion != idclasificacion).Count();
+                    }
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                respuesta = 0;
+
+            }
+            return respuesta;
+
+        }
+
+
+        [HttpGet]
         [Route("api/Clasificacion/buscarClasificacion/{buscador?}")]
         public IEnumerable<ClasificacionAF> buscarClasificacion(string buscador = "")
         {

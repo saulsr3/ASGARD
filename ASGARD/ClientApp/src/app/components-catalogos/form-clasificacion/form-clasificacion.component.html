@@ -20,7 +20,7 @@
     <div class="col-lg-12">
       <section class="panel panel-default">
         <header class="panel-heading">
-          <h5>Registro de Clasificación de activos</h5>
+          <h5>Registro de Clasificación</h5>
         </header>
         <div class="panel-body">
           <div class="adv-table">
@@ -64,8 +64,8 @@
       </div>
       <div class="modal-body">
         <form role="form" [formGroup]="clasificacion" (ngSubmit)="guardarDatos()">
-          <input type="text"  class="form-control" formControlName="idclasificacion" id="exampleInputEmail3" autocomplete="off">
-          <input type="text" class="form-control" formControlName="bandera" id="exampleInputEmail3" autocomplete="off">
+          <input type="hidden"  class="form-control" formControlName="idclasificacion" id="exampleInputEmail3" autocomplete="off">
+          <input type="hidden" class="form-control" formControlName="bandera" id="exampleInputEmail3" autocomplete="off">
 
           <div class="form-group">
             <label for="exampleInputEmail1">Correlativo:</label>
@@ -75,27 +75,58 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertenvia!</strong> Llene el campo correlativo
+            <strong>Advertenvia!</strong> El campo correlativo sí es obligatorio
           </div>
-          <div class="alert alert-warning fade in" *ngIf="clasificacion.controls['correlativo'].errors?.yaExisteCorrelativo">
+          <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['correlativo'].errors?.maxlength">
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Error!</strong> ya existe el correlativo ingresado, por favor intente con uno nuevo.
+            <strong>Advertencia!</strong> El correlativo no puede ser mayor a 10 caracteres
+          </div>
+          <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['correlativo'].errors?.yaExisteCorrelativo">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Advertencia!</strong> ya existe el "Correlativo" ingresado, por favor intente con uno nuevo.
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea2">Clasificación:</label>
             <input type="text" class="form-control" formControlName="clasificacion" id="exampleFormControlTextarea2" placeholder="Clasificación" autocomplete="off">
           </div>
+          <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['clasificacion'].errors?.yaExisteClasificacion">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Advertencia!</strong> ya existe la "Clasificación" ingresada, por favor intente con una nuevo.
+          </div>
+          <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['clasificacion'].errors?.maxlength">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Advertencia!</strong> La clasificación no puede ser mayor a 50 caracteres
+          </div>
           <div class="alert alert-warning fade in" *ngIf="clasificacion.controls['clasificacion'].errors?.required">
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertenvia!</strong> Llene el campo clasificación
+            <strong>Advertenvia!</strong> El campo Clasificación sí es obligatorio
           </div>
+          
           <div class="form-group">
             <label for="exampleFormControlTextarea2">Descripción:</label>
             <textarea class="form-control rounded-0" formControlName="descripcion" id="exampleFormControlTextarea2" rows="3" placeholder="Descripcion" autocomplete="off"></textarea>
+          </div>
+          <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['descripcion'].errors?.maxlength">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Advertencia!</strong> La descripción no puede ser mayor a 100 caracteres
+          </div>
+          <div class="alert alert-success fade in" *ngIf="clasificacion.valid">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Exelente!</strong> Datos ingresados correctamente
           </div>
           <button [disabled]="!clasificacion.valid" type="submit" class="btn btn-primary">Guardar</button>
           <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>
