@@ -27,10 +27,12 @@ import { CatalogosService } from './services/catalogos.service';
 import { TablaMarcasComponent } from './components-catalogos/tabla-marcas/tabla-marcas.component';
 import { FormDonantesComponent } from './components-catalogos/form-donantes/form-donantes.component';
 import { FormProveedorComponent } from './components-catalogos/form-proveedor/form-proveedor.component';
+import { FormCargoComponent } from './components-catalogos/form-cargo/form-cargo.component';
 
-//Import para trabajar con formularios
+//Import para trabajar con formularios 
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormClasificacionComponent } from './components-catalogos/form-clasificacion/form-clasificacion.component';
+
 
 
 
@@ -51,7 +53,8 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
     TablaMarcasComponent,
     FormDonantesComponent,
     FormClasificacionComponent,
-    FormProveedorComponent
+    FormProveedorComponent,
+    FormCargoComponent
    
     //Aqui vamos a agregar los compoenentes del proyecto
 
@@ -74,7 +77,8 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
         { path: 'form-sucursal', component: FormSucursalComponent },
       { path: 'form-donantes', component: FormDonantesComponent },
       { path: 'form-proveedor', component: FormProveedorComponent },
-      { path: 'form-clasificacion', component: FormClasificacionComponent }
+      { path: 'form-clasificacion', component: FormClasificacionComponent },
+      { path: 'form-cargo', component: FormCargoComponent }
 
     ])
     ],
