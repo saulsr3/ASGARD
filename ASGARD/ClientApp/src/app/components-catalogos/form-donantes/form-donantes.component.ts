@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import { CatalogosService } from './../../services/catalogos.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -22,10 +22,10 @@ export class FormDonantesComponent implements OnInit {
     this.donantes = new FormGroup({
 
       'iidDonante': new FormControl("0"),
-      'nombre': new FormControl(""),
+      'nombre': new FormControl("", [Validators.required]),
       'bandera': new FormControl("0"),
-      'telefono': new FormControl(""),
-      'direccion': new FormControl("")
+      'telefono': new FormControl("", [Validators.required]),
+      'direccion': new FormControl("", [Validators.required])
 
     });
   }
@@ -35,7 +35,7 @@ export class FormDonantesComponent implements OnInit {
     this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
   }
 
-  //Métodos 
+  //Métodos   
 
   open() {
     //Limpiar
