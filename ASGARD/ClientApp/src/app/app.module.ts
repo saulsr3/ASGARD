@@ -72,7 +72,7 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
         { path: 'tabla-marca', component: TablaMarcasComponent },
         { path: 'form-sucursal', component: FormSucursalComponent },
       { path: 'form-donantes', component: FormDonantesComponent },
-      { path: 'form-proveedor/:id', component: FormProveedorComponent },
+      { path: 'form-proveedor', component: FormProveedorComponent },
       { path: 'form-clasificacion', component: FormClasificacionComponent }
 
     ])

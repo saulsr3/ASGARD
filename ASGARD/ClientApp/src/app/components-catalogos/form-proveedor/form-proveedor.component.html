@@ -53,7 +53,7 @@
                   <td>{{proveedores.encargado}}</td>
                   <td>{{proveedores.telefonoencargado}}</td>
                   <td class="center hidden-phone">
-                    <button class="btn btn-primary btn-xs" [routerLink]="['/form-proveedor','editar']" (click)="modificar(proveedores.idProveedor)"><i class="icon-pencil"></i></button>
+                    <button class="btn btn-primary btn-xs" (click)="modificar(proveedores.idProveedor)"><i class="icon-pencil"></i></button>
                     <button class="btn btn-danger btn-xs" (click)="eliminar(proveedores.idProveedor)"><i class="icon-trash "></i></button>
                   </td>
                 </tr>
@@ -68,7 +68,6 @@
 </section>
 
 <!--modal para ingresar y editar-->
-
   <div #basicModal aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngStyle]="{'display':display}">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -92,71 +91,69 @@
               <label for="exampleInputEmail1">Nombre</label>
               <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Nombre">
             </div>
-            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['nombre'].errors?.required">
-              <button data-dismiss="alert" class="close close-sm" type="button">
-                <i class="icon-remove"></i>
-              </button>
-              <strong>Advertenvia!</strong> Llene el campo nombre
-            </div>
+
 
             <div class="form-group">
               <label for="exampleInputEmail1">Dirección</label>
               <input type="text" class="form-control" formControlName="direccion" id="direccion" placeholder="Dirección">
             </div>
-            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['direccion'].errors?.required">
-              <button data-dismiss="alert" class="close close-sm" type="button">
-                <i class="icon-remove"></i>
-              </button>
-              <strong>Advertenvia!</strong> Llene el campo dirección
-            </div>
 
             <div class="form-group">
               <label for="exampleInputEmail1">Teléfono</label>
-              <input type="number" class="form-control" formControlName="telefono" id="telefono" placeholder="Teléfono">
+              <input type="tel" class="form-control" formControlName="telefono" id="exampleInputEmail3" placeholder="7777-7777" maxlength="9">
             </div>
-            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['telefono'].errors?.required">
+
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['telefono'].errors?.IniciaCero">
               <button data-dismiss="alert" class="close close-sm" type="button">
                 <i class="icon-remove"></i>
               </button>
-              <strong>Advertenvia!</strong> Llene el campo teléfono
+              <strong>Advertencia!</strong> No puede iniciar con 0 y debe de llevar un guión.
+            </div>
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['telefono'].errors?.pattern">
+              <button data-dismiss="alert" class="close close-sm" type="button">
+                <i class="icon-remove"></i>
+              </button>
+              <strong>Error!</strong> Número incorrecto
             </div>
 
             <div class="form-group">
               <label for="exampleInputEmail1">Rubro</label>
               <input type="text" class="form-control" formControlName="rubro" id="rubro" placeholder="Rubro">
             </div>
-            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['rubro'].errors?.required">
-              <button data-dismiss="alert" class="close close-sm" type="button">
-                <i class="icon-remove"></i>
-              </button>
-              <strong>Advertenvia!</strong> Llene el campo rubro
-            </div>
 
             <div class="form-group">
               <label for="exampleInputEmail1">Encargado</label>
               <input type="text" class="form-control" formControlName="encargado" id="encargado" placeholder="Encargado">
             </div>
-            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['encargado'].errors?.required">
-              <button data-dismiss="alert" class="close close-sm" type="button">
-                <i class="icon-remove"></i>
-              </button>
-              <strong>Advertenvia!</strong> Llene el campo encargado
-            </div>
+
 
             <div class="form-group">
               <label for="exampleInputEmail1">Teléfono Encargado</label>
-              <input type="number" class="form-control" formControlName="telefonoencargado" id="telefonoencargado" placeholder="Teléfono Encargado">
+              <input type="tel" class="form-control" formControlName="telefonoencargado" id="exampleInputEmail3" placeholder="7777-7777" maxlength="9">
             </div>
+
             <div class="alert alert-warning fade in" *ngIf="proveedores.controls['telefonoencargado'].errors?.required">
               <button data-dismiss="alert" class="close close-sm" type="button">
                 <i class="icon-remove"></i>
               </button>
-              <strong>Advertenvia!</strong> Llene el campo teléfono encargado
+              <strong>Advertencia!</strong> Todos los campos son obligatorios
+            </div>
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['telefonoencargado'].errors?.IniciaCero">
+              <button data-dismiss="alert" class="close close-sm" type="button">
+                <i class="icon-remove"></i>
+              </button>
+              <strong>Advertencia!</strong> No puede iniciar con 0 y debe de llevar un guión.
+            </div>
+            <div class="alert alert-warning fade in" *ngIf="proveedores.controls['telefonoencargado'].errors?.pattern">
+              <button data-dismiss="alert" class="close close-sm" type="button">
+                <i class="icon-remove"></i>
+              </button>
+              <strong>Error!</strong> Número incorrecto
             </div>
 
             <div style="text-align: center;">
               <button [disabled]="!proveedores.valid" type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
-              <button type="button" (click)="close()"  class="btn btn-default">Cerrar</button>
+              <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>
             </div>
           </form>
 

@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CatalogosService } from './../../services/catalogos.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +15,8 @@ export class FormProveedorComponent implements OnInit {
   @Input() proveedor: any;
   display = 'none';
   titulo: string;
-  parametro: string;
+  //parametro: string;
+  p: number = 1;
   constructor(private catalogoService: CatalogosService, private router: Router,
     private activateRoute: ActivatedRoute) {
 
@@ -25,25 +26,25 @@ export class FormProveedorComponent implements OnInit {
       'bandera': new FormControl("0"),
       'nombre': new FormControl("", [Validators.required]),
       'direccion': new FormControl("", [Validators.required]),
-      'telefono': new FormControl("", [Validators.required]),
+      'telefono': new FormControl("", [Validators.required, Validators.maxLength(9), Validators.pattern("[1-9]{1}[0-9]{3}-[0-9]{4}")]),
       'rubro': new FormControl("", [Validators.required]),
       'encargado': new FormControl("", [Validators.required]),
       'telefonoencargado': new FormControl("", [Validators.required])
     });
 
-    this.activateRoute.params.subscribe(parametro => {
-      this.parametro = parametro["id"];
-      if (this.parametro == "nuevo") {
-        this.titulo = "Agregando un Proveedor";
-      } 
-    });
+    //this.activateRoute.params.subscribe(parametro => {
+    //  this.parametro = parametro["id"];
+    //  if (this.parametro == "nuevo") {
+    //    this.titulo = "Agregando un Proveedor";
+    //  } 
+    //});
 
-    this.activateRoute.params.subscribe(parametro => {
-      this.parametro = parametro["id"];
-      if (this.parametro == "editar") {
-        this.titulo = "Editando un Proveedor";
-      }
-    });
+    //this.activateRoute.params.subscribe(parametro => {
+    //  this.parametro = parametro["id"];
+    //  if (this.parametro == "editar") {
+    //    this.titulo = "Editando un Proveedor";
+    //  }
+    //});
 
   }
 
@@ -53,6 +54,7 @@ export class FormProveedorComponent implements OnInit {
 
   open() {
     //limpia cache
+    this.titulo = "Agregar Proveedor";
     this.proveedores.controls["idProveedor"].setValue("0");
     this.proveedores.controls["bandera"].setValue("0");
     this.proveedores.controls["nombre"].setValue("");
@@ -122,6 +124,7 @@ export class FormProveedorComponent implements OnInit {
 
   modificar(id) {
 
+    this.titulo = "Modificar Proveedor";
     this.display = 'block';
     this.catalogoService.recuperarProveedores(id).subscribe(data => {
 
@@ -167,9 +170,21 @@ export class FormProveedorComponent implements OnInit {
 
   //Método
 
-  buscar(buscador) {
-    this.catalogoService.buscarProveedor(buscador.value).subscribe(res => this.proveedor = res);
+  //buscar(buscador) {
+  //  this.p = 1;
+  //  this.catalogoService.buscarProveedor(buscador.value).subscribe(res => this.proveedor = res);
+  //}
+
+  noIniciaCeroTelefono(control: FormControl) {
+    if (control.value != null && control.value != "") {
+      if ((<string>control.value.toString()).startsWith("0")) {
+        return { IniciaCero: true };
+      }
+    }
+    return null;
   }
+
+
 
 }
 
