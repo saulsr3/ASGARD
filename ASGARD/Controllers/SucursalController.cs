@@ -77,5 +77,67 @@ namespace ASGARD.Controllers
             }
             return res;
         }
+        [HttpGet]
+        [Route("api/Sucursal/buscarSucursal/{buscador?}")]
+        public IEnumerable<SucursalAF> buscarSucursal(string buscador = "")
+        {
+            List<SucursalAF> listaSucursal;
+            using (BDAcaassAFContext bd = new BDAcaassAFContext())
+            {
+                if (buscador == "")
+                {
+                    listaSucursal = (from sucursal in bd.Sucursal
+                                  where sucursal.Dhabilitado == 1
+                                  select new SucursalAF
+                                  {
+                                      IdSucursal = sucursal.IdSucursal,
+                                      Nombre = sucursal.Nombre,
+                                      Ubicacion = sucursal.Ubicacion,
+                                      Correlativo = sucursal.Correlativo
+                                  }).ToList();
+                    return listaSucursal;
+                }
+                else
+                {
+                    listaSucursal = (from sucursal in bd.Sucursal
+                                  where sucursal.Dhabilitado == 1
+
+                                  && ((sucursal.IdSucursal).ToString().Contains(buscador) || (sucursal.Nombre).ToLower().Contains(buscador.ToLower()) || (sucursal.Ubicacion).ToLower().Contains(buscador.ToLower()) || (sucursal.Correlativo).ToLower().Contains(buscador.ToLower()))
+                                  select new SucursalAF
+                                  {
+                                      IdSucursal = sucursal.IdSucursal,
+                                      Nombre = sucursal.Nombre,
+                                      Ubicacion = sucursal.Ubicacion,
+                                      Correlativo = sucursal.Correlativo
+                                  }).ToList();
+                    return listaSucursal;
+                }
+            }
+        }
+        [HttpGet]
+        [Route("api/Sucursal/validarCorrelativo/{idSucursal}/{correlativo}")]
+        public int validarCorrelativo(int idSucursal, string correlativo)
+        {
+            int respuesta = 0;
+            try
+            {
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    if (idSucursal == 0)
+                    {
+                        respuesta = bd.Sucursal.Where(p => p.Correlativo.ToLower() == correlativo.ToLower()).Count();
+                    }
+                    else
+                    {
+                        respuesta = bd.Sucursal.Where(p => p.Correlativo.ToLower() == correlativo.ToLower() && p.IdSucursal != idSucursal).Count();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta = 0;
+            }
+            return respuesta;
+        }
     } 
 }

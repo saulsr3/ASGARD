@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
     styleUrls: ['./form-sucursal.component.css']
 })
 export class FormSucursalComponent implements OnInit {
-    @Input() sucursales: any;
+    sucursales: any;
     p: number = 1;
     sucursal: FormGroup;
     display = 'none';
@@ -21,12 +21,12 @@ export class FormSucursalComponent implements OnInit {
             'bandera': new FormControl("0"),
             'nombre': new FormControl("", [Validators.required]),
             'ubicacion': new FormControl("", [Validators.required]),
-            'correlativo': new FormControl("", [Validators.required])
+            'correlativo': new FormControl("", [Validators.required], this.noRepetirCorrelativo.bind(this))
         });
     }
 
     ngOnInit() {
-        this.catalogoService.getSucursales().subscribe(res => this.sucursales = res);
+        this.catalogoService.getSucursales().subscribe(res => {this.sucursales = res});
     }
     open() {
         //limpia cache
@@ -46,8 +46,10 @@ export class FormSucursalComponent implements OnInit {
         if ((this.sucursal.controls["bandera"].value) == "0") {
            
             if (this.sucursal.valid == true) {
-                this.catalogoService.setSucursal(this.sucursal.value).subscribe(data => { });
-                this.catalogoService.getSucursales().subscribe(res => this.sucursales = res);
+                this.catalogoService.setSucursal(this.sucursal.value).subscribe(data => { 
+                this.catalogoService.getSucursales().subscribe(res => {this.sucursales = res});
+                this.display = 'none';
+                });
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -56,8 +58,7 @@ export class FormSucursalComponent implements OnInit {
                     timer: 3000
                 })
             }
-
-            this.catalogoService.getSucursales().subscribe(res => this.sucursales = res);
+            this.catalogoService.getSucursales().subscribe(res => {this.sucursales = res});
 
         }
     }
@@ -78,14 +79,38 @@ export class FormSucursalComponent implements OnInit {
                         'Tu archivo ha sido eliminado con exito.',
                         'success'
                     )
-                    this.catalogoService.getSucursales().subscribe(
-                        data => { this.sucursales = data }
-                    );
+                    this.catalogoService.getSucursales().subscribe(res => {this.sucursales = res});
                 });
 
             }
         })
     }
- 
+    buscar(buscador) {
+        this.p=1;
+        this.catalogoService.buscarSucursal(buscador.value).subscribe(res => this.sucursales = res);
+    }
+    noRepetirCorrelativo(control: FormControl) {
+
+        var promesa = new Promise((resolve, reject) => {
+    
+          if (control.value != "" && control.value != null) {
+    
+            this.catalogoService.validarCorrelativoSucursal(this.sucursal.controls["idSucursal"].value, control.value)
+              .subscribe(data => {
+                if (data == 1) {
+                  resolve({ yaExisteCorrelativo: true });
+                } else {
+                  resolve(null);
+                }
+    
+              })
+    
+          }
+    
+    
+        });
+    
+        return promesa;
+      }
 
 }

@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form-marca.component.css']
 })
 export class FormMarcaComponent implements OnInit {
-   @Input() marcas: any;
+   marcas: any;
    marca: FormGroup;
     display = 'none';
     titulo: string;
@@ -25,7 +25,7 @@ export class FormMarcaComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
+        this.catalogoService.getMarcas().subscribe(res => {this.marcas = res});
        
     }
     open() {
@@ -46,8 +46,10 @@ export class FormMarcaComponent implements OnInit {
         //Si la vandera es cero que es el que trae por defecto en el metodo open() entra en la primera a insertar
         if ((this.marca.controls["bandera"].value) == "0") {
             if (this.marca.valid == true) {
-                this.catalogoService.setMarca(this.marca.value).subscribe(data => { });
-                this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
+                this.catalogoService.setMarca(this.marca.value).subscribe(data => { 
+                    this.catalogoService.getMarcas().subscribe(res => {this.marcas = res});
+                });
+               
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -76,7 +78,7 @@ export class FormMarcaComponent implements OnInit {
         this.marca.controls["marca"].setValue("");
         this.marca.controls["descripcion"].setValue("");
         this.display = 'none';
-        this.catalogoService.getMarcas().subscribe(res => this.marcas = res);
+        this.catalogoService.getMarcas().subscribe(res => {this.marcas = res});
     }
     modif(id) {
         this.titulo = "Modificar Marca";
@@ -105,9 +107,7 @@ export class FormMarcaComponent implements OnInit {
                         'Tu archivo ha sido eliminado con exito.',
                         'success'
                     )
-                    this.catalogoService.getMarcas().subscribe(
-                        data => { this.marcas = data }
-                    );
+                    this.catalogoService.getMarcas().subscribe(res => {this.marcas = res});
                 });
                
             }

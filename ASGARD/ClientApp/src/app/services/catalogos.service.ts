@@ -27,7 +27,7 @@ export class CatalogosService {
     public updateMarca(marca) {
         return this.http.post(this.urlBase + "api/Marca/modificarMarca", marca).map(res => res.json());
     }
- 
+    
     //Servicios Sucursales
 
     public getSucursales() {
@@ -39,7 +39,12 @@ export class CatalogosService {
     public deleteSucursal(idSucursal) {
         return this.http.get(this.urlBase + "api/Marcas/eliminarSucursal/" + idSucursal).map(res => res.json());
     }
-    
+    public buscarSucursal(buscador) {
+      return this.http.get(this.urlBase + "api/Sucursal/buscarSucursal/" + buscador).map(res => res.json());
+  }
+  public validarCorrelativoSucursal(idSucursal, correlativo){
+    return this.http.get(this.urlBase + "api/Sucursal/validarCorrelativo/" + idSucursal+ "/"+ correlativo).map(res => res.json());
+  }
   //Service Donantes
 
   public agregarDonante(donante) {

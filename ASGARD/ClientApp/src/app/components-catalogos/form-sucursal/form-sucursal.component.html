@@ -15,7 +15,7 @@
 
     </div>
     <div class="col-lg-3">
-      <input type="text" class="form-control" placeholder="Buscar">
+      <input type="text" class="form-control" #nombre (keyup)="buscar(nombre)" placeholder="Buscar">
     </div>
   </div>
 
@@ -33,7 +33,7 @@
                 <thead>
                   <tr>
                     <th>Codigo</th>
-                    <th>Marca</th>
+                    <th>Sucursal</th>
                     <th>Ubicacion</th>
                     <th>Correlativo</th>
                     <th class="hidden-phone">Opciones</th>
@@ -77,15 +77,24 @@
           <div class="form-group">
 
             <label for="exampleInputEmail1">Sucursal:</label>
-            <input type="text" class="form-control" formControlName="nombre" id="exampleInputEmail3" placeholder="Nombre de Sucursal">
+            <input type="text" class="form-control" formControlName="nombre" id="exampleInputEmail3" placeholder="Nombre de Sucursal" autocomplete="off">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Ubicación:</label>
-            <input type="text" class="form-control" formControlName="ubicacion" id="exampleInputEmail3" placeholder="Ubicación de sucursal">
+            <input type="text" class="form-control" formControlName="ubicacion" id="exampleInputEmail3" placeholder="Ubicación de sucursal" autocomplete="off">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Correlativo:</label>
-            <input type="text" class="form-control" formControlName="correlativo" id="exampleInputEmail3" placeholder="Correlativo">
+            <input type="text" class="form-control" formControlName="correlativo" id="exampleInputEmail3" placeholder="Correlativo" autocomplete="off">
+          </div>
+          <div class="alert alert-block alert-danger fade in" *ngIf="sucursal.controls['correlativo'].errors?.yaExisteCorrelativo">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Advertencia!</strong> ya existe el "Correlativo" ingresado.
+            <a class="btn btn-danger" data-toggle="modal" href="#myModal3">
+              Cargar
+          </a>
           </div>
           <!--  WARNING-->
           <div class="alert alert-warning fade in" *ngIf="!sucursal.valid">
@@ -94,6 +103,7 @@
             </button>
             <strong>Cuidado!</strong> Todos los campos son obligatorios
           </div>
+         
           <!--  END-WARNING-->
           <div class="alert alert-success fade in" *ngIf="sucursal.valid">
             <button data-dismiss="alert" class="close close-sm" type="button">
