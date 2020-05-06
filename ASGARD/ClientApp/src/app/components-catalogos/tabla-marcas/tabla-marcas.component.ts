@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CatalogosService } from './../../services/catalogos.service';
-import { style } from '@angular/animations'
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -28,19 +27,6 @@ export class TablaMarcasComponent implements OnInit {
     }
     modif(id) {
 
-        this.display = 'block';
-        this.catalogoService.recuperarMarcas(id).subscribe(data => {
-            alert(data.idMarca);
-            alert(data.marca);
-            alert(data.descripcion);
-            this.marca = new FormGroup({
-                'marc': new FormControl(""+data.marca)
-            });
-            
-            //this.marca.controls["idMarca"].setValue(data.idMarca);
-            //this.marca.controls["marc"].setValue("123");
-            //this.marca.controls["descripcion"].setValue(data.descripcion);
-            
-        });
+  
     }
 }
