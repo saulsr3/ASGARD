@@ -29,7 +29,7 @@ export class FormProveedorComponent implements OnInit {
       'telefono': new FormControl("", [Validators.required, Validators.maxLength(9), Validators.pattern("[1-9]{1}[0-9]{3}-[0-9]{4}")]),
       'rubro': new FormControl("", [Validators.required]),
       'encargado': new FormControl("", [Validators.required]),
-      'telefonoencargado': new FormControl("", [Validators.required])
+      'telefonoencargado': new FormControl("", [Validators.required, Validators.maxLength(9), Validators.pattern("[1-9]{1}[0-9]{3}-[0-9]{4}")])
     });
 
     //this.activateRoute.params.subscribe(parametro => {
