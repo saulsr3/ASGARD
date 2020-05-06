@@ -45,6 +45,14 @@ export class CatalogosService {
   public validarCorrelativoSucursal(idSucursal, correlativo){
     return this.http.get(this.urlBase + "api/Sucursal/validarCorrelativo/" + idSucursal+ "/"+ correlativo).map(res => res.json());
   }
+
+  //Service Cargo
+
+  public agregarCargo(cargo) {
+    return this.http.post(this.urlBase + "api/Cargo/guardarCargo", cargo).map(res => res.json());
+  }
+
+
   //Service Donantes
 
   public agregarDonante(donante) {

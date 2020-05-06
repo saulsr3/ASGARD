@@ -1,10 +1,103 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<p>
-  form-cargo works!
-</p>
+<br />
+<br />
+<br />
+<section class="panel">
+  <h1>Cargos</h1>
+  <div class="row">
+    <div class="col-lg-6">
+      <header class="panel-heading form-in-line">
+        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nuevo Cargo</button>
+      </header>
+    </div>
+    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-3">
+      <input type="text" class="form-control"  placeholder="Buscar">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <section class="panel panel-default">
+        <header class="panel-heading">
+          <h5>Registro de Cargos</h5>
+        </header>
+        <div class="panel-body">
+          <div class="adv-table">
+            <table class="display table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Id Cargo</th>
+                  <th>Cargo</th>
+                  <th>Dirección</th>
+                  <th class="hidden-phone">Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cargo of cargos | paginate: { itemsPerPage: 5, currentPage: p }">
+                  <td>{{cargo.idCargo}}</td>
+                  <td>{{cargo.cargo}}</td>
+                  <td>{{cargo.direccion}}</td>
+                  <td class="center hidden-phone">
+                    <button class="btn btn-primary btn-xs" ><i class="icon-pencil"></i></button>
+                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<!--modal para ingresar y editar-->
+<div #basicModal aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal" [ngStyle]="{'display':display}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button" (click)="close()">×</button>
+        <h4 class="modal-title">{{titulo}}</h4>
+      </div>
+      <div class="modal-body">
+
+        <form role="form" [formGroup]="cargo" (ngSubmit)="guardarDatos()">
+          <input type="hidden" class="form-control" formControlName="idCargo" id="exampleInputEmail3" autocomplete="off">
+          <input type="hidden" class="form-control" formControlName="bandera" id="exampleInputEmail3" autocomplete="off">
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Cargo:</label>
+            <input type="text" class="form-control" formControlName="cargo" id="exampleInputEmail3" placeholder="Agregue cargo" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Dirección:</label>
+            <input type="text" class="form-control" formControlName="direccion" id="exampleInputEmail3" placeholder="Agregue dirección" autocomplete="off">
+          </div>
+         
+                          <!--  WARNING-->
+                          <div class="alert alert-warning fade in" *ngIf="!cargo.valid">
+                            <button data-dismiss="alert" class="close close-sm" type="button">
+                              <i class="icon-remove"></i>
+                            </button>
+                            <strong>Cuidado!</strong> Todos los campos son obligatorios
+                          </div>
+                
+                           <!--  END-WARNING-->
+                           <div class="alert alert-success fade in" *ngIf="cargo.valid">
+                            <button data-dismiss="alert" class="close close-sm" type="button">
+                              <i class="icon-remove"></i>
+                            </button>
+                            <strong>Exelente!</strong> Datos ingresados correctamente
+                          </div>
+         
+        
+            <button [disabled]="!cargo.valid" type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>
+       
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
