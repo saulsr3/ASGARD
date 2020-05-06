@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 
+
 //Registrar o declarar el componente creado
 import { HttpModule } from '@angular/http';
 import { SharedComponent } from './components/shared/shared.component';
@@ -61,7 +62,7 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
         HttpClientModule,
     FormsModule,
         ReactiveFormsModule,
-        NgxPaginationModule,
+        NgxPaginationModule, 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'shared', component: SharedComponent },
