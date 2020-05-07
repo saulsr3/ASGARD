@@ -31,13 +31,13 @@ export class FormClasificacionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.catalogosServices.getClasificacion().subscribe(data => { this.clasificaciones = data} )
+    this.catalogosServices.getClasificacion().subscribe(data => { this.clasificaciones = data} );
 
   }
 
   open() {
     //limpia cache
-    this.titulo = "Formulario registro de clasificación de activos";
+    this.titulo = "Formulario registro de clasificación";
     this.clasificacion.controls["idclasificacion"].setValue("0");
     this.clasificacion.controls["bandera"].setValue("0");
     this.clasificacion.controls["clasificacion"].setValue("");
@@ -51,8 +51,10 @@ export class FormClasificacionComponent implements OnInit {
   guardarDatos() {
     if ((this.clasificacion.controls["bandera"].value) == "0") {
       if (this.clasificacion.valid == true) {
-        this.catalogosServices.guardarClasificacion(this.clasificacion.value).subscribe(data => { });
-        this.catalogosServices.getClasificacion().subscribe(res => {this.clasificaciones = res});
+        this.catalogosServices.guardarClasificacion(this.clasificacion.value).subscribe(data => {
+          this.catalogosServices.getClasificacion().subscribe(res => {this.clasificaciones = res});
+         });
+       
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -88,7 +90,7 @@ export class FormClasificacionComponent implements OnInit {
   }
 
   modif(id) {
-    this.titulo = "Modificar Clasificación de activos";
+    this.titulo = "Modificar Clasificación";
     this.display = 'block';
     this.catalogosServices.RecuperarClasificacion(id).subscribe(data => {
       this.clasificacion.controls["idclasificacion"].setValue(data.idclasificacion);

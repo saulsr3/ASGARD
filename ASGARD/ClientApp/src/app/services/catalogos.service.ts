@@ -60,11 +60,11 @@ export class CatalogosService {
   }
 
   public recuperarCargo(id) {
-    return this.http.get(this.urlBase + "api/Cargo/recuperarCargo/", id).map(res => res.json());
+    return this.http.get(this.urlBase + "api/Cargo/recuperarCargo/" + id).map(res => res.json());
   }
 
   public updateCargo(cargo) {
-    return this.http.post(this.urlBase + "aapi/Cargo/modificarCargo", cargo).map(res => res.json());
+    return this.http.post(this.urlBase + "api/Cargo/modificarCargo", cargo).map(res => res.json());
   }
 
   //Service Donantes
