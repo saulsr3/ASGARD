@@ -39,7 +39,7 @@ export class FormCargoComponent implements OnInit {
   //Métodos  
 
   open() {
-    //limpia cache 
+    //limpia cache  
     this.titulo = "Formulario Cargo";
     this.cargo.controls["idcargo"].setValue("0");
     this.cargo.controls["bandera"].setValue("0");
@@ -52,12 +52,12 @@ close() {
 }
 
 guardarDatos() {
-  //Si la vandera es cero que es el que trae por defecto en el metodo open() entra en la primera a insertar
+  //Si la vandera es cero que es el que trae por defecto en el metodo open() entra en la primera a insertar  
 
   if ((this.cargo.controls["bandera"].value) == "0") {
     if (this.cargo.valid == true) {
       this.catalogoService.agregarCargo(this.cargo.value).subscribe(data => {
-        this.catalogoService.getCargo().subscribe(res => { this.cargos = res });
+        this.catalogoService.getCargo().subscribe(data => { this.cargos = data });
           });
          
           Swal.fire({
@@ -69,7 +69,7 @@ guardarDatos() {
           })
       }
   } else {
-      //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar  
+      //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar   
 
       this.cargo.controls["bandera"].setValue("0");
       if (this.cargo.valid == true) {
@@ -80,7 +80,8 @@ guardarDatos() {
               title: 'Dato Modificado con exito',
               showConfirmButton: false,
               timer: 3000
-          })        
+          })
+          this.catalogoService.getCargo().subscribe(data => { this.cargos = data });        
       }
   }
   this.cargo.controls["idcargo"].setValue("0");
@@ -88,7 +89,7 @@ guardarDatos() {
   this.cargo.controls["cargo"].setValue("");
   this.cargo.controls["direccion"].setValue("");
   this.display = 'none';
-  this.catalogoService.getCargo().subscribe(res => { this.cargos = res });
+  this.catalogoService.getCargo().subscribe(data => { this.cargos = data });
 }
 
 modif(id) {
@@ -99,8 +100,32 @@ modif(id) {
     this.cargo.controls["bandera"].setValue("1");
     this.cargo.controls["cargo"].setValue(data.cargo);
     this.cargo.controls["direccion"].setValue(data.direccion);
-      
+    this.catalogoService.getCargo().subscribe(data => { this.cargos = data });  
   });
+}
+
+eliminar(idcargo) {
+  Swal.fire({
+      title: '¿Estas seguro de eliminar este registro?',
+      text: "No podras revertir esta acción!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+  }).then((result) => {
+      if (result.value) {
+          this.catalogoService.eliminarCargo(idcargo).subscribe(data => {
+              Swal.fire(
+                  'Dato eliminado!',
+                  'Tu archivo ha sido eliminado con exito.',
+                  'success'
+              )
+            this.catalogoService.getCargo().subscribe(data => { this.cargos = data });
+          });
+         
+      }
+  })
 }
 
 }

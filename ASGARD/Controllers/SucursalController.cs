@@ -114,6 +114,30 @@ namespace ASGARD.Controllers
                 }
             }
         }
+        [HttpPost]
+        [Route("api/Sucursal/modificarSucursal")]
+        public int modificarSucursal([FromBody]SucursalAF oSucursalAF)
+        {
+            int rpta = 0;
+            try
+            {
+                using (BDAcaassAFContext bd = new BDAcaassAFContext())
+                {
+                    Sucursal oSucursal = bd.Sucursal.Where(p => p.IdSucursal == oSucursalAF.IdSucursal).First();
+                    oSucursal.IdSucursal = oSucursalAF.IdSucursal;
+                    oSucursal.Nombre = oSucursalAF.Nombre;
+                    oSucursal.Ubicacion = oSucursalAF.Ubicacion;
+                    oSucursal.Correlativo = oSucursalAF.Correlativo;
+                    bd.SaveChanges();
+                    rpta = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                rpta = 0;
+            }
+            return rpta;
+        }
         [HttpGet]
         [Route("api/Sucursal/RecuperarSucursal/{id}")]
         public SucursalAF RecuperarSucursal(int id)
@@ -140,11 +164,11 @@ namespace ASGARD.Controllers
                 {
                     if (idSucursal == 0)
                     {
-                        respuesta = bd.Sucursal.Where(p => p.Correlativo.ToLower() == correlativo.ToLower()).Count();
+                        respuesta = bd.Sucursal.Where(p => p.Correlativo.ToLower() == correlativo.ToLower() && p.Dhabilitado==1 ).Count();
                     }
                     else
                     {
-                        respuesta = bd.Sucursal.Where(p => p.Correlativo.ToLower() == correlativo.ToLower() && p.IdSucursal != idSucursal).Count();
+                        respuesta = bd.Sucursal.Where(p => p.Correlativo.ToLower() == correlativo.ToLower() && p.IdSucursal != idSucursal&& p.Dhabilitado==1).Count();
                     }
                 }
             }

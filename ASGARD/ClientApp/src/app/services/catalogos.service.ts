@@ -48,7 +48,9 @@ export class CatalogosService {
   public validarCorrelativoSucursal(idSucursal, correlativo){
     return this.http.get(this.urlBase + "api/Sucursal/validarCorrelativo/" + idSucursal+ "/"+ correlativo).map(res => res.json());
   }
-
+  public updateSucursal(sucursal) {
+    return this.http.post(this.urlBase + "api/Sucursal/modificarSucursal", sucursal).map(res => res.json());
+}
   //Service Cargo
 
   public agregarCargo(cargo) {
@@ -65,6 +67,10 @@ export class CatalogosService {
 
   public updateCargo(cargo) {
     return this.http.post(this.urlBase + "api/Cargo/modificarCargo", cargo).map(res => res.json());
+  }
+
+  public eliminarCargo(idDonante) {
+    return this.http.get(this.urlBase + "api/Cargo/eliminarCargo/" + idDonante).map(res => res.json());
   }
 
   //Service Donantes
