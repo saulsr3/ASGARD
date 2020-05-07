@@ -16,7 +16,6 @@ import { SharedComponent } from './components/shared/shared.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { TablaActivosComponent } from './components-control/tabla-activos/tabla-activos.component';
-import { FormTipoActivoComponent } from './components-catalogos/form-tipo-activo/form-tipo-activo.component';
 import { FormEmpleadoComponent } from './components-catalogos/form-empleado/form-empleado.component';
 import { FormMarcaComponent } from './components-catalogos/form-marca/form-marca.component';
 import { FormSucursalComponent } from './components-catalogos/form-sucursal/form-sucursal.component';
@@ -46,7 +45,6 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
     FooterComponent,
     HeaderComponent,
     TablaActivosComponent,
-    FormTipoActivoComponent,
     FormEmpleadoComponent,
     FormMarcaComponent,
     FormSucursalComponent,
@@ -70,7 +68,6 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
       { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'shared', component: SharedComponent },
         { path: 'tabla-activos', component: TablaActivosComponent },
-        { path: 'form-tipo', component: FormTipoActivoComponent },
         { path: 'form-empleado', component: FormEmpleadoComponent },
         { path: 'form-marca', component: FormMarcaComponent },
         { path: 'tabla-marca', component: TablaMarcasComponent },
