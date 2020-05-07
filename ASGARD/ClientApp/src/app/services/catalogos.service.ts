@@ -37,8 +37,11 @@ export class CatalogosService {
         return this.http.post(this.urlBase + "api/Sucursal/guardarSucursal", sucursal).map(res => res.json());
     }
     public deleteSucursal(idSucursal) {
-        return this.http.get(this.urlBase + "api/Marcas/eliminarSucursal/" + idSucursal).map(res => res.json());
+        return this.http.get(this.urlBase + "api/Sucursal/eliminarSucursal/" + idSucursal).map(res => res.json());
     }
+    public recuperarSucursal(id) {
+      return this.http.get(this.urlBase + "api/Sucursal/RecuperarSucursal/" + id).map(res => res.json());
+  }
     public buscarSucursal(buscador) {
       return this.http.get(this.urlBase + "api/Sucursal/buscarSucursal/" + buscador).map(res => res.json());
   }

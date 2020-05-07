@@ -85,6 +85,18 @@ export class FormSucursalComponent implements OnInit {
             }
         })
     }
+    modificar(id){
+        this.titulo = "Modificar Sucursal";
+        this.display = 'block';
+        this.catalogoService.recuperarSucursal(id).subscribe(data => {
+            this.sucursal.controls["idSucursal"].setValue(data.idSucursal);
+            this.sucursal.controls["nombre"].setValue(data.nombre);
+            this.sucursal.controls["ubicacion"].setValue(data.ubicacion);
+            this.sucursal.controls["correlativo"].setValue(data.correlativo);
+            this.sucursal.controls["bandera"].setValue("1");
+        });
+
+    }
     buscar(buscador) {
         this.p=1;
         this.catalogoService.buscarSucursal(buscador.value).subscribe(res => this.sucursales = res);

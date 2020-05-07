@@ -57,7 +57,7 @@ namespace ASGARD.Controllers
             return res;
         }
         [HttpGet]
-        [Route("api/Marcas/eliminarSucursal/{idSucursal}")]
+        [Route("api/Sucursal/eliminarSucursal/{idSucursal}")]
         public int eliminarSucursal(int idSucursal)
         {
             int res = 0;
@@ -112,6 +112,21 @@ namespace ASGARD.Controllers
                                   }).ToList();
                     return listaSucursal;
                 }
+            }
+        }
+        [HttpGet]
+        [Route("api/Sucursal/RecuperarSucursal/{id}")]
+        public SucursalAF RecuperarSucursal(int id)
+        {
+            using (BDAcaassAFContext bd = new BDAcaassAFContext())
+            {
+                SucursalAF oSucursalAF = new SucursalAF();
+                Sucursal oSucursal = bd.Sucursal.Where(p => p.IdSucursal == id).First();
+                oSucursalAF.IdSucursal = oSucursal.IdSucursal;
+                oSucursalAF.Nombre = oSucursal.Nombre;
+                oSucursalAF.Ubicacion = oSucursal.Ubicacion;
+                oSucursalAF.Correlativo = oSucursal.Correlativo;
+                return oSucursalAF;
             }
         }
         [HttpGet]

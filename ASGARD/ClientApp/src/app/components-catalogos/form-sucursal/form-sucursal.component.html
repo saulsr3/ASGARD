@@ -44,7 +44,7 @@
                     <td>{{sucursal.ubicacion}}</td>
                     <td>{{sucursal.correlativo}}</td>
                     <td class="center hidden-phone">
-                      <button class="btn btn-primary btn-xs" ><i class="icon-pencil"></i></button>
+                      <button class="btn btn-primary btn-xs" (click)="modificar(sucursal.idSucursal)" ><i class="icon-pencil"></i></button>
                       <button class="btn btn-danger btn-xs" (click)="eliminar(sucursal.idSucursal)"><i class="icon-trash "></i></button>
                     </td>
                   </tr>
