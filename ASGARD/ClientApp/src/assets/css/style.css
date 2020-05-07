@@ -10,7 +10,7 @@ Website: http://thevectorlab.net/
 
 body {
     color: #797979;
-    background: #f1f2f7;
+    background: #797979;
     font-family: 'Open Sans', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
@@ -479,7 +479,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 .dropdown-menu.tasks-bar .task-info .percent {
     display: inline-block;
-    float: right;
+
     font-size: 13px;
     font-weight: 600;
     padding-left: 10px;
@@ -906,9 +906,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     display: inline-block;
 }
 
-.chart-tittle .title {
 
-}
 
 .panel.green-chart .chart-tittle .value {
     float: right;
@@ -1652,9 +1650,6 @@ ul.ft-link li a i {
     color:#f8d347 ;
 }
 
-.post-btn {
-
-}
 
 .post-btn a {
     float: left;

@@ -61,7 +61,6 @@ th, td {
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
 }
-
 .btn-primary {
   background-color: #41cac0;
   border-color: #41cac0;
@@ -86,4 +85,14 @@ th, td {
   color: #c09853;
   background-color: #fcf8e3;
   border-color: #faebcc;
+}
+.panel {
+  padding: 15px;
+  margin-bottom: 20px;
+  margin-left: -15px;;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
 }

@@ -31,6 +31,7 @@ import { FormCargoComponent } from './components-catalogos/form-cargo/form-cargo
 //Import para trabajar con formularios 
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormClasificacionComponent } from './components-catalogos/form-clasificacion/form-clasificacion.component';
+import { FormAreasNegocioComponent } from './components-catalogos/form-areas-negocio/form-areas-negocio.component';
 
 
 
@@ -52,7 +53,8 @@ import { FormClasificacionComponent } from './components-catalogos/form-clasific
     FormDonantesComponent,
     FormClasificacionComponent,
     FormProveedorComponent,
-    FormCargoComponent
+    FormCargoComponent,
+    FormAreasNegocioComponent
    
     //Aqui vamos a agregar los compoenentes del proyecto
 

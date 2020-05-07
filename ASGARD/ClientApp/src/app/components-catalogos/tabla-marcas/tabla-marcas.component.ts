@@ -43,4 +43,7 @@ export class TablaMarcasComponent implements OnInit {
             
         });
     }
+    guardarDatos(){
+        
+    }
 }
