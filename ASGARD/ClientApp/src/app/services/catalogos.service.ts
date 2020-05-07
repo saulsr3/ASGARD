@@ -59,6 +59,14 @@ export class CatalogosService {
     return this.http.get(this.urlBase + "api/Cargo/listarCargo").map(res => res.json());
   }
 
+  public recuperarCargo(id) {
+    return this.http.get(this.urlBase + "api/Cargo/recuperarCargo/", id).map(res => res.json());
+  }
+
+  public updateCargo(cargo) {
+    return this.http.post(this.urlBase + "aapi/Cargo/modificarCargo", cargo).map(res => res.json());
+  }
+
   //Service Donantes
 
   public agregarDonante(donante) {

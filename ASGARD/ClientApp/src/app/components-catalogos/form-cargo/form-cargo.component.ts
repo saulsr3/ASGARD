@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class FormCargoComponent implements OnInit {
 
-  //Variables
+  //Variables  
   cargos: any;
   cargo: FormGroup;
   titulo: string;
@@ -22,7 +22,7 @@ export class FormCargoComponent implements OnInit {
 
     this.cargo =new FormGroup( {
 
-      'idCargo': new FormControl("0"),
+      'idcargo': new FormControl("0"),
       'bandera': new FormControl("0"),
       'cargo': new FormControl("", [Validators.required]),
       'direccion': new FormControl("", [Validators.required])
@@ -36,12 +36,12 @@ export class FormCargoComponent implements OnInit {
 
   }
 
-  //Métodos 
+  //Métodos  
 
   open() {
     //limpia cache 
     this.titulo = "Formulario Cargo";
-    this.cargo.controls["idCargo"].setValue("0");
+    this.cargo.controls["idcargo"].setValue("0");
     this.cargo.controls["bandera"].setValue("0");
     this.cargo.controls["cargo"].setValue("");
     this.cargo.controls["direccion"].setValue("");
@@ -55,11 +55,9 @@ guardarDatos() {
   //Si la vandera es cero que es el que trae por defecto en el metodo open() entra en la primera a insertar
 
   if ((this.cargo.controls["bandera"].value) == "0") {
-      if (this.cargo.valid == true) {
-         //Método agregar de cargo
-          this.catalogoService.agregarCargo(this.cargo.value).subscribe(data => { 
-            //Método get de cargo
-            this.catalogoService.getCargo().subscribe(data=> {this.cargos=data});
+    if (this.cargo.valid == true) {
+      this.catalogoService.agregarCargo(this.cargo.value).subscribe(data => {
+        this.catalogoService.getCargo().subscribe(res => { this.cargos = res });
           });
          
           Swal.fire({
@@ -71,27 +69,38 @@ guardarDatos() {
           })
       }
   } else {
-     
-      this.cargo.controls["bandera"].setValue("0");
-      if(this.cargo.valid==true) {
-        //Acá irá el método update
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Dato Modificado con exito',
-          showConfirmButton: false,
-          timer: 3000
-      }) 
-      }
+      //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar  
 
+      this.cargo.controls["bandera"].setValue("0");
+      if (this.cargo.valid == true) {
+          this.catalogoService.updateCargo(this.cargo.value).subscribe(data => { });
+          Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Dato Modificado con exito',
+              showConfirmButton: false,
+              timer: 3000
+          })        
+      }
   }
-  this.cargo.controls["idCargo"].setValue("0");
+  this.cargo.controls["idcargo"].setValue("0");
   this.cargo.controls["bandera"].setValue("0");
   this.cargo.controls["cargo"].setValue("");
   this.cargo.controls["direccion"].setValue("");
   this.display = 'none';
-  //Acá irá el método get de cargo
-  this.catalogoService.getCargo().subscribe(data=> {this.cargos=data});
+  this.catalogoService.getCargo().subscribe(res => { this.cargos = res });
+}
+
+modif(id) {
+  this.titulo = "Modificar Cargo";
+  this.display = 'block';
+  this.catalogoService.recuperarCargo(id).subscribe(data => {
+    this.cargo.controls["idcargo"].setValue(data.idcargo);
+    this.cargo.controls["bandera"].setValue("1");
+    this.cargo.controls["cargo"].setValue(data.cargo);
+    this.cargo.controls["direccion"].setValue(data.direccion);
+      
+  });
 }
 
 }

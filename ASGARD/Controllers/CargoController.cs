@@ -65,5 +65,49 @@ namespace ASGARD.Controllers
                 return listaCargo;
             }
         }
+
+        //Método recuperar cargo
+        [HttpGet]
+        [Route("api/Cargo/recuperarCargo/{id}")]
+        public CargoAF recuperarCargo(int id) {
+
+            using(BDAcaassAFContext bd=new BDAcaassAFContext())
+            {
+                CargoAF oCargoAF = new CargoAF();
+                Cargos oCargo = bd.Cargos.Where(p => p.IdCargo == id).First();
+                oCargoAF.idcargo = oCargo.IdCargo;
+                oCargoAF.cargo = oCargo.Cargo;
+                oCargoAF.direccion = oCargo.Direccion;
+
+                return oCargoAF;
+            }
+           
+        }
+
+        //Método modificar cargo
+        [HttpPost]
+        [Route("api/Cargo/modificarCargo")]
+        public int modificarCargo([FromBody] CargoAF oCargoAF)
+        {
+            int rpta = 0;
+
+            try
+            {
+                using(BDAcaassAFContext bd=new BDAcaassAFContext())
+                {
+                    Cargos oCargo = bd.Cargos.Where(p => p.IdCargo == oCargoAF.idcargo).First();
+                    oCargo.IdCargo = oCargoAF.idcargo;
+                    oCargo.Cargo = oCargoAF.cargo;
+                    oCargo.Direccion = oCargoAF.direccion;
+                    bd.SaveChanges();
+                    rpta = 1;
+                }
+
+            } catch(Exception ex)
+            {
+                rpta = 0;
+            }
+            return rpta;
+        }
     }
 }
