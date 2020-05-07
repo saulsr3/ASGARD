@@ -85,7 +85,7 @@ export class FormMarcaComponent implements OnInit {
     modif(id) {
         this.titulo = "Modificar Marca";
         this.display = 'block';
-        this.catalogoService.recuperarMarcas(id).subscribe(data => {s
+        this.catalogoService.recuperarMarcas(id).subscribe(data => {
             this.marca.controls["idMarca"].setValue(data.idMarca);
             this.marca.controls["marca"].setValue(data.marca);
             this.marca.controls["descripcion"].setValue(data.descripcion);
