@@ -109,5 +109,30 @@ namespace ASGARD.Controllers
             }
             return rpta;
         }
+
+        //Método eliminar cargo
+        [HttpGet]
+        [Route("api/Cargo/eliminarCargo/{idCargo}")]
+        public int eliminarCargo(int idCargo)
+        {
+            int rpta = 0;
+            try
+            {
+                using(BDAcaassAFContext bd=new BDAcaassAFContext())
+                {
+                    Cargos oCargo = bd.Cargos.Where(p => p.IdCargo == idCargo).First();
+                    oCargo.Dhabilitado = 0;
+                    bd.SaveChanges();
+                    rpta = 1;
+                }
+
+            } catch(Exception ex)
+            {
+                rpta = 0;
+            }
+            return rpta;
+
+        }
+
     }
 }
