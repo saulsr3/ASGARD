@@ -60,7 +60,29 @@ export class FormSucursalComponent implements OnInit {
             }
             this.catalogoService.getSucursales().subscribe(res => {this.sucursales = res});
 
+        }else{
+
+            this.sucursal.controls["bandera"].setValue("0");
+            if (this.sucursal.valid == true) {
+                this.catalogoService.updateSucursal(this.sucursal.value).subscribe(data => {
+                    this.catalogoService.getSucursales().subscribe(res => {this.sucursales = res});
+                 });
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Dato Modificado con exito',
+                    showConfirmButton: false,
+                    timer: 3000
+                })        
+            }
         }
+        this.sucursal.controls["idSucursal"].setValue("0");
+        this.sucursal.controls["bandera"].setValue("0");
+        this.sucursal.controls["nombre"].setValue("");
+        this.sucursal.controls["ubicacion"].setValue("");
+        this.sucursal.controls["correlativo"].setValue("");
+        this.display = 'none';
+      
     }
     eliminar(idSucursal) {
         Swal.fire({
