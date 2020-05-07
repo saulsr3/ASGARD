@@ -152,11 +152,11 @@ namespace ASGARD.Controllers
                 {
                     if (idclasificacion == 0)
                     {
-                        respuesta = bd.Clasificacion.Where(p => p.Correlativo.ToLower() == correlativo.ToLower()).Count();
+                        respuesta = bd.Clasificacion.Where(p => p.Correlativo.ToLower() == correlativo.ToLower() && p.Dhabilitado == 1).Count();
                     }
                     else
                     {
-                        respuesta = bd.Clasificacion.Where(p => p.Correlativo.ToLower() == correlativo.ToLower() && p.IdClasificacion != idclasificacion).Count();
+                        respuesta = bd.Clasificacion.Where(p => p.Correlativo.ToLower() == correlativo.ToLower() && p.IdClasificacion != idclasificacion && p.Dhabilitado == 1).Count();
                     }
 
 
@@ -186,11 +186,11 @@ namespace ASGARD.Controllers
                 {
                     if (idclasificacion ==  0)
                     {
-                        respuesta = bd.Clasificacion.Where(p => p.Clasificacion1.ToLower() == clasificacion.ToLower()).Count();
+                        respuesta = bd.Clasificacion.Where(p => p.Clasificacion1.ToLower() == clasificacion.ToLower() && p.Dhabilitado == 1).Count();
                     }
                     else
                     {
-                        respuesta = bd.Clasificacion.Where(p => p.Clasificacion1.ToLower() == clasificacion.ToLower() && p.IdClasificacion != idclasificacion).Count();
+                        respuesta = bd.Clasificacion.Where(p => p.Clasificacion1.ToLower() == clasificacion.ToLower() && p.IdClasificacion != idclasificacion && p.Dhabilitado == 1).Count();
                     }
 
 

@@ -100,6 +100,7 @@ export class FormClasificacionComponent implements OnInit {
       this.clasificacion.controls["bandera"].setValue("1");
 
     });
+    this.catalogosServices.getClasificacion().subscribe(res => {this.clasificaciones = res});
   }
  
   eliminar(idclasificacion) {
