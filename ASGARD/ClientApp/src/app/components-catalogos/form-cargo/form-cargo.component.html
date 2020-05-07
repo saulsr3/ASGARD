@@ -38,7 +38,7 @@
                   <td>{{cargo.direccion}}</td>
                   <td class="center hidden-phone">
                     <button class="btn btn-primary btn-xs" (click)="modif(cargo.idcargo)"><i class="icon-pencil" title="Editar"></i></button>
-                    <button class="btn btn-danger btn-xs"><i class="icon-trash " title="Eliminar"></i></button>
+                    <button class="btn btn-danger btn-xs" (click)="eliminar(cargo.idcargo)"><i class="icon-trash "></i></button>
                   </td>
                 </tr>
               </tbody>
@@ -61,8 +61,8 @@
       <div class="modal-body">
 
         <form role="form" [formGroup]="cargo" (ngSubmit)="guardarDatos()">
-          <input type="text" class="form-control" formControlName="idcargo" id="exampleInputEmail3" autocomplete="off">
-          <input type="text" class="form-control" formControlName="bandera" id="exampleInputEmail3" autocomplete="off">
+          <input type="hidden" class="form-control" formControlName="idcargo" id="exampleInputEmail3" autocomplete="off">
+          <input type="hidden" class="form-control" formControlName="bandera" id="exampleInputEmail3" autocomplete="off">
 
           <div class="form-group">
             <label for="exampleInputEmail1">Cargo:</label>

@@ -69,6 +69,10 @@ export class CatalogosService {
     return this.http.post(this.urlBase + "api/Cargo/modificarCargo", cargo).map(res => res.json());
   }
 
+  public eliminarCargo(idDonante) {
+    return this.http.get(this.urlBase + "api/Cargo/eliminarCargo/" + idDonante).map(res => res.json());
+  }
+
   //Service Donantes
 
   public agregarDonante(donante) {
