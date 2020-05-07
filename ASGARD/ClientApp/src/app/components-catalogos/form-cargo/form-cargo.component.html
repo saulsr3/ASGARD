@@ -35,12 +35,12 @@
               </thead>
               <tbody>
                 <tr *ngFor="let cargo of cargos | paginate: { itemsPerPage: 5, currentPage: p }">
-                  <td>{{cargo.idCargo}}</td>
+                  <td>{{cargo.idcargo}}</td>
                   <td>{{cargo.cargo}}</td>
                   <td>{{cargo.direccion}}</td>
                   <td class="center hidden-phone">
-                    <button class="btn btn-primary btn-xs" ><i class="icon-pencil"></i></button>
-                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                    <button class="btn btn-primary btn-xs" ><i class="icon-pencil" title="Editar"></i></button>
+                    <button class="btn btn-danger btn-xs"><i class="icon-trash " title="Eliminar"></i></button>
                   </td>
                 </tr>
               </tbody>

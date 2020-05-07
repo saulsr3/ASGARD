@@ -46,5 +46,24 @@ namespace ASGARD.Controllers
             return rpta;
 
         }
+
+        //Método listar cargo
+        [HttpGet]
+        [Route("api/Cargo/listarCargo")]
+        public IEnumerable<CargoAF>listarCargo()
+        {
+            using(BDAcaassAFContext bd=new BDAcaassAFContext())
+            {
+                IEnumerable<CargoAF> listaCargo = (from cargo in bd.Cargos
+                                                   where cargo.Dhabilitado == 1
+                                                   select new CargoAF
+                                                   {
+                                                       idcargo = cargo.IdCargo,
+                                                       cargo = cargo.Cargo,
+                                                       direccion = cargo.Direccion
+                                                   }).ToList();
+                return listaCargo;
+            }
+        }
     }
 }

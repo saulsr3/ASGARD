@@ -32,12 +32,14 @@ export class FormCargoComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.catalogoService.getCargo().subscribe(data=> {this.cargos=data});
+
   }
 
-  //Métodos
+  //Métodos 
 
   open() {
-    //limpia cache
+    //limpia cache 
     this.titulo = "Formulario Cargo";
     this.cargo.controls["idCargo"].setValue("0");
     this.cargo.controls["bandera"].setValue("0");
@@ -54,9 +56,10 @@ guardarDatos() {
 
   if ((this.cargo.controls["bandera"].value) == "0") {
       if (this.cargo.valid == true) {
+         //Método agregar de cargo
           this.catalogoService.agregarCargo(this.cargo.value).subscribe(data => { 
-            //Acá irá el método get de cargo
-            
+            //Método get de cargo
+            this.catalogoService.getCargo().subscribe(data=> {this.cargos=data});
           });
          
           Swal.fire({
@@ -88,6 +91,7 @@ guardarDatos() {
   this.cargo.controls["direccion"].setValue("");
   this.display = 'none';
   //Acá irá el método get de cargo
+  this.catalogoService.getCargo().subscribe(data=> {this.cargos=data});
 }
 
 }
