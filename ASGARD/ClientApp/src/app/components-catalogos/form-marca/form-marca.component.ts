@@ -63,7 +63,9 @@ export class FormMarcaComponent implements OnInit {
 
             this.marca.controls["bandera"].setValue("0");
             if (this.marca.valid == true) {
-                this.catalogoService.updateMarca(this.marca.value).subscribe(data => { });
+                this.catalogoService.updateMarca(this.marca.value).subscribe(data => { 
+                    this.catalogoService.getMarcas().subscribe(res => {this.marcas = res});
+                });
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -78,7 +80,7 @@ export class FormMarcaComponent implements OnInit {
         this.marca.controls["marca"].setValue("");
         this.marca.controls["descripcion"].setValue("");
         this.display = 'none';
-        this.catalogoService.getMarcas().subscribe(res => {this.marcas = res});
+      
     }
     modif(id) {
         this.titulo = "Modificar Marca";
