@@ -49,7 +49,7 @@ export class FormProveedorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.catalogoService.getProveedores().subscribe(res => this.proveedor = res);
+    this.catalogoService.getProveedores().subscribe(res => { this.proveedor = res });
   }
 
   open() {
@@ -76,51 +76,52 @@ export class FormProveedorComponent implements OnInit {
 
   guardarDatos() {
     if ((this.proveedores.controls["bandera"].value) == "0") {
-    if (this.proveedores.valid == true) {
-      this.catalogoService.agregarProveedor(this.proveedores.value).subscribe(data => { });
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Dato Guardado con exito',
-        showConfirmButton: false,
-        timer: 3000
+      if (this.proveedores.valid == true) {
+        this.catalogoService.agregarProveedor(this.proveedores.value).subscribe(data => {
+          this.catalogoService.getProveedores().subscribe(res => { this.proveedor = res });
+        });
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Registro Guardado con exito',
+          showConfirmButton: false,
+          timer: 3000
         })
       }
 
     }
-    else
-    {
+    else {
       //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar
 
       this.proveedores.controls["bandera"].setValue("0");
       if (this.proveedores.valid == true) {
         this.catalogoService.ActualizarProveedor(this.proveedores.value).subscribe(data => { });
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Dato Modificado con exito',
+          title: 'Registro Modificado con exito',
           showConfirmButton: false,
           timer: 3000
         })
       }
     }
-      this.proveedores.controls["idProveedor"].setValue("0");
-      this.proveedores.controls["bandera"].setValue("0");
-      this.proveedores.controls["nombre"].setValue("");
-      this.proveedores.controls["direccion"].setValue("");
-      this.proveedores.controls["telefono"].setValue("");
-      this.proveedores.controls["rubro"].setValue("");
-      this.proveedores.controls["encargado"].setValue("");
-      this.proveedores.controls["telefonoencargado"].setValue("");
+    this.proveedores.controls["idProveedor"].setValue("0");
+    this.proveedores.controls["bandera"].setValue("0");
+    this.proveedores.controls["nombre"].setValue("");
+    this.proveedores.controls["direccion"].setValue("");
+    this.proveedores.controls["telefono"].setValue("");
+    this.proveedores.controls["rubro"].setValue("");
+    this.proveedores.controls["encargado"].setValue("");
+    this.proveedores.controls["telefonoencargado"].setValue("");
 
-      this.display = 'none';
-      this.catalogoService.getProveedores().subscribe(res => this.proveedor = res);
+    this.display = 'none';
+    this.catalogoService.getProveedores().subscribe(res => { this.proveedor = res });
 
 
-      //this.router.navigate(["/form-proveedor"])
+    //this.router.navigate(["/form-proveedor"])
   }
 
-  
+
 
   modificar(id) {
 
@@ -137,7 +138,7 @@ export class FormProveedorComponent implements OnInit {
       this.proveedores.controls["telefonoencargado"].setValue(data.telefonoencargado);
       this.proveedores.controls["bandera"].setValue("1");
 
-
+      this.catalogoService.getProveedores().subscribe(res => { this.proveedor = res });
     });
   }
 
@@ -170,10 +171,10 @@ export class FormProveedorComponent implements OnInit {
 
   //Método
 
-  buscar(buscador) {
-    this.p = 1;
-    this.catalogoService.buscarProveedor(buscador.value).subscribe(res => this.proveedor = res);
-  }
+  //buscar(buscador) {
+  //  this.p = 1;
+  //  this.catalogoService.buscarProveedor(buscador.value).subscribe(res => { this.proveedor = res });
+  //}
 
   noIniciaCeroTelefono(control: FormControl) {
     if (control.value != null && control.value != "") {
