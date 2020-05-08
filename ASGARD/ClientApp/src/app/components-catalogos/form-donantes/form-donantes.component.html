@@ -79,15 +79,37 @@
                         <label for="exampleInputEmail1">Nombre:</label>
                         <input type="text" class="form-control" formControlName="nombre" id="exampleInputEmail3" placeholder="Agregue un nombre" autocomplete="off">
                     </div>
+
+                    <div class="alert alert-block alert-danger fade in" *ngIf="donantes.controls['nombre'].errors?.maxlength">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                          <i class="icon-remove"></i>
+                        </button>
+                        <strong>Advertencia!</strong> Ha superado el número máximo de caracteres
+                      </div>
+
                     <div class="form-group">
                         <label for="exampleFormControlTextarea2">Teléfono:</label>
                         <input type="number" class="form-control" formControlName="telefono" id="exampleFormControlTextarea2" placeholder="Teléfono" autocomplete="off">
                     </div>
 
+                    <div class="alert alert-block alert-danger fade in" *ngIf="donantes.controls['telefono'].errors?.maxlength">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                          <i class="icon-remove"></i>
+                        </button>
+                        <strong>Advertencia!</strong> Ha superado el número máximo de dígitos
+                      </div>
+
                     <div class="form-group">
                         <label for="exampleFormControlTextarea2">Dirección:</label>
                         <textarea class="form-control rounded-0" formControlName="direccion" id="exampleFormControlTextarea2" rows="3" placeholder="Dirección" autocomplete="off"></textarea>
                     </div>
+
+                    <div class="alert alert-block alert-danger fade in" *ngIf="donantes.controls['direccion'].errors?.maxlength">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                          <i class="icon-remove"></i>
+                        </button>
+                        <strong>Advertencia!</strong> Ha superado el número máximo de caracteres
+                      </div>
 
                            <!--  WARNING-->
           <div class="alert alert-warning fade in" *ngIf="!donantes.valid">

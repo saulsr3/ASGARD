@@ -22,10 +22,10 @@ export class FormDonantesComponent implements OnInit {
     this.donantes = new FormGroup({
 
       'iidDonante': new FormControl("0"),
-      'nombre': new FormControl("", [Validators.required]),
+      'nombre': new FormControl("", [Validators.required, Validators.maxLength(70)]),
       'bandera': new FormControl("0"),
-      'telefono': new FormControl("", [Validators.required]),
-      'direccion': new FormControl("", [Validators.required])
+      'telefono': new FormControl("", [Validators.required, Validators.maxLength(11)]),
+      'direccion': new FormControl("", [Validators.required, Validators.maxLength(50)])
 
     });
   }
@@ -65,6 +65,7 @@ export class FormDonantesComponent implements OnInit {
           showConfirmButton: false,
           timer: 3000
         })
+        this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
       }
       
     } else { 
@@ -81,8 +82,9 @@ export class FormDonantesComponent implements OnInit {
           showConfirmButton: false,
           timer: 3000
         })
+        this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
       }
-      this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
+     
     }
     this.donantes.controls["iidDonante"].setValue("0");
     this.donantes.controls["bandera"].setValue("0");
@@ -117,7 +119,7 @@ export class FormDonantesComponent implements OnInit {
       }
     })
   }
-  
+   
 
   modif(id) {
 
@@ -128,7 +130,7 @@ export class FormDonantesComponent implements OnInit {
       this.donantes.controls['nombre'].setValue(data.nombre);
       this.donantes.controls['telefono'].setValue(data.telefono);
       this.donantes.controls['direccion'].setValue(data.direccion);
-
+      this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
     });
 
   }
