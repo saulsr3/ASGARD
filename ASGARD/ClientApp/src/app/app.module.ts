@@ -77,7 +77,8 @@ import { FormAreasNegocioComponent } from './components-catalogos/form-areas-neg
       { path: 'form-donantes', component: FormDonantesComponent },
       { path: 'form-proveedor', component: FormProveedorComponent },
       { path: 'form-clasificacion', component: FormClasificacionComponent },
-      { path: 'form-cargo', component: FormCargoComponent }
+      { path: 'form-cargo', component: FormCargoComponent },
+      {path: 'form-area-negocio', component: FormAreasNegocioComponent}
 
     ])
     ],

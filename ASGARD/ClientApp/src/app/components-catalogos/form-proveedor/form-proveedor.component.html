@@ -1,20 +1,22 @@
 <br><br><br><br>
 <section class="panel">
   <h1>Proveedores</h1>
-  
   <div class="row">
     <div class="col-lg-6">
-
       <header class="panel-heading form-in-line">
-        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nuevo Proveedor</button>
+        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-plus-sign-alt"></i> Agregar Nueva Sucursal</button>
       </header>
     </div>
     <div class="col-lg-3">
-
     </div>
-    <div class="col-lg-3">
-      <input type="text" class="form-control" #nombre (keyup)="buscar(nombre)" placeholder="Buscar">
-    </div>
+    <div class="col-md-3">
+      <div class="input-group in-line">
+          <input type="text" class="form-control" #nombre (keyup)="buscar(nombre)" placeholder="Buscar">
+            <span class="input-group-btn">
+            <button type="button" class="btn btn-success"><i class="icon-search"></i></button>
+            </span>
+      </div>
+  </div>
   </div>
 
   <div class="row">
@@ -149,8 +151,8 @@
             </div>
 
             <div style="text-align: center;">
-              <button [disabled]="!proveedores.valid" type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
-              <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>
+              <button [disabled]="!proveedores.valid" type="submit" value="Guardar" class="btn btn-primary"><i class="icon-save"></i>Guardar</button>
+              <button type="button" (click)="close()" class="btn btn-default"><i class="icon-remove-sign"></i> Cerrar</button>
             </div>
           </form>
 

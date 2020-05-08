@@ -32,7 +32,7 @@ thead {
 
 @keyframes modal {
   from {
-    top: -330px;
+    top: -430px;
     opacity: 0;
   }
 
@@ -91,12 +91,25 @@ th, td {
   border-color: #faebcc;
 }
 .panel {
-  padding: 10px;
- 
-  margin-bottom: 5px;
+  padding: 15px;
+  padding-bottom: 0px;
+  height: 90%;
+  margin-bottom: 20px;
+  margin-left: -5px;;
+  margin-right: 10px;
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
   box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+.form-control {
+  border: 1px solid #e2e2e4;
+  box-shadow: none;
+  color: #8b8b8b;
+}
+input, select, textarea,::placeholder {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
