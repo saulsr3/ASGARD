@@ -145,8 +145,8 @@ export class FormProveedorComponent implements OnInit {
 
   eliminar(idProveedor) {
     Swal.fire({
-      title: '¿Estas seguro de eliminar este registro?',
-      text: "No podras revertir esta accion!",
+      title: '¿Esta seguro de eliminar este registro?',
+      text: "No podra revertir esta accion!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -157,7 +157,7 @@ export class FormProveedorComponent implements OnInit {
         this.catalogoService.eliminarProveedor(idProveedor).subscribe(data => {
           Swal.fire(
             'Dato eliminado!',
-            'Tu archivo ha sido eliminado con exito.',
+            'El registro ha sido eliminado con exito.',
             'success'
           )
           this.catalogoService.getProveedores().subscribe(
