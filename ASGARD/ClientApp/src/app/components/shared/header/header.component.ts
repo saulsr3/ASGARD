@@ -6,12 +6,15 @@ import { CargarScriptsService } from './../../../services/cargar-scripts.service
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  isExpanded = false;
     constructor(private _CargaScript: CargarScriptsService) {
         _CargaScript.cargar(['/jquery.nicescroll','/jquery.scrollTo.min']);
     }
 
   ngOnInit() {
+  }
+  collapse() {
+    this.isExpanded = false;
   }
 
 }
