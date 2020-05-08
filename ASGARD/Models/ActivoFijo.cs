@@ -5,6 +5,11 @@ namespace ASGARD.Models
 {
     public partial class ActivoFijo
     {
+        public ActivoFijo()
+        {
+            BienMantenimiento = new HashSet<BienMantenimiento>();
+        }
+
         public string CodigoBien { get; set; }
         public int? NoFormulario { get; set; }
         public string Desripcion { get; set; }
@@ -30,5 +35,6 @@ namespace ASGARD.Models
         public Proveedor IdProveedorNavigation { get; set; }
         public Empleado IdResponsableNavigation { get; set; }
         public FormularioIngreso NoFormularioNavigation { get; set; }
+        public ICollection<BienMantenimiento> BienMantenimiento { get; set; }
     }
 }

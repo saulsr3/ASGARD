@@ -12,7 +12,7 @@ namespace ASGARD.Models
 
         public int IdCargo { get; set; }
         public string Cargo { get; set; }
-        public string Direccion { get; set; }
+        public string Descripcion { get; set; }
         public int? Dhabilitado { get; set; }
 
         public ICollection<Empleado> Empleado { get; set; }
