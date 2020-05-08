@@ -56,9 +56,9 @@ export class FormClasificacionComponent implements OnInit {
          });
        
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Dato Guardado con exito',
+          title: 'Registro Guardado con exito',
           showConfirmButton: false,
           timer: 3000
         })
@@ -69,9 +69,9 @@ export class FormClasificacionComponent implements OnInit {
       if (this.clasificacion.valid == true) {
         this.catalogosServices.modificarclasificacion(this.clasificacion.value).subscribe(data => { });
         Swal.fire({
-          position: 'top-end',
+          position: 'center',
           icon: 'success',
-          title: 'Dato modificado con exito',
+          title: 'Registro modificado con exito',
           showConfirmButton: false,
           timer: 3000
         })
@@ -98,9 +98,9 @@ export class FormClasificacionComponent implements OnInit {
       this.clasificacion.controls["correlativo"].setValue(data.correlativo);
       this.clasificacion.controls["descripcion"].setValue(data.descripcion);
       this.clasificacion.controls["bandera"].setValue("1");
-
+      this.catalogosServices.getClasificacion().subscribe(res => { this.clasificaciones = res });
     });
-    this.catalogosServices.getClasificacion().subscribe(res => {this.clasificaciones = res});
+   
   }
  
   eliminar(idclasificacion) {

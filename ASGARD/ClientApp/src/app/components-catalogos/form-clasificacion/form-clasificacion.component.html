@@ -29,7 +29,8 @@
             <table class="display table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Id Clasificación</th>
+                  <th scope="col">N°</th>
+                  <!--<th>Id Clasificación</th>-->
                   <th>Correlativo</th>
                   <th>Clasificación</th>
                   <th>Descripcion</th>
@@ -37,8 +38,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let clasificacion of clasificaciones | paginate: { itemsPerPage: 5, currentPage: p }">
-                  <td>{{clasificacion.idclasificacion}}</td>
+                <tr *ngFor="let clasificacion of clasificaciones | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+                  <th scope="row">{{i+1}}</th>
+                  <!--{clasificacion.idclasificacion}}-->
                   <td>{{clasificacion.correlativo}}</td>
                   <td>{{clasificacion.clasificacion}}</td>
                   <td>{{clasificacion.descripcion}}</td>
@@ -49,7 +51,22 @@
                 </tr>
               </tbody>
             </table>
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <pagination-controls (pageChange)="p = $event"  previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+              <!--<pagination-controls id="some_id"
+                                   (pageChange)="p= $event"
+                                   (pageBoundsCorrection)="pageChanged($event)"
+                                   maxSize="9"
+                                   directionLinks="true"
+                                   autoHide="true"
+                                   responsive="true"
+                                   previousLabel="Anterior"
+                                   nextLabel="Siguiente"
+                                   screenReaderPaginationLabel="Paginacion"
+                                   screenReaderPageLabel="pagina"
+                                   screenReaderCurrentLabel="You're on page">
+              </pagination-controls>-->
+
           </div>
         </div>
       </section>
