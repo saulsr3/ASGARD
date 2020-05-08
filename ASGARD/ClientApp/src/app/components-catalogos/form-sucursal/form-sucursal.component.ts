@@ -19,9 +19,9 @@ export class FormSucursalComponent implements OnInit {
         this.sucursal = new FormGroup({
             'idSucursal': new FormControl("0"),
             'bandera': new FormControl("0"),
-            'nombre': new FormControl("", [Validators.required]),
-            'ubicacion': new FormControl("", [Validators.required]),
-            'correlativo': new FormControl("", [Validators.required], this.noRepetirCorrelativo.bind(this))
+            'nombre': new FormControl("", [Validators.required,Validators.maxLength(50)]),
+            'ubicacion': new FormControl("", [Validators.required,Validators.maxLength(50)]),
+            'correlativo': new FormControl("", [Validators.required, Validators.maxLength(10)], this.noRepetirCorrelativo.bind(this))
         });
     }
 

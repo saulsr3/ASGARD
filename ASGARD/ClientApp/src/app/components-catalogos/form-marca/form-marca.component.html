@@ -25,7 +25,7 @@
             <table class="display table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Codigo</th>
+                  <th>Código</th>
                   <th>Marca</th>
                   <th>Descripcion</th>
                   <th class="hidden-phone">Opciones</th>
@@ -74,12 +74,18 @@
             </button>
             <strong>Cuidado!</strong> El campo marca es obligatorio
           </div>
+          <div class="alert alert-success fade in" *ngIf="marca.valid&&marca.controls['bandera'].value==0">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Exelente!</strong> Asegurece de ingresar el nombre correctamente
+          </div>
           <!--  END-WARNING-->
           <div class="form-group">
             <label for="exampleFormControlTextarea2">Descripción:</label>
             <textarea class="form-control rounded-0" formControlName="descripcion" id="exampleFormControlTextarea2" rows="3" placeholder="Descripcion" autocomplete="off"></textarea>
           </div>
-        
+          
             <button [disabled]="!marca.valid" type="submit" class="btn btn-primary">Guardar</button>
             <button type="button" (click)="close()" class="btn btn-default">Cerrar</button>
        
