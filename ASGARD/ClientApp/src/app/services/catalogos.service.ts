@@ -73,6 +73,10 @@ export class CatalogosService {
     return this.http.get(this.urlBase + "api/Cargo/eliminarCargo/" + idDonante).map(res => res.json());
   }
 
+  public buscarCargo(buscador) {
+    return this.http.get(this.urlBase + "api/Cargo/buscarMarca/" + buscador).map(res => res.json());
+  }
+
   //Service Donantes
 
   public agregarDonante(donante) {

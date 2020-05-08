@@ -134,5 +134,43 @@ namespace ASGARD.Controllers
 
         }
 
+        //Método buscar cargo
+        [HttpGet]
+        [Route("api/Cargo/buscarMarca/{buscador?}")]
+        public IEnumerable<CargoAF> buscarCargo(string buscador = "")
+        {
+            List<CargoAF> listaCargo;
+            using (BDAcaassAFContext bd = new BDAcaassAFContext())
+            {
+                if (buscador == "")
+                {
+                    listaCargo = (from cargo in bd.Cargos
+                                  where cargo.Dhabilitado == 1
+                                  select new CargoAF
+                                  {
+                                      idcargo=cargo.IdCargo,
+                                      cargo=cargo.Cargo,
+                                      direccion=cargo.Direccion
+                                  }).ToList();
+
+                    return listaCargo;
+                }
+                else
+                {
+                    listaCargo = (from cargo in bd.Cargos
+                                  where cargo.Dhabilitado == 1
+
+                                  && ((cargo.IdCargo).ToString().Contains(buscador) || (cargo.Cargo).ToLower().Contains(buscador.ToLower()) || (cargo.Direccion).ToLower().Contains(buscador.ToLower()))
+                                  select new CargoAF
+                                  {
+                                      idcargo = cargo.IdCargo,
+                                      cargo = cargo.Cargo,
+                                      direccion = cargo.Direccion
+                                  }).ToList();
+                    return listaCargo;
+                }
+            }
+        }
+
     }
 }

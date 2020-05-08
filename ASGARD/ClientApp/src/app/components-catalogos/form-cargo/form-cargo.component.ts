@@ -24,8 +24,8 @@ export class FormCargoComponent implements OnInit {
 
       'idcargo': new FormControl("0"),
       'bandera': new FormControl("0"),
-      'cargo': new FormControl("", [Validators.required]),
-      'direccion': new FormControl("", [Validators.required])
+      'cargo': new FormControl("", [Validators.required, Validators.maxLength(25)]),
+      'direccion': new FormControl("", [Validators.required, Validators.maxLength(100)])
 
     });
  
@@ -36,7 +36,7 @@ export class FormCargoComponent implements OnInit {
 
   }
 
-  //Métodos  
+  //Métodos   
 
   open() {
     //limpia cache  
@@ -67,6 +67,7 @@ guardarDatos() {
               showConfirmButton: false,
               timer: 3000
           })
+          this.catalogoService.getCargo().subscribe(data=> {this.cargos=data});
       }
   } else {
       //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar   
@@ -126,6 +127,11 @@ eliminar(idcargo) {
          
       }
   })
+}
+
+buscar(buscador) {
+  this.p = 1;
+  this.catalogoService.buscarCargo(buscador.value).subscribe(res => this.cargos = res);
 }
 
 }

@@ -10,7 +10,7 @@
     <div class="col-lg-3">
     </div>
     <div class="col-lg-3">
-      <input type="text" class="form-control"  placeholder="Buscar">
+      <input type="text" class="form-control" #nombre (keyup)="buscar(nombre)"  placeholder="Buscar">
     </div>
   </div>
 
@@ -69,9 +69,23 @@
             <input type="text" class="form-control" formControlName="cargo" id="exampleInputEmail3" placeholder="Agregue cargo" autocomplete="off">
           </div>
 
+          <div class="alert alert-block alert-danger fade in" *ngIf="cargo.controls['cargo'].errors?.maxlength">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Advertencia!</strong> Ha superado el nuúmero máximo de caracteres
+          </div>
+
           <div class="form-group">
             <label for="exampleInputEmail1">Dirección:</label>
             <input type="text" class="form-control" formControlName="direccion" id="exampleInputEmail3" placeholder="Agregue dirección" autocomplete="off">
+          </div>
+
+          <div class="alert alert-block alert-danger fade in" *ngIf="cargo.controls['direccion'].errors?.maxlength">
+            <button data-dismiss="alert" class="close close-sm" type="button">
+              <i class="icon-remove"></i>
+            </button>
+            <strong>Advertencia!</strong> Ha superado el nuúmero máximo de caracteres
           </div>
          
                           <!--  WARNING-->
@@ -89,6 +103,9 @@
                             </button>
                             <strong>Exelente!</strong> Datos ingresados correctamente
                           </div>
+
+
+                          
          
         
             <button [disabled]="!cargo.valid" type="submit" class="btn btn-primary">Guardar</button>
