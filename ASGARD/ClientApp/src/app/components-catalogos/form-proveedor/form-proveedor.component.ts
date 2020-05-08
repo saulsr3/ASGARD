@@ -171,10 +171,10 @@ export class FormProveedorComponent implements OnInit {
 
   //Método
 
-  //buscar(buscador) {
-  //  this.p = 1;
-  //  this.catalogoService.buscarProveedor(buscador.value).subscribe(res => { this.proveedor = res });
-  //}
+  buscar(buscador) {
+   this.p = 1;
+   this.catalogoService.buscarProveedor(buscador.value).subscribe(res => { this.proveedor = res });
+  }
 
   noIniciaCeroTelefono(control: FormControl) {
     if (control.value != null && control.value != "") {
