@@ -45,7 +45,7 @@
               <tbody>
                 <tr *ngFor="let clasificacion of clasificaciones | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                   <th scope="row">{{i+1}}</th>
-                  <!--<td>{{clasificacion.idclasificacion}}</td>-->
+                  <!--{clasificacion.idclasificacion}}-->
                   <td>{{clasificacion.correlativo}}</td>
                   <td>{{clasificacion.clasificacion}}</td>
                   <td>{{clasificacion.descripcion}}</td>
