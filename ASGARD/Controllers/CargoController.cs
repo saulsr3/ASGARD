@@ -31,7 +31,7 @@ namespace ASGARD.Controllers
                     Cargos oCargo = new Cargos();
                     oCargo.IdCargo = oCargoAF.idcargo;
                     oCargo.Cargo = oCargoAF.cargo;
-                    oCargo.Direccion = oCargoAF.direccion;
+                    oCargo.Descripcion = oCargoAF.descripcion;
                     oCargo.Dhabilitado = 1;
                     bd.Cargos.Add(oCargo);
                     bd.SaveChanges();
@@ -60,7 +60,7 @@ namespace ASGARD.Controllers
                                                    {
                                                        idcargo = cargo.IdCargo,
                                                        cargo = cargo.Cargo,
-                                                       direccion = cargo.Direccion
+                                                       descripcion = cargo.Descripcion
                                                    }).ToList();
                 return listaCargo;
             }
@@ -77,7 +77,7 @@ namespace ASGARD.Controllers
                 Cargos oCargo = bd.Cargos.Where(p => p.IdCargo == id).First();
                 oCargoAF.idcargo = oCargo.IdCargo;
                 oCargoAF.cargo = oCargo.Cargo;
-                oCargoAF.direccion = oCargo.Direccion;
+                oCargoAF.descripcion = oCargo.Descripcion;
 
                 return oCargoAF;
             }
@@ -98,7 +98,7 @@ namespace ASGARD.Controllers
                     Cargos oCargo = bd.Cargos.Where(p => p.IdCargo == oCargoAF.idcargo).First();
                     oCargo.IdCargo = oCargoAF.idcargo;
                     oCargo.Cargo = oCargoAF.cargo;
-                    oCargo.Direccion = oCargoAF.direccion;
+                    oCargo.Descripcion = oCargoAF.descripcion;
                     bd.SaveChanges();
                     rpta = 1;
                 }
@@ -150,7 +150,7 @@ namespace ASGARD.Controllers
                                   {
                                       idcargo=cargo.IdCargo,
                                       cargo=cargo.Cargo,
-                                      direccion=cargo.Direccion
+                                      descripcion=cargo.Descripcion
                                   }).ToList();
 
                     return listaCargo;
@@ -160,12 +160,12 @@ namespace ASGARD.Controllers
                     listaCargo = (from cargo in bd.Cargos
                                   where cargo.Dhabilitado == 1
 
-                                  && ((cargo.IdCargo).ToString().Contains(buscador) || (cargo.Cargo).ToLower().Contains(buscador.ToLower()) || (cargo.Direccion).ToLower().Contains(buscador.ToLower()))
+                                  && ((cargo.IdCargo).ToString().Contains(buscador) || (cargo.Cargo).ToLower().Contains(buscador.ToLower()) || (cargo.Descripcion).ToLower().Contains(buscador.ToLower()))
                                   select new CargoAF
                                   {
                                       idcargo = cargo.IdCargo,
                                       cargo = cargo.Cargo,
-                                      direccion = cargo.Direccion
+                                      descripcion = cargo.Descripcion
                                   }).ToList();
                     return listaCargo;
                 }

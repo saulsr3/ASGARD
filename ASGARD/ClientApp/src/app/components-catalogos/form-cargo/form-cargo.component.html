@@ -27,7 +27,7 @@
                 <tr>
                   <th>Id Cargo</th>
                   <th>Cargo</th>
-                  <th>Dirección</th>
+                  <th>Descripción</th>
                   <th class="hidden-phone">Opciones</th>
                 </tr>
               </thead>
@@ -35,7 +35,7 @@
                 <tr *ngFor="let cargo of cargos | paginate: { itemsPerPage: 5, currentPage: p }">
                   <td>{{cargo.idcargo}}</td>
                   <td>{{cargo.cargo}}</td>
-                  <td>{{cargo.direccion}}</td>
+                  <td>{{cargo.descripcion}}</td>
                   <td class="center hidden-phone">
                     <button class="btn btn-primary btn-xs" (click)="modif(cargo.idcargo)"><i class="icon-pencil" title="Editar"></i></button>
                     <button class="btn btn-danger btn-xs" (click)="eliminar(cargo.idcargo)"><i class="icon-trash "></i></button>
@@ -77,11 +77,11 @@
           </div>
 
           <div class="form-group">
-            <label for="exampleInputEmail1">Dirección:</label>
-            <input type="text" class="form-control" formControlName="direccion" id="exampleInputEmail3" placeholder="Agregue dirección" autocomplete="off">
+            <label for="exampleInputEmail1">Descripción:</label>
+            <input type="text" class="form-control" formControlName="descripcion" id="exampleInputEmail3" placeholder="Agregue descripción" autocomplete="off">
           </div>
 
-          <div class="alert alert-block alert-danger fade in" *ngIf="cargo.controls['direccion'].errors?.maxlength">
+          <div class="alert alert-block alert-danger fade in" *ngIf="cargo.controls['descripcion'].errors?.maxlength">
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>

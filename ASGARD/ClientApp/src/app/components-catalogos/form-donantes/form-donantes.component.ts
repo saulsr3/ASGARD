@@ -110,7 +110,7 @@ export class FormDonantesComponent implements OnInit {
         this.catalogoService.eliminarDonante(iddonante).subscribe(data => {
           Swal.fire(
             'Registro eliminado!',
-            'Tu archivo ha sido eliminado con exito.',
+            'Tu archivo ha sido eliminado con éxito.',
             'success'
           )
           this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });

@@ -25,7 +25,7 @@ export class FormCargoComponent implements OnInit {
       'idcargo': new FormControl("0"),
       'bandera': new FormControl("0"),
       'cargo': new FormControl("", [Validators.required, Validators.maxLength(25)]),
-      'direccion': new FormControl("", [Validators.required, Validators.maxLength(100)])
+      'descripcion': new FormControl("", [Validators.required, Validators.maxLength(100)])
 
     });
  
@@ -44,7 +44,7 @@ export class FormCargoComponent implements OnInit {
     this.cargo.controls["idcargo"].setValue("0");
     this.cargo.controls["bandera"].setValue("0");
     this.cargo.controls["cargo"].setValue("");
-    this.cargo.controls["direccion"].setValue("");
+    this.cargo.controls["descripcion"].setValue("");
     this.display = 'block';
 }
 close() {
@@ -63,7 +63,7 @@ guardarDatos() {
           Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Dato Guardado con exito',
+              title: 'Dato Guardado con éxito',
               showConfirmButton: false,
               timer: 3000
           })
@@ -78,7 +78,7 @@ guardarDatos() {
           Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Dato Modificado con exito',
+              title: 'Dato Modificado con éxito',
               showConfirmButton: false,
               timer: 3000
           })
@@ -88,7 +88,7 @@ guardarDatos() {
   this.cargo.controls["idcargo"].setValue("0");
   this.cargo.controls["bandera"].setValue("0");
   this.cargo.controls["cargo"].setValue("");
-  this.cargo.controls["direccion"].setValue("");
+  this.cargo.controls["descripcion"].setValue("");
   this.display = 'none';
   this.catalogoService.getCargo().subscribe(data => { this.cargos = data });
 }
@@ -100,12 +100,12 @@ modif(id) {
     this.cargo.controls["idcargo"].setValue(data.idcargo);
     this.cargo.controls["bandera"].setValue("1");
     this.cargo.controls["cargo"].setValue(data.cargo);
-    this.cargo.controls["direccion"].setValue(data.direccion);
+    this.cargo.controls["descripcion"].setValue(data.descripcion);
     this.catalogoService.getCargo().subscribe(data => { this.cargos = data });  
   });
 }
 
-eliminar(idcargo) {
+eliminar(idcargo) { 
   Swal.fire({
       title: '¿Estas seguro de eliminar este registro?',
       text: "No podras revertir esta acción!",
@@ -119,7 +119,7 @@ eliminar(idcargo) {
           this.catalogoService.eliminarCargo(idcargo).subscribe(data => {
               Swal.fire(
                   'Dato eliminado!',
-                  'Tu archivo ha sido eliminado con exito.',
+                  'Tu archivo ha sido eliminado con éxito.',
                   'success'
               )
             this.catalogoService.getCargo().subscribe(data => { this.cargos = data });
