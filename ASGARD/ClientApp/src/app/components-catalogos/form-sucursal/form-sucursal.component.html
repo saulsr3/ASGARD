@@ -6,15 +6,16 @@
     <div class="col-lg-6">
 
       <header class="panel-heading form-in-line">
-        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-save"></i> Agregar Nueva Marca</button>
+        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-plus-sign-alt"></i> Agregar Nueva Sucursal</button>
       </header>
     </div>
     <div class="col-lg-3">
 
     </div>
-    <div class="col-lg-3">
-      <input type="text" class="form-control" #nombre (keyup)="buscar(nombre)" placeholder="Buscar">
-    </div>
+    
+    <div class="col-md-3">
+      <input type="search" class="form-control" #nombre (keyup)="buscar(nombre)" placeholder="Buscar">  
+</div>
   </div>
 
   <div class="row">
@@ -30,7 +31,7 @@
               <table class="display table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Código</th>
+                    <th>N°</th>
                     <th>Sucursal</th>
                     <th>Ubicacion</th>
                     <th>Correlativo</th>
@@ -38,8 +39,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let sucursal of sucursales | paginate: { itemsPerPage: 10, currentPage: p }">
-                    <td>{{sucursal.idSucursal}}</td>
+                  <tr *ngFor="let sucursal of sucursales | paginate: { itemsPerPage: 5, currentPage: p };let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <!-- <td>{{sucursal.idSucursal}}</td> -->
                     <td>{{sucursal.nombre}}</td>
                     <td>{{sucursal.ubicacion}}</td>
                     <td>{{sucursal.correlativo}}</td>
@@ -125,8 +127,8 @@
             </button>
             <strong>Exelente!</strong> Datos ingresados correctamente
           </div>
-          <button [disabled]="!sucursal.valid" type="submit" class="btn btn-primary">Guardar</button>
-          <button type="button" (click)="close()" class="btn btn-default">Cancelar</button>
+          <button [disabled]="!sucursal.valid" type="submit" class="btn btn-primary"><i class="icon-save"></i> Guardar</button>
+          <button type="button" (click)="close()" class="btn btn-default"><i class="icon-remove-sign"></i> Cancelar</button>
         </form>
       </div>
     </div>
