@@ -83,7 +83,7 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertencia!</strong> Este es el tamaño maximo permitido en este campo.
+            <strong>¡Error!</strong> Tamaño maximo permitido en este campo.
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Ubicación:</label>
@@ -93,7 +93,7 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertencia!</strong> Este es el tamaño maximo permitido en este campo.
+            <strong>¡Error!</strong> Tamaño maximo permitido en este campo
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Correlativo:</label>
@@ -103,13 +103,13 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertencia!</strong> Este es el tamaño maximo permitido en este campo.
+            <strong>¡Error!</strong> Tamaño maximo permitido en este campo.
           </div>
           <div class="alert alert-block alert-danger fade in" *ngIf="sucursal.controls['correlativo'].errors?.yaExisteCorrelativo">
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertencia!</strong> ya existe el "Correlativo" ingresado.
+            <strong>¡Error!</strong> ya existe el "Correlativo" ingresado.
           
           </div>
           <!--  WARNING-->
@@ -117,7 +117,7 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Cuidado!</strong> Todos los campos son obligatorios
+            <strong>¡Advertencia!</strong> Todos los campos son obligatorios.
           </div>
          
           <!--  END-WARNING-->
@@ -125,7 +125,7 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Exelente!</strong> Datos ingresados correctamente
+            <strong>¡Exelente!</strong> Datos ingresados correctamente.
           </div>
           <button [disabled]="!sucursal.valid" type="submit" class="btn btn-primary"><i class="icon-save"></i> Guardar</button>
           <button type="button" (click)="close()" class="btn btn-default"><i class="icon-remove-sign"></i> Cancelar</button>
