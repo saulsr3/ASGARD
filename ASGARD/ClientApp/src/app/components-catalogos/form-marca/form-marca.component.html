@@ -26,15 +26,16 @@
             <table class="display table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Código</th>
+                  <th>N°</th>
                   <th>Marca</th>
                   <th>Descripcion</th>
                   <th class="hidden-phone">Opciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let marca of marcas | paginate: { itemsPerPage: 5, currentPage: p }">
-                  <td>{{marca.idMarca}}</td>
+                <tr *ngFor="let marca of marcas | paginate: { itemsPerPage: 5, currentPage: p };let i=index">
+                  <th scope="col">{{i+1}}</th>
+                  <!-- <td>{{marca.idMarca}}</td> -->
                   <td>{{marca.marca}}</td>
                   <td>{{marca.descripcion}}</td>
                   <td class="center hidden-phone" style="text-align: center;">
