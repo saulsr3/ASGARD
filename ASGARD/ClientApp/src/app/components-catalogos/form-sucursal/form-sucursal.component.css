@@ -107,6 +107,7 @@ th, td {
   border: 1px solid #e2e2e4;
   box-shadow: none;
   color: #8b8b8b;
+  border-radius: 10px;
 }
 input, select, textarea,::placeholder {
   font-family: inherit;
