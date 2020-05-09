@@ -131,7 +131,7 @@ export class FormClasificacionComponent implements OnInit {
 
 
   buscar(buscador) {
-    this.p=1;
+    this.p = 1;
     this.catalogosServices.buscarClasificacion(buscador.value).subscribe(res => {this.clasificaciones = res});
   }
 
