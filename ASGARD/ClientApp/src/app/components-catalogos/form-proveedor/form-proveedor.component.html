@@ -26,7 +26,7 @@
             <table class="display table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>N°</th>
                   <th>Nombre</th>
                   <th>Dirección</th>
                   <th>Teléfono</th>
@@ -38,8 +38,8 @@
               </thead>
 
               <tbody>
-                <tr *ngFor="let proveedores of proveedor | paginate: { itemsPerPage: 5, currentPage: p }">
-                  <td>{{proveedores.idProveedor}}</td>
+                <tr *ngFor="let proveedores of proveedor | paginate: { itemsPerPage: 5, currentPage: p}; let i=index">
+                  <th scope="col">{{i+(5*p)-4}}</th>
                   <td>{{proveedores.nombre}}</td>
                   <td>{{proveedores.direccion}}</td>
                   <td>{{proveedores.telefono}}</td>

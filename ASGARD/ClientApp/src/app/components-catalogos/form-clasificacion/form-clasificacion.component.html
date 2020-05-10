@@ -29,17 +29,19 @@
             <table class="display table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th scope="rowgroup">N°</th>
+                  <th scope="row">N°</th>
                   <!--<th>Id Clasificación</th>-->
-                  <th>Correlativo</th>
-                  <th>Clasificación</th>
-                  <th>Descripcion</th>
-                  <th class="hidden-phone">Opciones</th>
+                  <th scope="row">Correlativo</th>
+                  <th scope="row">Clasificación</th>
+                  <th scope="row">Descripcion</th>
+                  <th scope="row"  class="hidden-phone">Opciones</th>
                 </tr>
               </thead>
               <tbody>
+     
                 <tr *ngFor="let clasificacion of clasificaciones | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
-                  <th scope="col">{{i+1}}</th>
+        
+                  <th scope="col">{{i+(5*p)-4}}</th>
                   <!--{clasificacion.idclasificacion}}-->
                   <td>{{clasificacion.correlativo}}</td>
                   <td>{{clasificacion.clasificacion}}</td>
@@ -51,7 +53,7 @@
                 </tr>
               </tbody>
             </table>
-            <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            <pagination-controls (pageChange)="p = $event" id-pagination="clasificacion" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 
           </div>
         </div>
@@ -74,7 +76,7 @@
 
           <div class="form-group">
             <label for="exampleInputEmail1">Correlativo:</label>
-            <input type="text" class="form-control" formControlName="correlativo" id="exampleInputEmail3" placeholder="Correlativo" autocomplete="off" maxlength="11">
+            <input type="text" class="form-control" formControlName="correlativo" id="exampleInputEmail3" placeholder="Ingrese correlativo" autocomplete="off" maxlength="11">
           </div>
           <div class="alert alert-warning fade in" *ngIf="clasificacion.controls['correlativo'].errors?.required">
             <button data-dismiss="alert" class="close close-sm" type="button">
@@ -86,7 +88,7 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Error!</strong> El campo no puede pas
+            <strong>Error!</strong> Tamaño máximo permitido en este campo
           </div>
           <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['correlativo'].errors?.yaExisteCorrelativo">
             <button data-dismiss="alert" class="close close-sm" type="button">
@@ -96,7 +98,7 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea2">Clasificación:</label>
-            <input type="text" class="form-control" formControlName="clasificacion" id="exampleFormControlTextarea2" placeholder="Clasificación" autocomplete="off"  maxlength="51">
+            <input type="text" class="form-control" formControlName="clasificacion" id="exampleFormControlTextarea2" placeholder="Ingrese clasificación" autocomplete="off"  maxlength="51">
           </div>
           <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['clasificacion'].errors?.yaExisteClasificacion">
             <button data-dismiss="alert" class="close close-sm" type="button">
@@ -125,7 +127,7 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertencia!</strong> La descripción no puede ser mayor a 100 caracteres
+            <strong>Advertencia!</strong> Tamaño máximo permitido en este campo
           </div>
           <div class="alert alert-success fade in" *ngIf="clasificacion.valid&&clasificacion.controls['bandera'].value==0">
             <button data-dismiss="alert" class="close close-sm" type="button">

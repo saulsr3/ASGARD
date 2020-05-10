@@ -29,15 +29,15 @@
             <table class="display table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Id Cargo</th>
+                  <th>N°</th>
                   <th>Cargo</th>
                   <th>Descripción</th>
                   <th class="hidden-phone">Opciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let cargo of cargos | paginate: { itemsPerPage: 5, currentPage: p }">
-                  <td>{{cargo.idcargo}}</td>
+                <tr *ngFor="let cargo of cargos | paginate: { itemsPerPage: 5, currentPage: p }; let i=index">
+                  <th scope="col">{{i+(5*p)-4}}</th>
                   <td>{{cargo.cargo}}</td>
                   <td>{{cargo.descripcion}}</td>
                   <td class="center hidden-phone">
