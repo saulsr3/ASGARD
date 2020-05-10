@@ -48,6 +48,8 @@ export class FormClasificacionComponent implements OnInit {
   close() {
     this.display = 'none';
   }
+
+
   guardarDatos() {
     if ((this.clasificacion.controls["bandera"].value) == "0") {
       if (this.clasificacion.valid == true) {
