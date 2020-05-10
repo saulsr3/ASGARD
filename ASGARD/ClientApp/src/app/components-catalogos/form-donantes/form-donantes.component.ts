@@ -22,10 +22,10 @@ export class FormDonantesComponent implements OnInit {
     this.donantes = new FormGroup({
 
       'iidDonante': new FormControl("0"),
-      'nombre': new FormControl("", [Validators.required, Validators.maxLength(70)]),
+      'nombre': new FormControl("", [Validators.required, Validators.maxLength(50)]),
       'bandera': new FormControl("0"),
       'telefono': new FormControl("", [Validators.required, Validators.maxLength(11)]),
-      'direccion': new FormControl("", [Validators.required, Validators.maxLength(50)])
+      'direccion': new FormControl("", [Validators.required, Validators.maxLength(100)])
 
     });
   }
@@ -56,8 +56,10 @@ export class FormDonantesComponent implements OnInit {
 
     if ((this.donantes.controls["bandera"].value) == "0") {
       if (this.donantes.valid == true) {
-        this.catalogoService.agregarDonante(this.donantes.value).subscribe(data => { });
-        this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
+        this.catalogoService.agregarDonante(this.donantes.value).subscribe(data => {
+          this.catalogoService.getDonantes().subscribe(data => { this.dontes = data });
+         });
+        
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -70,7 +72,7 @@ export class FormDonantesComponent implements OnInit {
       
     } else { 
 
-      //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar
+      //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar 
 
       this.donantes.controls["bandera"].setValue("0");
       if (this.donantes.valid == true) {
