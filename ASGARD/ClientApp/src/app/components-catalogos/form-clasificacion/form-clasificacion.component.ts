@@ -69,7 +69,9 @@ export class FormClasificacionComponent implements OnInit {
       //Sino es porque la bandera trae otro valor y solo es posible cuando preciona el boton de recuperar
       this.clasificacion.controls["bandera"].setValue("0");
       if (this.clasificacion.valid == true) {
-        this.catalogosServices.modificarclasificacion(this.clasificacion.value).subscribe(data => { });
+        this.catalogosServices.modificarclasificacion(this.clasificacion.value).subscribe(data => {
+          this.catalogosServices.getClasificacion().subscribe(res => {this.clasificaciones = res});
+         });
         Swal.fire({
           position: 'center',
           icon: 'success',

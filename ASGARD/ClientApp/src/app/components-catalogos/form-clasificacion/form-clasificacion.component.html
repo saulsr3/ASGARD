@@ -40,9 +40,7 @@
               <tbody>
      
                 <tr *ngFor="let clasificacion of clasificaciones | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
-        
                   <th scope="col">{{i+(5*p)-4}}</th>
-                  <!--{clasificacion.idclasificacion}}-->
                   <td>{{clasificacion.correlativo}}</td>
                   <td>{{clasificacion.clasificacion}}</td>
                   <td>{{clasificacion.descripcion}}</td>
