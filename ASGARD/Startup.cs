@@ -41,6 +41,12 @@ namespace ASGARD
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            app.UseCors(option =>
+            {
+                option.AllowAnyHeader();
+                option.AllowAnyMethod();
+                option.AllowAnyOrigin();
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
