@@ -8,7 +8,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
+import { NgxMaskModule } from 'ngx-mask'; 
 
 
 //Registrar o declarar el componente creado
@@ -66,7 +66,8 @@ import { FormAreasNegocioComponent } from './components-catalogos/form-areas-neg
         HttpClientModule,
     FormsModule,
         ReactiveFormsModule,
-        NgxPaginationModule, 
+      NgxPaginationModule,
+      NgxMaskModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
         { path: 'shared', component: SharedComponent },

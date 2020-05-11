@@ -1,11 +1,11 @@
 <br><br><br><br>
 <section class="panel">
-  <h1>Clasificación de activos</h1>
+  <h1>Clasificación</h1>
   <div class="row">
     <div class="col-lg-6">
 
       <header class="panel-heading form-in-line">
-        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-plus-sign-alt"></i> Agregar Nueva Sucursal</button>
+        <button type="button" class="btn btn-success" (click)="open()" data-toggle="modal" data-target="#myModal"><i class="icon-plus-sign-alt"></i> Agregar nueva clasificación</button>
       </header>
     </div>
     <div class="col-lg-3">
@@ -29,18 +29,18 @@
             <table class="display table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th scope="rowgroup">N°</th>
+                  <th scope="row">N°</th>
                   <!--<th>Id Clasificación</th>-->
-                  <th>Correlativo</th>
-                  <th>Clasificación</th>
-                  <th>Descripcion</th>
-                  <th class="hidden-phone">Opciones</th>
+                  <th scope="row">Correlativo</th>
+                  <th scope="row">Clasificación</th>
+                  <th scope="row">Descripcion</th>
+                  <th scope="row"  class="hidden-phone">Opciones</th>
                 </tr>
               </thead>
               <tbody>
+     
                 <tr *ngFor="let clasificacion of clasificaciones | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
-                  <th scope="col">{{i+1}}</th>
-                  <!--{clasificacion.idclasificacion}}-->
+                  <th scope="col">{{ 5 * (p - 1) + i+1 }}</th>
                   <td>{{clasificacion.correlativo}}</td>
                   <td>{{clasificacion.clasificacion}}</td>
                   <td>{{clasificacion.descripcion}}</td>
@@ -51,21 +51,11 @@
                 </tr>
               </tbody>
             </table>
-            <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
-
-              <!--<pagination-controls id="some_id"
-                                   (pageChange)="p= $event"
-                                   (pageBoundsCorrection)="pageChanged($event)"
-                                   maxSize="9"
-                                   directionLinks="true"
-                                   autoHide="true"
-                                   responsive="true"
-                                   previousLabel="Anterior"
-                                   nextLabel="Siguiente"
-                                   screenReaderPaginationLabel="Paginacion"
-                                   screenReaderPageLabel="pagina"
-                                   screenReaderCurrentLabel="You're on page">
-              </pagination-controls>-->
+            <pagination-controls (pageChange)="p = $event" class="my-cuadro" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+              
+            <!--darle color al cuadro que rellena el número-->
+        
+           
 
           </div>
         </div>
@@ -88,7 +78,7 @@
 
           <div class="form-group">
             <label for="exampleInputEmail1">Correlativo:</label>
-            <input type="text" class="form-control" formControlName="correlativo" id="exampleInputEmail3" placeholder="Correlativo" autocomplete="off">
+            <input type="text" class="form-control" formControlName="correlativo" id="exampleInputEmail3" placeholder="Ingrese correlativo" autocomplete="off" maxlength="11">
           </div>
           <div class="alert alert-warning fade in" *ngIf="clasificacion.controls['correlativo'].errors?.required">
             <button data-dismiss="alert" class="close close-sm" type="button">
@@ -100,7 +90,7 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertencia!</strong> El correlativo no puede ser mayor a 10 caracteres
+            <strong>Error!</strong> Tamaño máximo permitido en este campo
           </div>
           <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['correlativo'].errors?.yaExisteCorrelativo">
             <button data-dismiss="alert" class="close close-sm" type="button">
@@ -110,7 +100,7 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea2">Clasificación:</label>
-            <input type="text" class="form-control" formControlName="clasificacion" id="exampleFormControlTextarea2" placeholder="Clasificación" autocomplete="off">
+            <input type="text" class="form-control" formControlName="clasificacion" id="exampleFormControlTextarea2" placeholder="Ingrese clasificación" autocomplete="off"  maxlength="51">
           </div>
           <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['clasificacion'].errors?.yaExisteClasificacion">
             <button data-dismiss="alert" class="close close-sm" type="button">
@@ -122,26 +112,26 @@
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertencia!</strong> La clasificación no puede ser mayor a 50 caracteres
+            <strong>Error!</strong> Tamaño máximo permitido en este campo
           </div>
           <div class="alert alert-warning fade in" *ngIf="clasificacion.controls['clasificacion'].errors?.required">
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertenvia!</strong> El campo Clasificación sí es obligatorio
+            <strong>Advertencia!</strong> El campo es obligatorio
           </div>
           
           <div class="form-group">
             <label for="exampleFormControlTextarea2">Descripción:</label>
-            <textarea class="form-control rounded-0" formControlName="descripcion" id="exampleFormControlTextarea2" rows="3" placeholder="Descripcion" autocomplete="off"></textarea>
+            <textarea class="form-control rounded-0" formControlName="descripcion" id="exampleFormControlTextarea2" rows="3" placeholder="Ingrese descripcion" autocomplete="off"  maxlength="101"></textarea>
           </div>
           <div class="alert alert-block alert-danger fade in" *ngIf="clasificacion.controls['descripcion'].errors?.maxlength">
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
-            <strong>Advertencia!</strong> La descripción no puede ser mayor a 100 caracteres
+            <strong>Advertencia!</strong> Tamaño máximo permitido en este campo
           </div>
-          <div class="alert alert-success fade in" *ngIf="clasificacion.valid">
+          <div class="alert alert-success fade in" *ngIf="clasificacion.valid&&clasificacion.controls['bandera'].value==0">
             <button data-dismiss="alert" class="close close-sm" type="button">
               <i class="icon-remove"></i>
             </button>
