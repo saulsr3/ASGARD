@@ -104,8 +104,8 @@
           <span>Seguridad</span>
         </a>
         <ul class="sub">
-          <li><a href="grids.html">Usuarios</a></li>
-          <li><a href="calendar.html">Tipos de Usuarios</a></li>
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]="['/form-usuario']" (click)='collapse()'>Usuarios</a></li>
+          <li [routerLinkActive]='["link-active"]'><a href="javascript:;" [routerLink]="['/form-tipo-usuario']" (click)='collapse()'>Tipos de Usuarios</a></li>
           <li><a href="gallery.html">Bitacora</a></li>
 
         </ul>
