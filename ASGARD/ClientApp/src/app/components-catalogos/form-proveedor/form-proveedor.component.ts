@@ -24,27 +24,13 @@ export class FormProveedorComponent implements OnInit {
 
       'idProveedor': new FormControl("0"),
       'bandera': new FormControl("0"),
-      'nombre': new FormControl("", [Validators.required]),
-      'direccion': new FormControl("", [Validators.required]),
-      'telefono': new FormControl("", [Validators.required, Validators.maxLength(9), Validators.pattern("[1-9]{1}[0-9]{3}-[0-9]{4}")]),
-      'rubro': new FormControl("", [Validators.required]),
-      'encargado': new FormControl("", [Validators.required]),
-      'telefonoencargado': new FormControl("", [Validators.required, Validators.maxLength(9), Validators.pattern("[1-9]{1}[0-9]{3}-[0-9]{4}")])
+      'nombre': new FormControl("", [Validators.required, Validators.maxLength(50)]),
+      'telefono': new FormControl("", [Validators.required, Validators.maxLength(10)]),
+      'direccion': new FormControl("", [Validators.required, Validators.maxLength(100)]),
+      'rubro': new FormControl("", [Validators.required, Validators.maxLength(50)]),
+      'encargado': new FormControl("", [Validators.required, Validators.maxLength(50)]),
+      'telefonoencargado': new FormControl("", [Validators.required, Validators.maxLength(10)])
     });
-
-    //this.activateRoute.params.subscribe(parametro => {
-    //  this.parametro = parametro["id"];
-    //  if (this.parametro == "nuevo") {
-    //    this.titulo = "Agregando un Proveedor";
-    //  } 
-    //});
-
-    //this.activateRoute.params.subscribe(parametro => {
-    //  this.parametro = parametro["id"];
-    //  if (this.parametro == "editar") {
-    //    this.titulo = "Editando un Proveedor";
-    //  }
-    //});
 
   }
 
@@ -54,12 +40,12 @@ export class FormProveedorComponent implements OnInit {
 
   open() {
     //limpia cache
-    this.titulo = "Agregar Proveedor";
+    this.titulo = "Formulario registro de Proveedor";
     this.proveedores.controls["idProveedor"].setValue("0");
     this.proveedores.controls["bandera"].setValue("0");
     this.proveedores.controls["nombre"].setValue("");
-    this.proveedores.controls["direccion"].setValue("");
     this.proveedores.controls["telefono"].setValue("");
+    this.proveedores.controls["direccion"].setValue("");
     this.proveedores.controls["rubro"].setValue("");
     this.proveedores.controls["encargado"].setValue("");
     this.proveedores.controls["telefonoencargado"].setValue("");  
@@ -94,7 +80,9 @@ export class FormProveedorComponent implements OnInit {
 
       this.proveedores.controls["bandera"].setValue("0");
       if (this.proveedores.valid == true) {
-        this.catalogoService.ActualizarProveedor(this.proveedores.value).subscribe(data => { });
+        this.catalogoService.ActualizarProveedor(this.proveedores.value).subscribe(data => {
+          this.catalogoService.getProveedores().subscribe(res => { this.proveedor = res });
+        });
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -107,8 +95,8 @@ export class FormProveedorComponent implements OnInit {
     this.proveedores.controls["idProveedor"].setValue("0");
     this.proveedores.controls["bandera"].setValue("0");
     this.proveedores.controls["nombre"].setValue("");
-    this.proveedores.controls["direccion"].setValue("");
     this.proveedores.controls["telefono"].setValue("");
+    this.proveedores.controls["direccion"].setValue("");
     this.proveedores.controls["rubro"].setValue("");
     this.proveedores.controls["encargado"].setValue("");
     this.proveedores.controls["telefonoencargado"].setValue("");
@@ -120,8 +108,6 @@ export class FormProveedorComponent implements OnInit {
     //this.router.navigate(["/form-proveedor"])
   }
 
-
-
   modificar(id) {
 
     this.titulo = "Modificar Proveedor";
@@ -130,8 +116,8 @@ export class FormProveedorComponent implements OnInit {
 
       this.proveedores.controls["idProveedor"].setValue(data.idProveedor);
       this.proveedores.controls["nombre"].setValue(data.nombre);
-      this.proveedores.controls["direccion"].setValue(data.direccion);
       this.proveedores.controls["telefono"].setValue(data.telefono);
+      this.proveedores.controls["direccion"].setValue(data.direccion);
       this.proveedores.controls["rubro"].setValue(data.rubro);
       this.proveedores.controls["encargado"].setValue(data.encargado);
       this.proveedores.controls["telefonoencargado"].setValue(data.telefonoencargado);
@@ -170,10 +156,10 @@ export class FormProveedorComponent implements OnInit {
 
   //Método
 
-  buscar(buscador) {
-   this.p = 1;
-   this.catalogoService.buscarProveedor(buscador.value).subscribe(res => { this.proveedor = res });
-  }
+  //buscar(buscador) {
+  // this.p = 1;
+  // this.catalogoService.buscarProveedor(buscador.value).subscribe(res => { this.proveedor = res });
+  //}
 
   noIniciaCeroTelefono(control: FormControl) {
     if (control.value != null && control.value != "") {
