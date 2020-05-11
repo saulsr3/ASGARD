@@ -156,19 +156,19 @@ export class FormProveedorComponent implements OnInit {
 
   //Método
 
-  //buscar(buscador) {
-  // this.p = 1;
-  // this.catalogoService.buscarProveedor(buscador.value).subscribe(res => { this.proveedor = res });
-  //}
-
-  noIniciaCeroTelefono(control: FormControl) {
-    if (control.value != null && control.value != "") {
-      if ((<string>control.value.toString()).startsWith("0")) {
-        return { IniciaCero: true };
-      }
-    }
-    return null;
+  buscar(buscador) {
+   this.p = 1;
+   this.catalogoService.buscarProveedor(buscador.value).subscribe(res => { this.proveedor = res });
   }
+
+  //noIniciaCeroTelefono(control: FormControl) {
+  //  if (control.value != null && control.value != "") {
+  //    if ((<string>control.value.toString()).startsWith("0")) {
+  //      return { IniciaCero: true };
+  //    }
+  //  }
+  //  return null;
+  //}
 
 
 
