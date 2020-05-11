@@ -40,7 +40,7 @@
               <tbody>
      
                 <tr *ngFor="let clasificacion of clasificaciones | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
-                  <th scope="col">{{i+(5*p)-4}}</th>
+                  <th scope="col">{{ 5 * (p - 1) + i+1 }}</th>
                   <td>{{clasificacion.correlativo}}</td>
                   <td>{{clasificacion.clasificacion}}</td>
                   <td>{{clasificacion.descripcion}}</td>
@@ -51,7 +51,11 @@
                 </tr>
               </tbody>
             </table>
-            <pagination-controls (pageChange)="p = $event" id-pagination="clasificacion" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            <pagination-controls (pageChange)="p = $event" class="my-cuadro" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+              
+            <!--darle color al cuadro que rellena el número-->
+        
+           
 
           </div>
         </div>
